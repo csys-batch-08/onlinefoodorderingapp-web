@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://JAVA.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <servlet>
+    <description></description>
+    <display-name>ActiveuserServlet</display-name>
+    <servlet-name>ActiveuserServlet</servlet-name>
+    <servlet-class>com.foodorder.controller.ActiveuserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActiveuserServlet</servlet-name>
+    <url-pattern>/ActiveuserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ActiveRestaurantServlet</display-name>
+    <servlet-name>ActiveRestaurantServlet</servlet-name>
+    <servlet-class>com.foodorder.controller.ActiveRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActiveRestaurantServlet</servlet-name>
+    <url-pattern>/ActiveRestaurantServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ForgotPasswordServlet</display-name>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <servlet-class>com.foodorder.controller.ForgotPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <url-pattern>/ForgotPasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FilterbyCityServlet</display-name>
+    <servlet-name>FilterbyCityServlet</servlet-name>
+    <servlet-class>com.foodorder.controller.FilterbyCityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilterbyCityServlet</servlet-name>
+    <url-pattern>/FilterbyCityServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
