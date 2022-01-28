@@ -4,6 +4,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,113 +16,124 @@
 	padding:0;
 }
 body{
-	font-weight:bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(255, 255, 128, .5);
+    background-image: url("image/showfood33.jpeg");
     font-size:13.5px;
+    background-size: cover;
+    background-attachment: fixed;
+   	overflow-x:hidden;
 }
   ul
   {
         list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
+        background-color:black;
+        position: fixed;
+        margin-bottom: 20px;
+        margin: 0;
     }
   li{
       display:inline-block;
       padding-top: 13px;
       padding-bottom: 13px;
       text-align: center;
-      font-size: 17px;
+      font-size: 15px;
   }
   li a{
       text-decoration: none;
-      color:white;
+      font-weight:bold;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 20px;
+      padding-left: 10px;
+      color: white;
+  }
+  li a:hover{
+  	opacity: 0.8;
+  	color: LightSeaGreen;
   }
   li button{
-      margin-right: 600px;
+      margin-right: 392px;
   }
-  .text{
-        margin-right: 20px;
+  img{
+  	
+		height:210px;
+		width:240px;
+		padding-top: 70px;
+		margin: 0;
+ 
   }
-	img
-	{
-		height:230px;
-		width:280px;
-		overflow:hidden;
-		padding-top:60px;
-		padding-bottom:33px;
-	}
-	.names{
+  .names{
 		position : relative;
-		top:160px;
-		left: -280px;
+		top:175px;
+		right:250px;
+		width:150%;
+		font-weight: bold;
+		font-size: 14px;
 	}
-	.table{
-		padding-left: 70px;
-	}
-	button{
-		border : 1px solid #bebebe;
-		background-color:#bebebe;
-		padding: 5px 5px;
+	.text
+	{
+		padding:5px;
 		border-radius: 4px;
 	}
-	button a{
-		text-decoration :none;
-		link-style: none;
-		color: black; 
+	form button{
+		background-color: #008b8b;
+		padding: 3px 7px;
+		border-color: transparent;
+		border-radius: 3px;
+		color: white;
+		font-weight: bold;		
 	}
 </style>
 </head>
 <body>
 <div class="nav">
+<form>
     <ul>
         <li><input type="text" class="text"></li>
         <li><button>search</button></li>
-        <li><a href="showfoods.jsp">Foods</a></li>
-        <li><a href="showrestaurant.jsp">Restaurants</a></li>
-        <li><a href="showcart.jsp">Cart</a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
+        <li><a href="ShowRestaurantServ">Restaurants</a></li>
+        <li><a href="ShowCartServ">Cart</a></li>
         <li><a href="walletrecharge.jsp">Wallet</a></li>
-        <li><a href="userprofile.jsp">User profile</a></li>
+        <li><a href="MyOrdersServ">My Orders</a>
+        <li><a href="UserProfileServ">My profile</a></li>
+        <li><a href="ratings.jsp">Ratings</a></li>
     </ul>
+</form>
 </div>
-<%
-	FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-	String foodnames = session.getAttribute("foodname").toString();
-	List<FoodItems> foodItemList = fooditemdao.filterbyfoodname(foodnames);
-		
-%>
+
 <div class="table">
 <table>
 <tbody>
 	   <tr>
-         <%int count=0;
-         for(FoodItems showFoodItems : foodItemList){
-    	 %>
-                    <td>
-                        <table id="foodtable">
-                            <tbody>
-                                <tr>
-                                    <td><img src="image/<%=showFoodItems.getFood_image()%>" alt="foodimage"></td>    
-                                    <td>
-                                     <div class="names"><%=showFoodItems.getFood_name() %><br>
-                                     Food Price :<%=showFoodItems.getPrice() %><br>
-                                     <button><a href = "addcartserv?fname=<%=showFoodItems.getFood_name()%>&resid=<%=showFoodItems.getRestaurant_id()%>">Add to cart</a></button></div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>  
-                            
-                    </td>
-                       <% count ++;
-                       if(count==3){ %> 
-                    	   </tr>
-                    	   <tr>              
-                     <%count=0; }}%>  
+        <c:set var="count" value="1"/>
+        <c:forEach items="${filterfoods}" var="foodnames">
+        <td>
+           <table id="foodtable">
+           <tbody>
+           <tr>
+              <td><img src="image/${foodnames.foodImage}" alt="foodimage"></td>    
+              <td>
+              <div class="names">${foodnames.foodName}<br>
+              Food Price :${foodnames.price}<br>
+              <button><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}">Add to cart</a></button></div>
+              </td>
+           </tr>
+           </tbody>
+           </table>  
                        
-                </tr>
+        </td>
+        <c:choose>
+        	<c:when test="${count==4}">
+        	<c:set var="count" value="1"/>
+        </tr>
+        <tr>
+        	</c:when>
+        	<c:otherwise>
+        	<c:set var="count" value="${count+1}"/>
+        	</c:otherwise>
+        </c:choose>
+        </c:forEach>
+        </tr>
 </tbody>
 </table>
 </div>

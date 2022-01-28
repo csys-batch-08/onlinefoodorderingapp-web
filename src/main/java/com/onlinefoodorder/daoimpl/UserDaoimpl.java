@@ -23,18 +23,16 @@ public class UserDaoimpl implements UserDao
 		PreparedStatement p1 = null;
 		try {
 			p1 = con.prepareStatement(insertQuery);
-			p1.setString(1, user.getUser_name());
-			p1.setLong(2, user.getPhone_no());
+			p1.setString(1, user.getUserName());
+			p1.setLong(2, user.getPhoneNo());
 			p1.setString(3, user.getAddress());
-			p1.setString(4, user.getEmail_address());
+			p1.setString(4, user.getEmailAddress());
 			p1.setString(5, user.getPassword());
 			p1.executeUpdate();
-			System.out.println("User details are successfully inserted ");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("try Again");
 		}
 	}
 	
@@ -45,13 +43,12 @@ public class UserDaoimpl implements UserDao
 		Connection con = ConnectionUtil.getDbConnection();
 		try {
 			PreparedStatement p1 = con.prepareStatement(updateQuery);
-			p1.setString(1, user.getUser_name() );
-			p1.setLong(2, user.getPhone_no());
+			p1.setString(1, user.getUserName());
+			p1.setLong(2, user.getPhoneNo());
 			p1.setString(3, user.getAddress());
 			p1.setString(4, user.getPassword());
-			p1.setString(5, user.getEmail_address());
+			p1.setString(5, user.getEmailAddress());
 			int i = p1.executeUpdate();
-			System.out.println(i+" row Updated");
 			p1.close();
 			con.close();
 		} 
@@ -91,9 +88,6 @@ public class UserDaoimpl implements UserDao
 			{
 				System.out.println(rs.getString(2));
 				user=new User(rs.getString(2), rs.getLong(3), rs.getString(5), email_address, password, rs.getInt(8));
-			}
-			else {
-				System.out.println("Not a valid user");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -246,7 +240,6 @@ public class UserDaoimpl implements UserDao
 					return rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -1;
@@ -260,25 +253,22 @@ public class UserDaoimpl implements UserDao
 		try {
 			statement = con.prepareStatement(query);
 			statement.setInt(1,user.getWallet());
-			statement.setString(2, user.getEmail_address());
+			statement.setString(2, user.getEmailAddress());
 			int res = statement.executeUpdate();
 			statement.executeUpdate("commit");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		return true;
 	}
 
 	@Override
-	public void userProfileUpdate(String email_address, String password) {
-		// TODO Auto-generated method stub
-		
+	public void userProfileUpdate(String emailAddress, String password) {
 	}
 
 	@Override
 	public int updatewallet(int amount, int userid) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

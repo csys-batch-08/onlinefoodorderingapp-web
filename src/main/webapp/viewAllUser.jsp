@@ -2,6 +2,7 @@
 <%@page import="com.onlinefoodorder.model.User"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.UserDaoimpl"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <!DOCTYPE html>
 <html>
@@ -79,25 +80,22 @@
 <body>
 <aside>
 <ul>
-        <li><a href="viewuser.jsp">View users & Search User</a></li>
+        <li><a href="ViewAlluserServ">View users & Search User</a></li>
         <li><a href="inactiveuser.jsp">Inactive users</a></li>
         <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
         <li><a href="addfooditems.jsp">Add Food Items</a></li>
         <li><a href="viewrestaurant.jsp">View all Restaurant details</a></li> 
         <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
         <li><a href="deleterestaurant.jsp">Delete Restaurant</a></li>
-        <li><a href="viewfoods.jsp">View food details</a></li>
-        <li><a href="vieworders.jsp">View Orders</a>
+        <li><a href="ViewFoodsServ">View food details</a></li>
+        <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
-<% UserDaoimpl userdao = new UserDaoimpl();
-   List<User> userList = new ArrayList<User>();
-   userList = userdao.viewUser();
-%>
+
 <div class="t1">
 <div class="set1">
 <h3><b>Search User</b></h3>
-<form action="userview" method="post">
+<form action="searchUser" method="post">
 		<label for="email">User Email address</label>
 		<input type="email" name="email" class="input">
 		<button class="button">view user</button>
@@ -121,28 +119,23 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (User viewUser: userList ) {
-i++;
 
-%>
+<c:set var="i" value="0"/>
+<c:forEach items="${userlist}" var="viewUser">
+<c:set var="i" value="${i+1}"/>
 <tr>
 
-
-<td><%=i%></td>
-<td><%=viewUser.getUser_name()%></td>
-<td><%=viewUser.getPhone_no()%></td>
-<td> <%=viewUser.getAddress()%></td>
-<td> <%=viewUser.getEmail_address()%></td>
-<td> <%=viewUser.getPassword()%></td>
-<td> <%=viewUser.getWallet()%></td>
+<td>${i}</td>
+<td>${viewUser.userName}</td>
+<td>${viewUser.phoneNo}</td>
+<td>${viewUser.address}</td>
+<td>${viewUser.emailAddress}</td>
+<td>${viewUser.password}</td>
+<td>${viewUser.wallet}</td>
 
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </div>

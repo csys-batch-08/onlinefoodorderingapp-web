@@ -93,7 +93,7 @@ form{
         <input type="email" name="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>       
         <label>Password</label>
         <input type="password" class="input" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
-        <button class="button"><a href="userprofile.jsp">Update</a></button>
+        <button class="button">Update</a></button>
     </form>
 </div>
 </body>

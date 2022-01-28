@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet
 		HttpSession session = request.getSession();
 		if(user!=null)
 		{
-			pw.write("welcome " +user.getUser_name());
+			pw.write("welcome " +user.getUserName());
 			
 			session.setAttribute("user", user);
-			String username=user.getUser_name();
+			String username=user.getUserName();
 			System.out.println(username);
 			session.setAttribute("username", username);
 			int userid = userdao.findUserId(email);
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet
 			System.out.println(userid);
 			
 			session.setAttribute("emailid", email);
-			response.sendRedirect("showfoods.jsp");	
+			response.sendRedirect("showfoodsservlet");	
 			
 		}
 		else if(admin!=null)

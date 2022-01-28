@@ -4,6 +4,7 @@
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,21 +51,21 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 350px;
   }
   img{
   	
 		height:210px;
 		width:245px;
-		padding-top: 70px;
+		padding-top: 80px;
 		margin: 0;
  
   }
   .names{
 		position : relative;
-		top:175px;
+		top:180px;
 		right:250px;
-		width:150%;
+		width:200%;
 		color: white;
 		font-weight: bold;
 		font-size: 14px;
@@ -95,8 +96,8 @@ body{
     <ul>
         <li><input type="text" name="search" class="text"></li>
         <li> <button>search</button></a></li>
-        <li><a href="showfoods.jsp">Food Items</a></li>
-        <li><a href="showrestaurant.jsp">Restaurants</a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
+        <li><a href="ShowRestaurantServ">Restaurants</a></li>
         <li><a href="showcart.jsp">Cart</a></li>
         <li><a href="walletrecharge.jsp">Wallet</a></li>
         <li><a href="viewOrderUser.jsp">My Orders</a>
@@ -105,43 +106,43 @@ body{
         <%--<li><a href="ratings.jsp">rating</a></li> --%>
     </ul>
 </div>
-<%
-int itemid = (int)session.getAttribute("itemidcart");
-CartDaoimpl cartDaoimpl = new CartDaoimpl();
-Cart cart = new Cart();
-int userid = (int)session.getAttribute("Userid1");
-List<FoodItems> rs = cartDaoimpl.fetchCart(userid);
-%>
 
 <table>
 <tbody>
 	   <tr>
-         <%int count=0;
-         for(FoodItems showFoodItems : rs){
-    	 %>
+        <c:set var="count" value="1"/>
+       	<c:forEach items="${foodlist}" var="cartlist">
                     <td>
                         <table id="foodtable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=showFoodItems.getFood_image()%>" alt="foodimage"></td>    
+                                    <td><img src="image/${cartlist.foodImage}" alt="foodimage"></td>    
                                     <td>
-                                  	    <div class="names">Food name   :<%=showFoodItems.getFood_name() %></span><br>
-                                        Food Price :<%=showFoodItems.getPrice() %>  </span><br>
-                                        <button><a href = "orderfoods.jsp?fname=<%=showFoodItems.getFood_name()%>&resid=<%=showFoodItems.getRestaurant_id()%>">Buy</a></button>
-                                        <button><a href = "removeCartserv?itemId=<%=showFoodItems.getItem_id()%>">Remove Item</a></button></div>    
+                                  	    <div class="names">${cartlist.foodName}</span><br>
+                                        Food Price :${cartlist.price}</span><br>
+                                        <button><a href = "orderfoods.jsp?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}">Buy</a></button>
+                                        <button><a href = "removeCartserv?itemId=${cartlist.itemId}">Remove Item</a></button></div>    
                                     </td>
                                 </tr>
                             </tbody>
                         </table>  
                             
                     </td>
-                       <% count ++;
-                       if(count==4){ %> 
-                    	   </tr>
-                    	   <tr>              
-                     <%count=0; }}%>  
+                       <c:choose>
+    	 <c:when test="${count==4}">
+    	 <c:set var="count" value="1"/>
+       
+   		 </tr>
+   		 <tr>
+     
+     	</c:when>
+     	<c:otherwise>
+     		<c:set var="count" value="${count+1}"/>
+     	</c:otherwise>
+     	</c:choose> 
+     	</c:forEach> 
                        
-                </tr>
+         </tr>
 </tbody>
 </table>
 </body>

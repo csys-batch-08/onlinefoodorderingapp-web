@@ -4,29 +4,36 @@ import java.util.Objects;
 
 public class RestaurantDetails 
 {
-	private String restaurant_name;
+	private int restaurantId;
+	private String restaurantName;
 	private String area;
 	private String city;
 	private int pincode;
-	private long restaurant_landline_no;
-	private String owner_name;
-	private String operational_hours;
+	private long restaurantLandlineNo;
+	private String ownerName;
+	private String operationalHours;
 	private String email;
 	private String password;
-	private String restaurant_images;
-	private String restaurant_status;
+	private String restaurantImages;
+	private String restaurantStatus;
 	
-	public String getRestaurant_status() {
-		return restaurant_status;
+	public int getRestaurantId() {
+		return restaurantId;
 	}
-	public void setRestaurant_status(String restaurant_status) {
-		this.restaurant_status = restaurant_status;
+	public void setRestaurantId(int restaurantId) {
+		this.restaurantId = restaurantId;
 	}
-	public String getRestaurant_name() {
-		return restaurant_name;
+	public String getRestaurantStatus() {
+		return restaurantStatus;
 	}
-	public void setRestaurant_name(String restaurant_name) {
-		this.restaurant_name = restaurant_name;
+	public void setRestaurantStatus(String restaurantStatus) {
+		this.restaurantStatus = restaurantStatus;
+	}
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
 	}
 	public String getArea() {
 		return area;
@@ -46,23 +53,23 @@ public class RestaurantDetails
 	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
-	public long getRestaurant_landline_no() {
-		return restaurant_landline_no;
+	public long getRestaurantLandlineNo() {
+		return restaurantLandlineNo;
 	}
-	public void setRestaurant_landline_no(long restaurant_landline_no) {
-		this.restaurant_landline_no = restaurant_landline_no;
+	public void setRestaurantLandlineNo(long restaurantLandlineNo) {
+		this.restaurantLandlineNo = restaurantLandlineNo;
 	}
-	public String getOwner_name() {
-		return owner_name;
+	public String getOwnerName() {
+		return ownerName;
 	}
-	public void setOwner_name(String owner_name) {
-		this.owner_name = owner_name;
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
-	public String getOperational_hours() {
-		return operational_hours;
+	public String getOperationalHours() {
+		return operationalHours;
 	}
-	public void setOperational_hours(String operational_hours) {
-		this.operational_hours = operational_hours;
+	public void setOperationalHours(String operationalHours) {
+		this.operationalHours = operationalHours;
 	}
 	public String getEmail() {
 		return email;
@@ -76,54 +83,50 @@ public class RestaurantDetails
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getRestaurant_images() {
-		return restaurant_images;
+	public String getRestaurantImages() {
+		return restaurantImages;
 	}
-	public void setRestaurant_image(String restaurant_images) {
-		this.restaurant_images = restaurant_images;
+	public void setRestaurantimage(String restaurantImages) {
+		this.restaurantImages = restaurantImages;
 	}
-	
-	public RestaurantDetails(String restaurant_name, String area, String city, int pincode, long restaurant_landline_no,
-			String owner_name, String operational_hours, String email, String password, String restaurant_images) {
+	public RestaurantDetails(String restaurantName, String area, String city, int pincode, long restaurantLandlineNo,
+			String ownerName, String operationalHours, String email, String password, String restaurantImages) {
 		super();
-		this.restaurant_name = restaurant_name;
+		this.restaurantName = restaurantName;
 		this.area = area;
 		this.city = city;
 		this.pincode = pincode;
-		this.restaurant_landline_no = restaurant_landline_no;
-		this.owner_name = owner_name;
-		this.operational_hours = operational_hours;
+		this.restaurantLandlineNo = restaurantLandlineNo;
+		this.ownerName = ownerName;
+		this.operationalHours = operationalHours;
 		this.email = email;
 		this.password = password;
-		this.restaurant_images = restaurant_images;
+		this.restaurantImages = restaurantImages;
 	}
-	public RestaurantDetails(String restaurant_name, String area, String city, int pincode, long restaurant_landline_no,
-			String owner_name, String operational_hours, String email, String password, String restaurant_images,
-			String restaurant_status) {
+	public RestaurantDetails(int restaurantId, String restaurantName, String area, String city, int pincode, long restaurantLandlineNo,
+			String ownerName, String operationalHours, String email, String password, String restaurantImages,
+			String restaurantStatus) {
 		super();
-		this.restaurant_name = restaurant_name;
+		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
 		this.area = area;
 		this.city = city;
 		this.pincode = pincode;
-		this.restaurant_landline_no = restaurant_landline_no;
-		this.owner_name = owner_name;
-		this.operational_hours = operational_hours;
+		this.restaurantLandlineNo = restaurantLandlineNo;
+		this.ownerName = ownerName;
+		this.operationalHours = operationalHours;
 		this.email = email;
 		this.password = password;
-		this.restaurant_images = restaurant_images;
-		this.restaurant_status = restaurant_status;
+		this.restaurantImages = restaurantImages;
+		this.restaurantStatus = restaurantStatus;
 	}
-	
-	
 	public RestaurantDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(area, city, email, operational_hours, owner_name, password, pincode, restaurant_landline_no,
-				restaurant_name);
+		return Objects.hash(area, city, email, operationalHours, ownerName, password, pincode, restaurantLandlineNo,
+				restaurantName);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -135,16 +138,16 @@ public class RestaurantDetails
 			return false;
 		RestaurantDetails other = (RestaurantDetails) obj;
 		return Objects.equals(area, other.area) && Objects.equals(city, other.city)
-				&& Objects.equals(email, other.email) && Objects.equals(operational_hours, other.operational_hours)
-				&& Objects.equals(owner_name, other.owner_name) && Objects.equals(password, other.password)
-				&& pincode == other.pincode && restaurant_landline_no == other.restaurant_landline_no
-				&& Objects.equals(restaurant_name, other.restaurant_name);
+				&& Objects.equals(email, other.email) && Objects.equals(operationalHours, other.operationalHours)
+				&& Objects.equals(ownerName, other.ownerName) && Objects.equals(password, other.password)
+				&& pincode == other.pincode && restaurantLandlineNo == other.restaurantLandlineNo
+				&& Objects.equals(restaurantName, other.restaurantName);
 	}
 	@Override
 	public String toString() {
-		return "RestaurantDetails [restaurant_name=" + restaurant_name + ", area=" + area + ", city=" + city
-				+ ", pincode=" + pincode + ", restaurant_landline_no=" + restaurant_landline_no + ", owner_name="
-				+ owner_name + ", operational_hours=" + operational_hours + ", email=" + email + ", password="
+		return "RestaurantDetails [restaurant_name=" + restaurantName + ", area=" + area + ", city=" + city
+				+ ", pincode=" + pincode + ", restaurant_landline_no=" + restaurantLandlineNo + ", owner_name="
+				+ ownerName + ", operational_hours=" + operationalHours + ", email=" + email + ", password="
 				+ password + "]";
 	}
 	

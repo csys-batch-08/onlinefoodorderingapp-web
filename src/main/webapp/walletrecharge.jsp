@@ -1,4 +1,5 @@
 <%@page import="com.onlinefoodorder.model.User"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,17 +89,16 @@ form a{
  button a{
       		text-decoration: none;
       		color:black;
-  }
-  button:hover{
+}
+button:hover{
   			opacity: 0.8;	
   			background-color:rgba(219, 194, 51, 0.664);
-  }
-    </style>
+}
+</style>
 </head>
 <body>
 
-<% User user = (User) session.getAttribute("user");%>
-<h2>Welcome <% out.print(user.getUser_name());%></h2>
+<h2>Welcome ${username}</h2>
 
 <form action="rechargewallet" method="post">
        <h2>Recharge Your Wallet..</h2><br>
@@ -114,7 +114,7 @@ form a{
          
          <label for="Amount">Amount</label><br>
          <input type="text" class="input" name="amount" pattern="[1-9][0-9]+" maxlength="5" required><br><br>
-         <button class="button1"><a href="showfoods.jsp">Back</a></button> 
+         <button class="button1"><a href="showfoodsservlet">Back</a></button> 
          <button class="button">Recharge Wallet</a></button>
     </form>
 </body>

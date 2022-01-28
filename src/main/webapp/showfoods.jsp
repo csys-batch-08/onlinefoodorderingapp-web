@@ -3,6 +3,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,8 +81,6 @@ body{
 		color: white;
 		font-weight: bold;		
 	}
-  
-	
 </style>
 </head>
 <body>
@@ -90,59 +89,64 @@ body{
     <ul>
         <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
         <li> <button>Search</button></a></li>
-        <li><a href="showfoods.jsp">Food Items</a></li>
-        <li><a href="showrestaurant.jsp">Restaurants</a></li>
-        <li><a href="showcart.jsp">Cart</a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
+        <li><a href="ShowRestaurantServ">Restaurants</a></li>
+        <li><a href="ShowCartServ">Cart</a></li>
         <li><a href="walletrecharge.jsp">Wallet</a></li>
-        <li><a href="viewOrderUser.jsp">My Orders</a>
-        <li><a href="userprofile.jsp">My profile</a></li>
+        <li><a href="MyOrdersServ">My Orders</a>
+        <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
     </ul>
 </div>
 
-<%!
-	FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-	List<FoodItems> foodItemList = new ArrayList<FoodItems>();
-	RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-	FoodItems fooditem = new FoodItems();
-	int restaurantid = fooditem.getRestaurant_id();
-	String resname = restaurantdao.findRestaurantName(restaurantid);
-%>
-<%
-	foodItemList = fooditemdao.showFoodItems();
-%>
 <div class="table">
 <table>
 <tbody>
-	   <tr>
-         <%int count=0;
-         for(FoodItems showFoodItems : foodItemList){
-    	 %>
-                    <td>
-                        <table id="foodtable">
-                            <tbody>
-                                <tr>
-                                    <td><a href = "addcartserv?fname=<%=showFoodItems.getFood_name()%>&resid=<%=showFoodItems.getRestaurant_id()%>"><img src="image/<%=showFoodItems.getFood_image()%>" alt="foodimage"></a></td>    
-                                    <td>
-                                    <div class="names"><%=showFoodItems.getFood_name() %><br>
-                                     Price :<%=showFoodItems.getPrice()%><br>
-                                    <%=restaurantdao.findRestaurantName(showFoodItems.getRestaurant_id())%>
-                                    </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>  
-                            
-                    </td>
-                       <% count ++;
-                       if(count==4){ %> 
-                    	   </tr>
-                    	   <tr>              
-                     <%count=0; }}%>  
-                       
-                </tr>
+	<tr>
+	   <c:set var="count" value="1"/>
+       <c:forEach items="${fooditemslistobj}" var="foodlist">
+       <td>
+         
+         <table>
+         <tbody>
+          <tr>
+             <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="image/${foodlist.foodImage}" alt="foodimage"></a></td>    
+             <td>
+             <div class="names">${foodlist.foodName}<br>
+             	Price :${foodlist.price}<br>
+                ${foodlist.restaurantName}
+             </div>
+             </td>
+           </tr>
+         </tbody>
+         </table>         
+       
+       </td>
+     
+     <c:choose>
+     <c:when test="${count==4}">
+     <c:set var="count" value="1"/>
+       
+    </tr>
+    <tr>
+     
+     </c:when>
+     <c:otherwise>
+     	<c:set var="count" value="${count+1}"/>
+     </c:otherwise>
+     </c:choose> 
+     </c:forEach> 
+    
+    </tr>
 </tbody>
 </table>
 </div>
 </form>
 </body>
+
+
+
+
+
+
+

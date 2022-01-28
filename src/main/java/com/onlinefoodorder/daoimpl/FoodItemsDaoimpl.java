@@ -22,32 +22,77 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		Connection c1 = con.getDbConnection();
 		try {
 			PreparedStatement p1 = c1.prepareStatement(insertQuery);
-			p1.setInt(1, fooditem.getRestaurant_id());
-			p1.setString(2, fooditem.getFood_name());
-			p1.setString(3, fooditem.getCuisine_name());
+			p1.setInt(1, fooditem.getRestaurantId());
+			p1.setString(2, fooditem.getFoodName());
+			p1.setString(3, fooditem.getCuisineName());
 			p1.setString(4, fooditem.getDescription());
 			p1.setDouble(5, fooditem.getPrice());
-			p1.setString(6, fooditem.getFood_image());
+			p1.setString(6, fooditem.getFoodImage());
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
-			System.out.println("Food items are inserted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	public List<FoodItems> showFoodsbyRestaurant(int restaurantid)
+	{
+		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
+		String query = "select * from food_items where restaurant_id = ?";
+		Connection con = ConnectionUtil.getDbConnection();
+		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
+		try {
+			PreparedStatement p1 = con.prepareStatement(query);
+			p1.setInt(1, restaurantid);
+			ResultSet rs = p1.executeQuery();
+			while(rs.next())
+			{
+				String resName = restaurantdao.findRestaurantName(rs.getInt(1));
+				FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7),resName);
+				foodnamelist.add(fooditem);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return foodnamelist;
+	}
+//	public List<FoodItems> showFoodItems1()
+//	{
+//		List<FoodItems> foodItemList = new ArrayList< FoodItems>();
+//		String showQuery = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items";
+//		Connection con = ConnectionUtil.getDbConnection();
+//		FoodItems showFoodItems = new FoodItems();
+//		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
+//		try {
+//				Statement stmt = con.createStatement();
+//				ResultSet rs=stmt.executeQuery(showQuery);
+//				while(rs.next())
+//				{
+//					String resName = restaurantdao.findRestaurantName(rs.getInt(1));
+//					FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7),resName);
+//					foodItemList.add(fooditem);
+//				}
+//		}catch(SQLException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		return foodItemList;
+//	}
+		
 	public List<FoodItems> showFoodItems()
 	{
-		List<FoodItems> foodItemList = new ArrayList<FoodItems>();
-		String showQuery = "select * from food_items";
+		List<FoodItems> foodItemList = new ArrayList< FoodItems>();
+		String showQuery = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items";
 		Connection con = ConnectionUtil.getDbConnection();
+		FoodItems showFoodItems = new FoodItems();
+		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
 		try {
 				Statement stmt = con.createStatement();
 				ResultSet rs=stmt.executeQuery(showQuery);
 				while(rs.next())
 				{
-					
-					FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7));
+					String resName = restaurantdao.findRestaurantName(rs.getInt(1));
+					FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7),resName);
 					foodItemList.add(fooditem);
 				}
 		}catch(SQLException e)
@@ -109,7 +154,6 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return foodprice;			
@@ -132,7 +176,6 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -1;
@@ -145,7 +188,6 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			PreparedStatement p1 = con.prepareStatement(deleteQuery);
 			p1.setInt(1, itemid);
 			int i = p1.executeUpdate();
-			System.out.println(i+" Food Item are deleted");
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -166,7 +208,6 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return foodnamelist;
@@ -187,56 +228,13 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return foodnamelist;
-	}
-//	public List<FoodItems> filterbyfoods(String foodname, double price)
-//	{
-//		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
-//		String query = "select * from food_items where food_name=? or price<=?";
-//		Connection con = ConnectionUtil.getDbConnection();
-//		try {
-//			PreparedStatement p1 = con.prepareStatement(query);
-//			p1.setString(1, foodname);
-//			ResultSet rs = p1.executeQuery();
-//			while(rs.next())
-//			{
-//				FoodItems fooditem = new FoodItems(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
-//				foodnamelist.add(fooditem);
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return foodnamelist;
-//	}
-	
-	public List<FoodItems> showFoodsbyRestaurant(int restaurantid)
-	{
-		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
-		String query = "select * from food_items where restaurant_id = ?";
-		Connection con = ConnectionUtil.getDbConnection();
-		try {
-			PreparedStatement p1 = con.prepareStatement(query);
-			p1.setInt(1, restaurantid);
-			ResultSet rs = p1.executeQuery();
-			while(rs.next())
-			{
-				FoodItems fooditem = new FoodItems(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
-				foodnamelist.add(fooditem);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return foodnamelist;
-	}
-		
+	}	
 	@Override
-	public int findFoodItemId(String food_name) {
-		// TODO Auto-generated method stub
+	public int findFoodItemId(String foodName) {
+
 		return 0;
 	}
 }

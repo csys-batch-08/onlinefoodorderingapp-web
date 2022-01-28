@@ -4,44 +4,36 @@ import java.util.Objects;
 
 public class User 
 {
-	private String user_name;
-	private long phone_no;
+	private String userName;
+	private long phoneNo;
 	private String address;
-	private String email_address;
+	private String emailAddress;
 	private String password;
 	private int wallet;
 	
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-
-
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-
-
-	public long getPhone_no() {
-		return phone_no;
+	public long getPhoneNo() {
+		return phoneNo;
 	}
-
-
-	public void setPhone_no(long phone_no) {
-		this.phone_no = phone_no;
+	public void setPhoneNo(long phoneNo) {
+		this.phoneNo = phoneNo;
 	}
-
-
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getEmail_address() {
-		return email_address;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	public void setEmail_address(String email_address) {
-		this.email_address = email_address;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	public String getPassword() {
 		return password;
@@ -59,32 +51,27 @@ public class User
 	}
 
 
-	public User(String user_name, long phone_no, String address, String email_address, String password, int wallet) {
+	public User(String userName, long phoneNo, String address, String emailAddress, String password, int wallet) {
 		super();
-		this.user_name = user_name;
-		this.phone_no = phone_no;
+		this.userName = userName;
+		this.phoneNo = phoneNo;
 		this.address = address;
-		this.email_address = email_address;
+		this.emailAddress = emailAddress;
 		this.password = password;
 		this.wallet = wallet;
 	}
-	public User(String user_name, long phone_no, String address, String email_address, String password) {
+	public User(String userName, long phoneNo, String address, String emailAddress, String password) {
 		super();
-		this.user_name = user_name;
-		this.phone_no = phone_no;
+		this.userName = userName;
+		this.phoneNo = phoneNo;
 		this.address = address;
-		this.email_address = email_address;
+		this.emailAddress = emailAddress;
 		this.password = password;
 	}
 
-
-	public User() {
-		
-		// TODO Auto-generated constructor stub
-	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, email_address, password, phone_no, user_name, wallet);
+		return Objects.hash(address, emailAddress, password, phoneNo, userName, wallet);
 	}
 
 
@@ -97,14 +84,12 @@ public class User
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(address, other.address) && Objects.equals(email_address, other.email_address)
-				&& Objects.equals(password, other.password) && phone_no == other.phone_no
-				&& Objects.equals(user_name, other.user_name) && wallet == other.wallet;
+		return Objects.equals(address, other.address) && Objects.equals(emailAddress, other.emailAddress)
+				&& Objects.equals(password, other.password) && phoneNo == other.phoneNo
+				&& Objects.equals(userName, other.userName) && wallet == other.wallet;
 	}
-
-
 	@Override
 	public String toString() {
-		return String.format("\nUser name : " +user_name+ "\nPhone Number : " +phone_no+ "\nAddress : " +address+ "\nEmail Address : " +email_address+"\nPassword : " +password+ "\nwallet : ");
+		return String.format("\nUser name : " +userName+ "\nPhone Number : " +phoneNo+ "\nAddress : " +address+ "\nEmail Address : " +emailAddress+"\nPassword : " +password+ "\nwallet : ");
 	}
 }

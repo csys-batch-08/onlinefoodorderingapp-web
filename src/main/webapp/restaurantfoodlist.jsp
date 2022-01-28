@@ -3,6 +3,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,42 +92,39 @@ body{
     </ul>
 </div>
 
-<%!
-	FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-	RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-	List<FoodItems> foodItemList = new ArrayList<FoodItems>();
-%>
-<%
-	int resid = (int)session.getAttribute("resid");
-	foodItemList = fooditemdao.showFoodsbyRestaurant(resid);
-%>
 <table>
 <tbody>
 	   <tr>
-         <%int count=0;
-         for(FoodItems showFoodItems : foodItemList){
-    	 %>
+        <c:set var="count" value="1"/>
+       	<c:forEach items="${foodItemList}" var="restaurantfoodlist">
           <td>
-          <table id="foodtable">
+          <table>
           <tbody>
              <tr>
-                  <td><img src="image/<%=showFoodItems.getFood_image()%>" alt="foodimage"></td>    
+                  <td><img src="image/${restaurantfoodlist.foodImage}" alt="foodimage"></td>    
                   <td>
-                  <div class="names"><%=showFoodItems.getFood_name() %><br>
-                  Food Price :<%=showFoodItems.getPrice()%><br>
-                  <%=restaurantdao.findRestaurantName(showFoodItems.getRestaurant_id())%>
-                  <button><a href = "addcartserv?fname=<%=showFoodItems.getFood_name()%>&resid=<%=showFoodItems.getRestaurant_id()%>">Add to cart</a></button>
+                  <div class="names">${restaurantfoodlist.foodName}<br>
+                  Food Price :${restaurantfoodlist.price}<br>
+                  <button><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}">Add to cart</a></button>
                   </div>
                   </td>
              </tr>
            </tbody>
          </table>  
        </td>
-         	<% count ++;
-         	if(count==4){ %> 
-       </tr>
-       <tr>              
-      		<%count=0; }}%>         
+         	<c:choose>
+     <c:when test="${count==4}">
+     <c:set var="count" value="1"/>
+       
+    </tr>
+    <tr>
+     
+     </c:when>
+     <c:otherwise>
+     	<c:set var="count" value="${count+1}"/>
+     </c:otherwise>
+     </c:choose> 
+     </c:forEach>         
        </tr>
 </tbody>
 </table>

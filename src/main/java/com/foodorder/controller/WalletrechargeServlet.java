@@ -26,12 +26,13 @@ public class WalletrechargeServlet extends HttpServlet {
 		int userid = (int)session.getAttribute("Userid1");
 		int balance= userdao.walletbal(userid);
 		int currentbalance = balance+amount;
+		
 		User user = new User(null, 0, null, email, null, currentbalance);
 		boolean wallet = userdao.updatewallet(user);
 		
 		if(wallet)
 		{
-			response.sendRedirect("userprofile.jsp");
+			response.sendRedirect("UserProfileServ");
 		}
 		else
 		{

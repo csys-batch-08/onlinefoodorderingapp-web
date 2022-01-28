@@ -35,6 +35,6 @@ button{
 </head>
 <body>
 <p><i>Order Confirmed..!</i></p>
-<button><a href="showfoods.jsp"><i>Back</i></a></button>
+<button><a href="showfoodsservlet"><i>Back</i></a></button>
 </body>
 </html>

@@ -3,6 +3,8 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,26 +59,23 @@
 <body>
 <aside>
 <ul>
-        <li><a href="viewuser.jsp">View users & Search User</a></li>
+        <li><a href="ViewAlluserServ">View users & Search User</a></li>
         <li><a href="inactiveuser.jsp">Active & Inactive users</a></li>
         <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
         <li><a href="addfooditems.jsp">Add Food Items</a></li>
-        <li><a href="viewrestaurant.jsp">View all Restaurant details</a></li> 
+        <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
         <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
         <li><a href="deleterestaurant.jsp">Change Restaurant Status</a></li>
-        <li><a href="viewfoods.jsp">View food details</a></li>
-        <li><a href="vieworders.jsp">View Orders</a>
+        <li><a href="ViewFoodsServ">View food details</a></li>
+        <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
-		<%RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-		  List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
-		  restaurantlist= restaurantdao.showRestaurant();
-		%>
+	
 <div class="t1">
 <div class="t2">
 	<table>
 		<h2>View Restaurant details</h2>
-		<thead>
+	<thead>
 		<tr>
   		<th >S.no</th>
 		<th>Restaurant name</th>
@@ -88,31 +87,28 @@
 		<th>Operational hours</th>
 		<th>Email address</th>
 		<th>Restaurant Status</th>
-	</tr>
+		</tr>
 	</thead>
 	<br><br>
 <tbody>
-<%
-	int i = 0;
-	for (RestaurantDetails showRestaurant: restaurantlist) 
-	{
-		i++;
-%>
+
+<c:set var="i" value="0"/>
+<c:forEach items="${restaurantList}" var="viewRestaurant">
+<c:set var="i" value="${i+1}"/>
 <tr>
-	<td><%=i%></td>
-	<td><%=showRestaurant.getRestaurant_name()%></td>
-	<td><%=showRestaurant.getArea()%></td>
-	<td> <%=showRestaurant.getCity()%></td>
-	<td> <%=showRestaurant.getPincode()%></td>
-	<td> <%=showRestaurant.getRestaurant_landline_no()%></td>
-	<td> <%=showRestaurant.getOwner_name()%></td>
-	<td> <%=showRestaurant.getOperational_hours()%></td>
-	<td> <%=showRestaurant.getEmail()%></td>
-	<td> <%=showRestaurant.getRestaurant_status()%></td>
+
+	<td>${i}</td>
+	<td>${viewRestaurant.restaurantName}</td>
+	<td>${viewRestaurant.area}</td>
+	<td>${viewRestaurant.city}</td>
+	<td>${viewRestaurant.pincode}</td>
+	<td>${viewRestaurant.restaurantLandlineNo}</td>
+	<td>${viewRestaurant.ownerName}</td>
+	<td>${viewRestaurant.operationalHours}</td>
+	<td>${viewRestaurant.email}</td>
+	<td>${viewRestaurant.restaurantStatus}</td>
 </tr>
-<%
-}
-%>
+</c:forEach>
 </tbody>
 
 	</table>

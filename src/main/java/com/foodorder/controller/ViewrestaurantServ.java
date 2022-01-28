@@ -9,24 +9,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
-@WebServlet("/filterbycityservs")
-public class FilterbyCityServlet extends HttpServlet {
+
+@WebServlet("/ViewrestaurantServ")
+public class ViewrestaurantServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-		String city = request.getParameter("city");
-		
-		List<RestaurantDetails> restaurantlist = restaurantdao.filterbyCity(city);
+		List<RestaurantDetails> restaurantlist= restaurantdao.showRestaurant();
 		
 		request.setAttribute("restaurantList", restaurantlist);
 		
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterbyCity.jsp");
-		requestdispatcher.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("viewrestaurant.jsp");
+		rd.forward(request, response);
 	}
+
 }

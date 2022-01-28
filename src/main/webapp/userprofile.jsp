@@ -2,7 +2,8 @@
 <%@page import="com.onlinefoodorder.model.User"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.UserDaoimpl"%>
- 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,35 +56,25 @@ button a{
 </head>
 <body>
 
-<% 		
-   int customerid = (int)session.getAttribute("Userid1");
-   UserDaoimpl userdao = new UserDaoimpl();
-   List<User> userList = new ArrayList<User>();
-   userList = userdao.currentuserprofile(customerid);
-%>
 <div class ="t1">
 <div class="t2">
-<%
-	int i = 0;
-	for (User currentuserprofile: userList ) {
-	i++;
-%>
 
+	<c:set var="i" value = "0"/>
+	<c:forEach items="${userlist}" var="userList">
+	<c:set var="i" value="${i+1}"/>
+	
 <div class="detail">
 <h3><b>My Profile</b></h3><br><br><br>
-<p>User name       :<%=currentuserprofile.getUser_name()%></p><br>
-<p>Phone Number    :<%=currentuserprofile.getPhone_no()%></p><br>
-<p>Address         : <%=currentuserprofile.getAddress()%></p><br>
-<p>Email address   :<%=currentuserprofile.getEmail_address()%></p><br>
-<p>Wallet          : <%=currentuserprofile.getWallet()%></p><br><br>
-<button class="button"><a href="showfoods.jsp">Back</a></button>
+<p>User name       :${userList.userName}</p><br>
+<p>Phone Number    :${userList.phoneNo}</p><br>
+<p>Address         :${userList.address}</p><br>
+<p>Email address   :${userList.emailAddress}</p><br>
+<p>Wallet          :${userList.wallet}</p><br><br>
+<button class="button"><a href="showfoodsservlet">Back</a></button>
 <button class="button"><a href="updateuser.jsp">Edit</a></button>
 </div>
 
-
-<%
-}
-%>
+	</c:forEach>
 </div>
 </div>
 </body>

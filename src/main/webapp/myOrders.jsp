@@ -3,6 +3,7 @@
 <%@page import="com.onlinefoodorder.model.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +20,6 @@
 </style>
 <body>
 
-<% int uid = (int)session.getAttribute("Userid1");
-   OrderFoodsDaoimpl orderfood = new OrderFoodsDaoimpl(); 
-   FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-   
-   List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
-   orderlist = orderfood.userViewOrder(uid);
-  
-	 
-   String username = (String)session.getAttribute("username");
-   String fname = (String)session.getAttribute("foodname1");%>
 <div class ="t1">
 <h3><b>My Orders</b></h3>
 <div class="t2">
@@ -47,29 +38,23 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (Orderfoods userViewOrder: orderlist ) {
-i++;
-%>
+	<c:set var="i" value="0"/>
+	<c:forEach items="${orderList}" var="orderlist">
+	<c:set var="i" value="${i+1}"/>
 <tr>
 
-<td><%=i%></td>
-
-
 <%-- <td> <%=fooditemdao.findFoodname(userViewOrder.getItem_id())%></td> --%>
-<td> <%=userViewOrder.getItem_id() %></td>
-<td> <%=userViewOrder.getQuantity() %></td>
-<td> <%=userViewOrder.getTotal_price() %></td>
-<td> <%=userViewOrder.getOrder_date() %></td>
-<td> <%=userViewOrder.getOrder_status()%></td>
+<td>${i}</td>
+<td>${orderlist.itemId}</td>
+<td>${orderlist.quantity}</td>
+<td>${orderlist.totalPrice}</td>
+<td>${orderlist.orderDate}</td>
+<td>${orderlist.orderStatus}</td>
 
-<td><a href="Cancelorderserv?orderid=<%=userViewOrder.getOrder_id()%>"><button>Cancel</button></a></td>
+<td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </div>

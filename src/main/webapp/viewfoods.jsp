@@ -3,6 +3,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,24 +55,18 @@
 <body>
 <aside>
 <ul>
-        <li><a href="viewuser.jsp">View users & Search User</a></li>
+        <li><a href="ViewAlluserServ">View users & Search User</a></li>
         <li><a href="inactiveuser.jsp">Active & Inactive users</a></li>
         <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
         <li><a href="addfooditems.jsp">Add Food Items</a></li>
-        <li><a href="viewrestaurant.jsp">View all Restaurant details</a></li> 
+        <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
         <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
         <li><a href="deleterestaurant.jsp">Change Restaurant Status</a></li>
         <li><a href="viewfoods.jsp">View food details</a></li>
-        <li><a href="vieworders.jsp">View Orders</a>
+        <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
-<%!
-	FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-	List<FoodItems> foodItemList = new ArrayList<FoodItems>();
-%>
-<%
-	foodItemList = fooditemdao.showFoodItems();
-%>
+
 <div class="t1">
 <div class="set1">
 <table>
@@ -88,23 +83,21 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-	int i = 0;
-	for (FoodItems showFoodItems: foodItemList){
-	i++;
-%>
+
+<c:set var="i" value="0"/>
+<c:forEach items="${foodItemlist}" var="viewfoods">
+<c:set var="i" value="${i+1}"/>
+
 <tr>
-	<td><%=i%></td>
-	<td><%=showFoodItems.getItem_id()%></td>
-	<td><%=showFoodItems.getFood_name()%></td>
-	<td> <%=showFoodItems.getCuisine_name()%></td>
-	<td> <%=showFoodItems.getDescription()%></td>
-	<td> <%=showFoodItems.getPrice()%></td>
+	<td>${i}</td>
+	<td>${viewfoods.itemId}</td>
+	<td>${viewfoods.foodName}</td>
+	<td>${viewfoods.cuisineName}</td>
+	<td>${viewfoods.description}</td>
+	<td>${viewfoods.price}</td>
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </div>

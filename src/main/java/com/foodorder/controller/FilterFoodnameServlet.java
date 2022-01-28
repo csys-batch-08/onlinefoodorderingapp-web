@@ -1,6 +1,9 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
+import com.onlinefoodorder.model.FoodItems;
  @WebServlet("/filterfoods")
 public class FilterFoodnameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,21 +23,12 @@ public class FilterFoodnameServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String foodname = request.getParameter("search");
-		fooditemdao.filterbyfoodname(foodname);
 		
-		session.setAttribute("foodname",foodname);
-		response.sendRedirect("filterbyfoodnames.jsp");
+		List<FoodItems> foodItemList = fooditemdao.filterbyfoodname(foodname);
 		
-//		Double foodprice = Double.parseDouble(request.getParameter("search"));
-//		fooditemdao.filterbyPrice(foodprice);
+		request.setAttribute("filterfoods", foodItemList);
 		
-//		session.setAttribute("foodprice", foodprice);
-//		if(foodname!= null){
-//			
-//		}
-//		else if(foodprice!=null){
-//			response.sendRedirect("filterFoodsbyprice.jsp");
-//		}
-		
+		RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterbyfoodnames.jsp");
+		requestdispatcher.forward(request, response);
 	}
 }

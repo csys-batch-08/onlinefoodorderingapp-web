@@ -71,13 +71,13 @@ form{
 <body>
 <div class="t1">
 <div class="set1">
-<form action="rating" method="post">
+<form action="rating" method="get">
 	<label for="text">Restaurant name</label><br><br>
 	<input type="text" name="restaurantname" class="input" pattern="[A-Za-z]{5,}" required>
 	<label for="rating">Ratings</label><br><br>
 	<input type="text" name="rating" class="input" pattern="[0-5]" required><br><br>
-	<div class="btn"><button class="button" type="submit"><a href="showrestaurant.jsp">Add</a></button>
-	<button class="button"><a href="showfoods.jsp">Back</a></button>
+	<div class="btn"><button class="button" type="submit">Add</a></button>
+	<button class="button">Back</a></button>
 	 </button></div>
 </form>
 </div>

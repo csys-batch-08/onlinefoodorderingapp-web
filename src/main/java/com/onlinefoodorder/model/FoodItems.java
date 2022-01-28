@@ -3,43 +3,50 @@ package com.onlinefoodorder.model;
 import java.util.Objects;
 
 public class FoodItems {
-		private int restaurant_id;
-		private String food_name;
-		private String cuisine_name;
+		private int restaurantId;
+		private String foodName;
+		private String cuisineName;
 		private String description;
 		private double price;
-		private String food_image;
-		private int item_id;
-		private String food_status;
-		public String getFood_status() {
-			return food_status;
+		private String foodImage;
+		private int itemId;
+		private String foodStatus;
+		private String restaurantName;
+		public String getRestaurantName() {
+			return restaurantName;
 		}
-		public void setFood_status(String food_status) {
-			this.food_status = food_status;
+		public void setRestaurantName(String restaurantName) {
+			this.restaurantName = restaurantName;
 		}
-		public int getItem_id() {
-			return item_id;
+		public String getFoodStatus() {
+			return foodStatus;
 		}
-		public void setItem_id(int item_id) {
-			this.item_id = item_id;
+		public void setFoodStatus(String foodStatus) {
+			this.foodStatus = foodStatus;
 		}
-		public int getRestaurant_id() {
-			return restaurant_id;
+		public int getItemId() {
+			return itemId;
 		}
-		public void setRestaurant_id(int restaurant_id) {
-			this.restaurant_id = restaurant_id;
+		public void setItemId(int itemId) {
+			this.itemId = itemId;
 		}
-		public String getFood_name() {
-			return food_name;
+		public int getRestaurantId() {
+			return restaurantId;
 		}
-		public void setFood_name(String food_name) {
-			this.food_name = food_name;
+		public void setRestaurantId(int restaurantId) {
+			this.restaurantId = restaurantId;
 		}
-		public String getCuisine_name() {
-			return cuisine_name;
+		public String getFoodName() {
+			return foodName;
 		}
-		public void setCuisine_name(String cuisine_name) {
-			this.cuisine_name = cuisine_name;
+		public void setFoodName(String foodName) {
+			this.foodName = foodName;
+		}
+		public String getCuisineName() {
+			return cuisineName;
+		}
+		public void setCuisineName(String cuisineName) {
+			this.cuisineName = cuisineName;
 		}
 		public String getDescription() {
 			return description;
@@ -53,35 +60,46 @@ public class FoodItems {
 		public void setPrice(double price) {
 			this.price = price;
 		}
-		public String getFood_image() {
-			return food_image;
+		public String getFoodImage() {
+			return foodImage;
 		}
-		public void setFood_image(String food_image) {
-			this.food_image = food_image;
+		public void setFoodImage(String foodImage) {
+			this.foodImage = foodImage;
 		}
 		
-		public FoodItems(int restaurant_id, String food_name, String cuisine_name, String description, double price, String food_image) {
+		public FoodItems(int restaurantId, String foodName, String cuisineName, String description, double price, String foodImage) {
 			super();
-			this.restaurant_id = restaurant_id;
-			this.food_name = food_name;
-			this.cuisine_name = cuisine_name;
+			this.restaurantId = restaurantId;
+			this.foodName = foodName;
+			this.cuisineName = cuisineName;
 			this.description = description;
 			this.price = price;
-			this.food_image = food_image;
+			this.foodImage = foodImage;
 		}
-		public FoodItems(int restaurant_id,int item_id, String food_name, String cuisine_name, String description, double price, String food_image) {
+		public FoodItems(int restaurantId,int itemId, String foodName, String cuisineName, String description, double price, String foodImage, String restaurantName) {
 			super();
-			this.restaurant_id = restaurant_id;
-			this.food_name = food_name;
-			this.cuisine_name = cuisine_name;
+			this.restaurantId = restaurantId;
+			this.foodName = foodName;
+			this.cuisineName = cuisineName;
 			this.description = description;
 			this.price = price;
-			this.food_image = food_image;
-			this.item_id = item_id;
+			this.foodImage = foodImage;
+			this.itemId = itemId;
+			this.restaurantName=restaurantName;
+		}
+		public FoodItems(int restaurantId,int itemId, String foodName, String cuisineName, String description, double price, String foodImage) {
+			super();
+			this.restaurantId = restaurantId;
+			this.foodName = foodName;
+			this.cuisineName = cuisineName;
+			this.description = description;
+			this.price = price;
+			this.foodImage = foodImage;
+			this.itemId = itemId;
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(cuisine_name, description, food_name, price, restaurant_id);
+			return Objects.hash(cuisineName, description, foodName, price, restaurantId);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -92,18 +110,17 @@ public class FoodItems {
 			if (getClass() != obj.getClass())
 				return false;
 			FoodItems other = (FoodItems) obj;
-			return Objects.equals(cuisine_name, other.cuisine_name) && Objects.equals(description, other.description)
-					&& Objects.equals(food_name, other.food_name)
+			return Objects.equals(cuisineName, other.cuisineName) && Objects.equals(description, other.description)
+					&& Objects.equals(foodName, other.foodName)
 					&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
-					&& restaurant_id == other.restaurant_id;
+					&& restaurantId == other.restaurantId;
 		}
 		public FoodItems() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		@Override
 		public String toString() {
-			return String.format("%-7s%-10s%-9s%-9s%-9s", restaurant_id, food_name, cuisine_name, description, price);
+			return String.format("%-7s%-10s%-9s%-9s%-9s", restaurantId, foodName, cuisineName, description, price);
 		}
 		
 		

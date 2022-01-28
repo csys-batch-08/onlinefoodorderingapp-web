@@ -1,6 +1,9 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,28 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.CartDaoimpl;
-import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
+import com.onlinefoodorder.model.Cart;
 import com.onlinefoodorder.model.FoodItems;
-@WebServlet("/addcartserv")
-public class AddcartServlet extends HttpServlet {
+
+@WebServlet("/ShowCartServ")
+public class ShowCartServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
-		FoodItemsDaoimpl fooditem = new FoodItemsDaoimpl();
-		CartDaoimpl cart = new CartDaoimpl();
+		CartDaoimpl cartDaoimpl = new CartDaoimpl();
 		
-		String name= request.getParameter("fname");
-		int resid=Integer.parseInt(request.getParameter("resid"));
-		int itemid = fooditem.finditemid(name, resid);
-		int customerid = (int)session.getAttribute("Userid1");
+		int userid = (int)session.getAttribute("Userid1");
 		
-		cart.insertCart( itemid,customerid);
+		List<FoodItems> foodlist = cartDaoimpl.fetchCart(userid);	
 		
-		session.setAttribute("itemidcart", itemid);
-		session.setAttribute("resId", resid);
-		response.sendRedirect("CartSucc.jsp");
+		request.setAttribute("foodlist", foodlist);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("showcart.jsp");
+		requestDispatcher.forward(request, response);	
+		
+		
 	}
+
 }

@@ -1,5 +1,5 @@
 package com.onlinefoodorder.daoimpl;
-
+ 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,16 +23,16 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		
 		try {
 			p1 = c1.prepareStatement(insertQuery);
-			p1.setString(1, restaurant.getRestaurant_name());
+			p1.setString(1, restaurant.getRestaurantName());
 			p1.setString(2, restaurant.getArea());
 			p1.setString(3, restaurant.getCity());
 			p1.setInt(4, restaurant.getPincode());
-			p1.setLong(5, restaurant.getRestaurant_landline_no());
-			p1.setString(6, restaurant.getOwner_name());
-			p1.setString(7, restaurant.getOperational_hours());
+			p1.setLong(5, restaurant.getRestaurantLandlineNo());
+			p1.setString(6, restaurant.getOwnerName());
+			p1.setString(7, restaurant.getOperationalHours());
 			p1.setString(8, restaurant.getEmail());
 			p1.setString(9, restaurant.getPassword());
-			p1.setString(10, restaurant.getRestaurant_images());
+			p1.setString(10, restaurant.getRestaurantImages());
 			p1.executeUpdate();
 			System.out.println("Restaurant details are inserted");
 		} 
@@ -48,10 +48,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		Connection con = ConnectionUtil.getDbConnection();
 		try {
 			PreparedStatement p1 = con.prepareStatement(updateQuery);
-			p1.setString(1, restaurant.getRestaurant_name());
-			p1.setLong(2, restaurant.getRestaurant_landline_no());
-			p1.setString(3, restaurant.getOwner_name());
-			p1.setString(4, restaurant.getOperational_hours());
+			p1.setString(1, restaurant.getRestaurantName());
+			p1.setLong(2, restaurant.getRestaurantLandlineNo());
+			p1.setString(3, restaurant.getOwnerName());
+			p1.setString(4, restaurant.getOperationalHours());
 			p1.setString(5, restaurant.getPassword());
 			p1.setString(6, restaurant.getEmail());
 			int i = p1.executeUpdate();
@@ -60,7 +60,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		 }		
+		 }
+		
 	}
 	
 	public void inactiveRestaurant(String emailid)
@@ -111,7 +112,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 				System.out.println("resid" +restaurantid);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return restaurantid;
@@ -132,7 +132,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 				System.out.println(restaurantId + "ridfind");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -151,7 +150,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 				restaurantname = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -174,12 +172,12 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 				restaurantId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return restaurantId;
 	}
+	
 	public List<RestaurantDetails> showRestaurant()
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
@@ -190,11 +188,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			ResultSet rs = p1.executeQuery(query); 
 			while(rs.next())
 			{
-				RestaurantDetails restaurant = new RestaurantDetails(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getLong(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
+				RestaurantDetails restaurant = new RestaurantDetails(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getLong(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return restaurantlist;
@@ -216,19 +213,15 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
  		return restaurantlist;
 	}
 	@Override
 	public void restaurantUpdate(String email, String password) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void deleteRestaurant(String email) {
-		// TODO Auto-generated method stub
 		
 	}
 		

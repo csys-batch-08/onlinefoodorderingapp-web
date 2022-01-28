@@ -3,6 +3,7 @@
 <%@page import="com.onlinefoodorder.model.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,24 +81,17 @@
 <body>
 <aside>
 <ul>
-        <li><a href="viewuser.jsp">View users & Search User</a></li>
+        <li><a href="ViewAlluserServ">View users & Search User</a></li>
         <li><a href="inactiveuser.jsp">Active & Inactive users</a></li>
         <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
         <li><a href="addfooditems.jsp">Add Food Items</a></li>
-        <li><a href="viewrestaurant.jsp">View all Restaurant details</a></li> 
+        <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
         <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
         <li><a href="deleterestaurant.jsp">Change Restaurant Status</a></li>
-        <li><a href="viewfoods.jsp">View food details</a></li>
-        <li><a href="vieworders.jsp">View Orders</a>
+        <li><a href="ViewFoodsServ">View food details</a></li>
+        <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
-<%  OrderFoodsDaoimpl orderfood = new OrderFoodsDaoimpl(); 
-	FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-	List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
-	orderlist = orderfood.viewOrderFoods();%>
-
-<% String username = (String)session.getAttribute("username");%>
-<% String fname = (String)session.getAttribute("foodname1");%>
 
 <div class="t1">
 <div class="set1">
@@ -116,27 +110,25 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (Orderfoods viewOrderFoods: orderlist ) {
-i++;
-%>
+
+<c:set var="i" value="0"/>
+<c:forEach items="${orderList}" var="viewOrders">
+<c:set var="i" value="${i+1}"/>
+
 <tr>
 
-<td><%=i%></td>
+<td>${i}</td>
 
-<td><%=viewOrderFoods.getUser_id() %></td>
-<td><%= viewOrderFoods.getItem_id()%></td>
-<td> <%=viewOrderFoods.getQuantity()%></td>
-<td> <%=viewOrderFoods.getTotal_price()%></td>
-<td> <%=viewOrderFoods.getOrder_date() %></td>
-<td> <%=viewOrderFoods.getOrder_status() %></td>
+<td>${viewOrders.userId}</td>
+<td>${viewOrders.itemId}</td>
+<td>${viewOrders.quantity}</td>
+<td>${viewOrders.totalPrice}</td>
+<td>${viewOrders.orderDate}</td>
+<td>${viewOrders.orderStatus}</td>
 
 </tr>
 
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </div>

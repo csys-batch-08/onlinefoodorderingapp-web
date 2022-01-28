@@ -3,6 +3,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@ body{
 		left: -283px;
 		width: 200%;
 		font-weight: bold;
-		color: CornFlowerBlue;
+		color: black;
 	}
 	
 	button{
@@ -95,14 +96,14 @@ body{
 </style>
 </head>
 <body>
-<form action="filterbycity" method="post">
+<form action="filterbycityserv" method="post">
  <div class="nav">
     <ul>
         <li><input type="text" name="city" class="text" placeholder="   City name  "></li>
-        <li> <button>Search</button></a></li>
-        <li><a href="showfoods.jsp">Food Items</a></li>
+        <li><button>Search</button></a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="showrestaurant.jsp">Restaurants</a></li>
-        <li><a href="showcart.jsp">Cart</a></li>
+        <li><a href="ShowCartServ">Cart</a></li>
         <li><a href="walletrecharge.jsp">Wallet</a></li>
         <li><a href="viewOrderUser.jsp">My Orders</a>
         <li><a href="userprofile.jsp">My profile</a></li>
@@ -110,49 +111,40 @@ body{
     </ul>
 </div>
 
-<%! 
-	double restaurantRating;
-	RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-	List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
-	RatingsDaoimpl ratingdao = new RatingsDaoimpl();
-%>
-<%
-	restaurantlist = restaurantdao.showRestaurant();
-%>
 <div class="table">
 <table>
 <tbody>
 	   <tr>
-		<% int count=0;
-	  	   for(RestaurantDetails showRestaurant : restaurantlist){
-	 	%>
+		<c:set var="count" value="1"/>
+       	<c:forEach items="${restaurantList}" var="restaurantlist">
              <td>
                 <table id="foodtable">
                 <tbody>
                   <tr>
-                  <%
-                  int rid = restaurantdao.findRestaurantId2(showRestaurant.getRestaurant_name());
-                  %>
-                      <td><a href="restaurantfoodlistSer?rid=<%=rid%>"><img src="image/<%=showRestaurant.getRestaurant_images()%>" alt="restaurantimage"></a></td>    
+                      <td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>    
                       <td>
-                      <div class="names"><%=showRestaurant.getRestaurant_name() %><br>
-                       Address : <%=showRestaurant.getArea() %> <%=showRestaurant.getCity()%><br>
-                       <% Ratings rating = new Ratings();
-                       	  rating.setRestaurant_id(rid);
-                       	  restaurantRating =  ratingdao.fetchRating(rating);
-                       %>   
-                       Ratings : <%= restaurantRating%><br></div>                               
+                      <div class="names">${restaurantlist.restaurantName}<br>
+                       Address : ${restaurantlist.area}${restaurantlist.city}<br>  
+                       <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
+                       Ratings :${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
+                      </div>
                       </td>
                   </tr>
                </tbody>
              </table>  
                             
       	 </td>
-             <% count ++;
-             if(count==3){ %> 
-               </tr>
-               <tr>              
-             <%count=0; }}%>             
+             <c:choose>
+     		 	<c:when test="${count==3}">
+             	<c:set var="count" value="1"/>
+         </tr>
+         <tr>
+             </c:when>
+             <c:otherwise>
+             	<c:set var="count" value="${count+1}"/>
+             </c:otherwise>
+             </c:choose> 
+              </c:forEach>            
          </tr>
 </tbody>
 </table>

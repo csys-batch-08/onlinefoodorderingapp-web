@@ -28,7 +28,6 @@ public class CartDaoimpl
 			p1.executeUpdate("commit");
 			System.out.println("Food items are inserted");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,7 +45,6 @@ public class CartDaoimpl
 				foodItems.add(new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7)));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return foodItems;
@@ -61,7 +59,6 @@ public class CartDaoimpl
 			p1.setInt(1, itemId);
 			p1.setInt(2, userId);
 			int i=p1.executeUpdate();
-			System.out.println(i+ " row deleted");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

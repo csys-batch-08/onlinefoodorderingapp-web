@@ -1,35 +1,34 @@
 package com.onlinefoodorder.model;
 
 public class Cart {
-	int cartid;
-	int user_id;
-	int item_id;
-	public int getCartid() {
-		return cartid;
+	int cartId;
+	int userId;
+	int itemId;
+	public int getCartId() {
+		return cartId;
 	}
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
+	public void setCartid(int cartId) {
+		this.cartId = cartId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public int getItem_id() {
-		return item_id;
+	public int getItemId() {
+		return itemId;
 	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
-	public Cart(int cartid, int user_id, int item_id) {
+	public Cart(int cartId, int userId, int itemId) {
 		super();
-		this.cartid = cartid;
-		this.user_id = user_id;
-		this.item_id = item_id;
+		this.cartId = cartId;
+		this.userId = userId;
+		this.itemId = itemId;
 	}
 	public Cart() {
 		super();
-	}
-	
+	}	
 }

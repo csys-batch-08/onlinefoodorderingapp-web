@@ -137,7 +137,7 @@ select * from cart;
 select * from ratings;
 select avg(rating) from ratings where restaurant_id=1717;
 
-
+select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items;
 select * from restaurant_details where city= 'Madurai';
 
-
+select * from food_items where restaurant_id = 1716;

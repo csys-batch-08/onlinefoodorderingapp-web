@@ -1,6 +1,8 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +19,7 @@ public class Cancelorderserv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
 		int order_id = Integer.parseInt(request.getParameter("orderid"));
 		HttpSession session = request.getSession();
 		session.setAttribute("orderId", order_id);
@@ -30,17 +31,16 @@ public class Cancelorderserv extends HttpServlet {
 		
 		int userid = (int)session.getAttribute("Userid1");
 		int currentbalance = userdao.walletbal(userid);
+		
 		int refundprice = currentbalance + foodprice;
+		
 		String emailid = session.getAttribute("emailid").toString();
-		User user = new User();
-		user.setEmail_address(emailid);
+		User user = new User(emailid, refundprice, emailid, emailid, emailid);
+		
+		user.setEmailAddress(emailid);
 		user.setWallet(refundprice);
-		response.sendRedirect("userprofile.jsp");
 		
-//		int totalprice = (int)session.getAttribute("totalprice");
-//		int balance = (int)session.getAttribute("walletebalance");
-//		int refundprice = balance + totalprice;
-		
-		
+		RequestDispatcher requestdispatcher = request.getRequestDispatcher("UserProfileServ");
+		requestdispatcher.forward(request, response);
 	}
 }

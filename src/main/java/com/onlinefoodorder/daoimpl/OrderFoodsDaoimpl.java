@@ -18,19 +18,16 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	public void insertOrderFoods(Orderfoods order)
 	{
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
-		String query = "commit";
 		Connection con = ConnectionUtil.getDbConnection();
 		try {
 			PreparedStatement p1 = con.prepareStatement(insert);
-			p1.setInt(1, order.getUser_id());
-			p1.setInt(2, order.getItem_id());
+			p1.setInt(1, order.getUserId());
+			p1.setInt(2, order.getItemId());
 			p1.setInt(3, order.getQuantity());
-			p1.setDouble(4, order.getTotal_price());
+			p1.setDouble(4, order.getTotalPrice());
 			p1.executeUpdate();
-			p1.executeUpdate(query);
-			System.out.println("Successfully inserted");
+			p1.executeUpdate(insert);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -49,7 +46,6 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -70,7 +66,6 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -85,10 +80,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			p1.setInt(1, order_id);
 			int i=p1.executeUpdate();
 			p1.executeUpdate("commit");
-			System.out.println(i+" row updated");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Try again");
 		}
 		return 0;
 	}	
@@ -102,10 +95,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			p1.setInt(1, order_id);
 			int i=p1.executeUpdate();
 			p1.executeUpdate("commit");
-			System.out.println(i+" row updated");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Try again");
 		}
 		return null;
 	}
@@ -119,7 +110,6 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			p1=con.prepareStatement(delete);
 			p1.setInt(1, item_id);
 			int i=p1.executeUpdate();
-			System.out.println(i+ " row deleted");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -140,16 +130,13 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return foodprice;			
 	}
 	
 	@Override
-	public void updateOrderdetails(int quantity, int item_id) {
-		// TODO Auto-generated method stub
-		
+	public void updateOrderdetails(int quantity, int itemId) {
 	}
 }
 

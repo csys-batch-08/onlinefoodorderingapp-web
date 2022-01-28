@@ -5,37 +5,37 @@ import java.util.Objects;
 
 public class Orderfoods 
 {
-	private int order_id;
-	private int user_id;
-	private int item_id;
+	private int orderId;
+	private int userId;
+	private int itemId;
 	private int quantity;
-	private double total_price;
-	private LocalDate order_date;
-	private String order_status;
+	private double totalPrice;
+	private LocalDate orderDate;
+	private String orderStatus;
 	
-	public int getOrder_id() {
-		return order_id;
+	public int getOrderId() {
+		return orderId;
 	}
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
-	public LocalDate getOrder_date() {
-		return order_date;
+	public LocalDate getOrderDate() {
+		return orderDate;
 	}
-	public void setOrder_date(LocalDate order_date) {
-		this.order_date = order_date;
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public int getItem_id() {
-		return item_id;
+	public int getItemId() {
+		return itemId;
 	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -43,53 +43,52 @@ public class Orderfoods
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public double getTotal_price() {
-		return total_price;
+	public double getTotalPrice() {
+		return totalPrice;
 	}
-	public void setTotal_price(double total_price) {
-		this.total_price = total_price;
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
-	public String getOrder_status() {
-		return order_status;
+	public String getOrderStatus() {
+		return orderStatus;
 	}
-	public void setOrder_status(String order_status) {
-		this.order_status = order_status;
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 	
-	public Orderfoods(int order_id, int user_id, int item_id, int quantity, double total_price, LocalDate order_date,
-			String order_status) {
+	public Orderfoods(int orderId, int userId, int itemId, int quantity, double totalPrice, LocalDate orderDate,
+			String orderStatus) {
 		super();
-		this.order_id = order_id;
-		this.user_id = user_id;
-		this.item_id = item_id;
+		this.orderId = orderId;
+		this.userId = userId;
+		this.itemId = itemId;
 		this.quantity = quantity;
-		this.total_price = total_price;
-		this.order_date = order_date;
-		this.order_status = order_status;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
+		this.orderStatus = orderStatus;
 	}
-	public Orderfoods(int user_id, int item_id, int quantity, double total_price) {
+	public Orderfoods(int userId, int itemId, int quantity, double totalPrice) {
 		super();
-		this.user_id = user_id;
-		this.item_id = item_id;
+		this.userId = userId;
+		this.itemId = itemId;
 		this.quantity = quantity;
-		this.total_price = total_price;
+		this.totalPrice = totalPrice;
 	}
-	public Orderfoods(int order_id,int user_id, int item_id, int quantity, double total_price, LocalDate order_date) {
+	public Orderfoods(int orderId,int userId, int itemId, int quantity, double totalPrice, LocalDate orderDate) {
 		super();
-		this.order_id = order_id;
-		this.user_id = user_id;
-		this.item_id = item_id;
+		this.orderId = orderId;
+		this.userId = userId;
+		this.itemId = itemId;
 		this.quantity = quantity;
-		this.total_price = total_price;
-		this.order_date = order_date;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
 	}
 	public Orderfoods() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(item_id, quantity, total_price, user_id);
+		return Objects.hash(itemId, quantity, totalPrice, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -100,13 +99,13 @@ public class Orderfoods
 		if (getClass() != obj.getClass())
 			return false;
 		Orderfoods other = (Orderfoods) obj;
-		return item_id == other.item_id && quantity == other.quantity
-				&& Double.doubleToLongBits(total_price) == Double.doubleToLongBits(other.total_price)
-				&& user_id == other.user_id;
+		return itemId == other.itemId && quantity == other.quantity
+				&& Double.doubleToLongBits(totalPrice) == Double.doubleToLongBits(other.totalPrice)
+				&& userId == other.userId;
 	}
 	@Override
 	public String toString() {
-		return "user_id = " + user_id + " item_id = " + item_id + " quantity = " + quantity + " total_price = " + total_price;
+		return "user_id = " + userId + " item_id = " + itemId + " quantity = " + quantity + " total_price = " + totalPrice;
 	}
 	
 }

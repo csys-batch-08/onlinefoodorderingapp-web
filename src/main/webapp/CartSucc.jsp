@@ -36,6 +36,6 @@ a{
 </head>
 <body>
 <p><i>Item Added To Cart Successfully..!</i></p>
-<button><a href="showcart.jsp">Go to Cart</a></button>
+<button><a href="ShowCartServ">Go to Cart</a></button>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <%@page import="com.onlinefoodorder.model.User"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.UserDaoimpl"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -61,29 +62,22 @@
         <li><a href="vieworders.jsp">View Orders</a>
 </ul>
 </aside>
-<% 		
-   String email = (String) session.getAttribute("emailid");
-   UserDaoimpl userdao = new UserDaoimpl();
-   List<User> userList = new ArrayList<User>();
-   userList = userdao.viewSingleUser(email);
-%>
+
 <div class="t1">
 <div class="detail">
 <h3><b>User List</b></h3><br>
-<%
-int i = 0;
-for (User viewSingleUser: userList ) {
-i++;
-%> 
-<p>User name :<%=viewSingleUser.getUser_name()%></p><br>
-<p>Phone Number :<%=viewSingleUser.getPhone_no()%></p><br>
-<p>Address : <%=viewSingleUser.getAddress()%></p><br>
-<p>Email address :<%=viewSingleUser.getEmail_address()%></p><br>
-<p>Wallet : <%=viewSingleUser.getWallet()%></p>
 
-<%
-}
-%>
+<c:set var="i" value="0"/>
+<c:forEach items="${userlist}" var="searchUser">
+<c:set var="i" value="${i+1}"/>
+
+<p>User name :${searchUser.userName}</p><br>
+<p>Phone Number :${searchUser.phoneNo}</p><br>
+<p>Address :${searchUser.address}</p><br>
+<p>Email address :${searchUser.emailAddress}</p><br>
+<p>Wallet : ${searchUser.wallet}</p>
+
+</c:forEach>
 </div>
 </div>
 </body>
