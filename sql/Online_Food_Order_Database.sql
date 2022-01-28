@@ -142,6 +142,14 @@ select * from restaurant_details where city= 'Madurai';
 select floor(avg(rating)) from ratings where restaurant_id = 1720;
 select * from food_items where restaurant_id = 1716;
 
-select * from restaurant_details where city='Madurai';
-select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details from user_details where role='Admin' and email_address='jeyram@gmail.com' and password='Jeyram1010';
-select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='user' and email_address='meena@gmail.com' and password='Meena1010';
+select order_id, user_id, item_id, quantity, total_price, order_date from order_foods;
+
+select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id = '1203';
+
+select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where restaurant_id = 1716;
+
+select * from food_items where item_id in (select item_id from cart where user_id = 1203); 
+
+select Item_id, food_name form food_items inner join 
+
+select order_id, user_id, item_id, quantity, total_price, order_date from order_foods;

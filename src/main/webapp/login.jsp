@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang = "en">
 <head>
 	<title>User & Admin Login</title>
 	<link rel="stylesheet" href="login.css">

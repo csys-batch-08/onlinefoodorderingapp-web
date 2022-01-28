@@ -5,7 +5,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>User view food items</title>
@@ -50,7 +50,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 280px;
   }
   img{
   	
@@ -96,6 +96,7 @@ body{
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
+        <li><a href="login.jsp">Logout</a></li>
     </ul>
 </div>
 

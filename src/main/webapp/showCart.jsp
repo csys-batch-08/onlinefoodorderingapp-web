@@ -6,7 +6,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Show Cart</title>
@@ -17,10 +17,11 @@
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/foodsbackground4.jpeg");
+    background-image: url("image/showfood33.jpeg");
     font-size:13.5px;
-    background-size: 4000px 1500px;
+    background-size: cover;
     background-attachment: fixed;
+   	overflow-x:hidden;
 }
   ul
   {
@@ -51,7 +52,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 280px;
   }
   img{
   	
@@ -103,6 +104,7 @@ body{
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
+        <li><a href="login.jsp">Logout</a></li>
     </ul>
 </div>
 

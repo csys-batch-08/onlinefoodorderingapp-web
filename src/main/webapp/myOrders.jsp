@@ -5,7 +5,7 @@
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang ="en">
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -15,6 +15,17 @@
 	table{
 		margin-right:400px;
 		width: 30%;
+	}
+	.button1{
+		padding: 3px 20px;
+		border-radius: 4px;
+		background-color: black;
+	}
+	button a{
+		text-decoration: none;
+		link-style: none;
+		color: white;
+		font-weight: bold;	
 	}
 	
 </style>
@@ -56,6 +67,7 @@
 </c:forEach>
 </tbody>
 </table>
+<button class="button1"><a href="showfoodsservlet">Back</a></button>
 </div>
 </div>
 </div>

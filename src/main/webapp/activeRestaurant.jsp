@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Active Restaurant</title>
@@ -106,7 +106,7 @@ aside{
 </ul>
 </aside>
 <nav>
-	<button class="nav"><a href="deleterestaurant.jsp">Inactive Restaurant</a></button>
+	<button class="nav"><a href="deleteRestaurant.jsp">Inactive Restaurant</a></button>
 	<button class="nav"><a href="#activeRestaurant.jsp">Active Restaurant</a></button>
 </nav>
 <div class="t1">

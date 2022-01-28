@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Inactive user</title>
@@ -108,8 +108,8 @@ aside{
 </ul>
 </aside>
 <nav>
-	<button class="nav"><a href="inactiveuser.jsp">Inactive User</a></button>
-	<button class="nav"><a href="#activeuser.jsp">Active User</a></button>
+	<button class="nav"><a href="inactiveUser.jsp">Inactive User</a></button>
+	<button class="nav"><a href="#activeUser.jsp">Active User</a></button>
 </nav>
 <div class="t1">
 <div class="set1">

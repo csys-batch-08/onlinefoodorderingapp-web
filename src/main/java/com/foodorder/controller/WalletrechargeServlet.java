@@ -17,35 +17,40 @@ import com.onlinefoodorder.model.User;
 public class WalletrechargeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		try {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	try{
 			HttpSession session = request.getSession();	
 			Long cardnumber = Long.parseLong(request.getParameter("cardnumber"));
 			String email = (String) session.getAttribute("emailid");
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			int cvv = Integer.parseInt(request.getParameter("cvv"));
-			UserDaoimpl userdao = new UserDaoimpl();
-			int userid = (int)session.getAttribute("Userid1");
-			int balance;
-			balance = userdao.walletbal(userid);
-			int currentbalance = balance+amount;
 			
-			User user = new User(null, 0, null, email, null, currentbalance);
-			boolean wallet = userdao.updatewallet(user);
-			
-			if(wallet)
+			if(email != session.getAttribute("emailid"))
 			{
-				response.sendRedirect("UserProfileServ");
+				response.sendRedirect("invalidWalledRecharge.jsp");
 			}
-			else
-			{
-				response.getWriter().print("Wallet not recharged");
+			else {
+				UserDaoimpl userdao = new UserDaoimpl();
+				int userid = (int)session.getAttribute("Userid1");
+				int balance;
+				balance = userdao.walletbal(userid);
+				int currentbalance = balance+amount;
+			
+				User user = new User(null, 0, null, email, null, currentbalance);
+				boolean wallet = userdao.updatewallet(user);
+			
+				if(wallet)
+				{
+					response.sendRedirect("UserProfileServ");
+				}
+				else
+				{
+					response.getWriter().print("Wallet not recharged");
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 }

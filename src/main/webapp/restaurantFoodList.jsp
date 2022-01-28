@@ -5,7 +5,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin view Food Details</title>
@@ -16,14 +16,19 @@
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/");
+    background-image: url("image/showfood33.jpeg");
     font-size:13.5px;
+    background-size: cover;
+    background-attachment: fixed;
+   	overflow-x:hidden;
 }
   ul
   {
         list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
+        background-color:black;
+        position: fixed;
+        margin-bottom: 20px;
+        margin: 0;
     }
   li{
       display:inline-block;
@@ -35,45 +40,46 @@ body{
   li a{
       text-decoration: none;
       font-weight:bold;
-      color:white;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 20px;
+      padding-left: 10px;
+      color: white;
+  }
+  li a:hover{
+  	opacity: 0.8;
+  	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 284px;
   }
-  .text{
-        margin-right: 20px;
-  }
-	img
-	{
+  img{
+  	
 		height:210px;
-		width:250px;
-		overflow:hidden;
-		padding-top:60px;
-		padding-bottom:33px;
-	}
-	.names{
+		width:240px;
+		padding-top: 70px;
+		margin: 0;
+ 
+  }
+  .names{
 		position : relative;
-		top:180px;
-		left: -250px;
-		width: 200%;
-		padding-bottom:30px;
+		top:175px;
+		right:250px;
+		width:150%;
+		font-weight: bold;
+		font-size: 14px;
 	}
-	.table{
-		padding-left: 10px;
-	}
-	button{
-		border : 1px solid #bebebe;
-		background-color:#bebebe;
-		padding: 5px 5px;
+	.text
+	{
+		padding:5.5px;
 		border-radius: 4px;
 	}
-	button a{
-		text-decoration :none;
-		link-style: none;
-		color: black; 
+	form button{
+		background-color: #008b8b;
+		padding: 4px 8px;
+		border-color: transparent;
+		border-radius: 3px;
+		color: white;
+		font-weight: bold;		
 	}
 </style>
 </head>
@@ -89,6 +95,7 @@ body{
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
+         <li><a href="login.jsp">Logout</a></li>
     </ul>
 </div>
 
@@ -101,11 +108,10 @@ body{
           <table>
           <tbody>
              <tr>
-                  <td><img src="image/${restaurantfoodlist.foodImage}" alt="foodimage"></td>    
+                  <td><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}"><img src="image/${restaurantfoodlist.foodImage}" alt="foodimage"></a></td>    
                   <td>
                   <div class="names">${restaurantfoodlist.foodName}<br>
                   Food Price :${restaurantfoodlist.price}<br>
-                  <button><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}">Add to cart</a></button>
                   </div>
                   </td>
              </tr>

@@ -5,7 +5,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 <meta charset="ISO-8859-1">
 <title>User View Restaurants</title>
@@ -50,7 +50,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 280px;
   }
 	img
 	{
@@ -108,6 +108,7 @@ body{
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
+        <li><a href="login.jsp">Logout</a></li>
     </ul>
 </div>
 
@@ -124,9 +125,9 @@ body{
                       <td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>    
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
-                       Address : ${restaurantlist.area}${restaurantlist.city}<br>  
+                       Address : ${restaurantlist.area}, ${restaurantlist.city}<br>  
                        <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
-                       Ratings :${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
+                       Ratings  :  ${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
                       </div>
                       </td>
                   </tr>

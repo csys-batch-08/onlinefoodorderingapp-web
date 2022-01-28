@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recharge Wallet</title>
-    <style>
-    *style{
+<style>
+*style{
 	margin:0;
 	padding:0;
 }
@@ -102,7 +102,7 @@ button:hover{
 <h2>Welcome ${username}</h2>
 
 <form action="rechargewallet" method="post">
-       <h2>Recharge Your Wallet..</h2><br>
+       <h2>Please enter valid email to Recharge your wallet..</h2><br>
 
          <label for="emailid">Email address</label><br>
          <input type="email" class="input" name="email"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
@@ -120,4 +120,3 @@ button:hover{
     </form>
 </body>
 </html>
-
