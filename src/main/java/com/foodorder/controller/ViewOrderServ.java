@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,12 +21,19 @@ public class ViewOrderServ extends HttpServlet {
    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		OrderFoodsDaoimpl orderfood = new OrderFoodsDaoimpl(); 
-		List<Orderfoods> orderlist = orderfood.viewOrderFoods();
 		
-		request.setAttribute("orderList", orderlist);
+		try {
+			OrderFoodsDaoimpl orderfood = new OrderFoodsDaoimpl(); 
+			List<Orderfoods> orderlist;
+			orderlist = orderfood.viewOrderFoods();
+			request.setAttribute("orderList", orderlist);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("viewOrders.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("vieworders.jsp");
-		rd.forward(request, response);
+		
 	}
 }

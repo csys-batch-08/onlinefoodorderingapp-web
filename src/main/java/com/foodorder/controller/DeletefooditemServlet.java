@@ -1,6 +1,8 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,15 +16,20 @@ import com.onlinefoodorder.model.FoodItems;
 public class DeletefooditemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		int itemid = Integer.parseInt(request.getParameter("foodid"));
-		FoodItems food = new FoodItems();
-		FoodItemsDaoimpl fooddao = new FoodItemsDaoimpl();
-		fooddao.deletefooditem(itemid);
-		HttpSession session = request.getSession();
-		session.setAttribute("deletefooditem", "Food Item deleted");
-		response.sendRedirect("admin.jsp");
+		
+		try {
+			int itemid = Integer.parseInt(request.getParameter("foodid"));
+			FoodItems food = new FoodItems();
+			FoodItemsDaoimpl fooddao = new FoodItemsDaoimpl();
+			fooddao.deletefooditem(itemid);
+			HttpSession session = request.getSession();
+			session.setAttribute("deletefooditem", "Food Item deleted");
+			response.sendRedirect("admin.jsp");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

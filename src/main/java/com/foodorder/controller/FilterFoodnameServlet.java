@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,18 +18,26 @@ import com.onlinefoodorder.model.FoodItems;
 public class FilterFoodnameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-		HttpSession session = request.getSession();
 		
-		String foodname = request.getParameter("search");
+		try {
+			FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
+			HttpSession session = request.getSession();
+			
+			String foodname = request.getParameter("search");
+			
+			List<FoodItems> foodItemList;
+			foodItemList = fooditemdao.filterbyfoodname(foodname);
+			request.setAttribute("filterfoods", foodItemList);
+			
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterFoodNames.jsp");
+			requestdispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		List<FoodItems> foodItemList = fooditemdao.filterbyfoodname(foodname);
 		
-		request.setAttribute("filterfoods", foodItemList);
-		
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterbyfoodnames.jsp");
-		requestdispatcher.forward(request, response);
 	}
 }

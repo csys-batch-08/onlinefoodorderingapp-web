@@ -2,6 +2,7 @@ package com.foodorder.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,53 +15,56 @@ import javax.servlet.http.HttpSession;
 import com.onlinefoodorder.daoimpl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
 
-/**
- * Servlet implementation class loginServlet
- */
 @WebServlet("/userlogin")
 public class LoginServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		System.out.println(email);
-		System.out.println(password);
-		UserDaoimpl userdao = new UserDaoimpl();
-		User user = userdao.validateUser(email, password);
-		User admin = userdao.validateAdmin(email, password);
-		PrintWriter pw = response.getWriter();
-		HttpSession session = request.getSession();
-		if(user!=null)
-		{
-			pw.write("welcome " +user.getUserName());
+		try {
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			UserDaoimpl userdao = new UserDaoimpl();
 			
-			session.setAttribute("user", user);
-			String username=user.getUserName();
-			System.out.println(username);
-			session.setAttribute("username", username);
-			int userid = userdao.findUserId(email);
-			session.setAttribute("Userid1", userid);
-			System.out.println(userid);
+			User user = userdao.validateUser(email, password);
+			User admin = userdao.validateAdmin(email, password);
 			
-			session.setAttribute("emailid", email);
-			response.sendRedirect("showfoodsservlet");	
+			PrintWriter pw = response.getWriter();
+			HttpSession session = request.getSession();
+			if(user!=null)
+			{
+				pw.write("welcome " +user.getUserName());
+				
+				session.setAttribute("user", user);
+				String username=user.getUserName();
 			
+				session.setAttribute("username", username);
+				int userid;
+				userid = userdao.findUserId(email);
+				session.setAttribute("Userid1", userid);
+				
+				session.setAttribute("emailid", email);
+				response.sendRedirect("showfoodsservlet");	
+				
+			}
+			else if(admin!=null)
+			{
+				pw.write("welcome admin");
+				RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+				rd.forward(request, response);
+				
+			}
+			else
+			{
+				pw.write("Invalid Login");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.include(request, response);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		else if(admin!=null)
-		{
-			pw.write("welcome admin");
-			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-			rd.forward(request, response);
 			
-		}
-		else
-		{
-			pw.write("Invalid Login");
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.include(request, response);
-		}	
 	}
 }

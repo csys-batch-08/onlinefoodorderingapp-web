@@ -71,7 +71,7 @@ button a{
 <p>Email address   :${userList.emailAddress}</p><br>
 <p>Wallet          :${userList.wallet}</p><br><br>
 <button class="button"><a href="showfoodsservlet">Back</a></button>
-<button class="button"><a href="updateuser.jsp">Edit</a></button>
+<button class="button"><a href="updateUser.jsp">Edit</a></button>
 </div>
 
 	</c:forEach>

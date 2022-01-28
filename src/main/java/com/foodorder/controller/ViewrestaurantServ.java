@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,15 +18,18 @@ import com.onlinefoodorder.model.RestaurantDetails;
 public class ViewrestaurantServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
+			List<RestaurantDetails> restaurantlist = restaurantdao.showRestaurant();
+			request.setAttribute("restaurantList", restaurantlist);
 			
-		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-		List<RestaurantDetails> restaurantlist= restaurantdao.showRestaurant();
-		
-		request.setAttribute("restaurantList", restaurantlist);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("viewrestaurant.jsp");
-		rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("viewRestaurant.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

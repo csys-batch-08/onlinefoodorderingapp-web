@@ -213,7 +213,7 @@ public class UserDaoimpl implements UserDao
 	
 	public User validateAdmin(String emailAddress,String password) throws SQLException
 	{
-		String adminQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details from user_details where role='Admin' and email_address='"+emailAddress+"'and password='"+password+"'";		
+		String adminQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= '"+emailAddress+"' and password='"+password+"'";		
 		Connection con=ConnectionUtil.getDbConnection();
 		User user=null;
 		Statement statement = null;

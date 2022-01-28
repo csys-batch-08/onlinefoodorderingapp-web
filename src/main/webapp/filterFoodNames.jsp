@@ -1,5 +1,6 @@
-<%@page import="com.onlinefoodorder.model.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.onlinefoodorder.model.FoodItems"%>
+<%@page import="com.onlinefoodorder.daoimpl.FoodItemsDaoimpl"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -8,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User view food items</title>
+<title>Filter Foods by foodname</title>
 <style>
 *style{
 	margin:0;
@@ -50,7 +51,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 392px;
   }
   img{
   	
@@ -70,12 +71,12 @@ body{
 	}
 	.text
 	{
-		padding:5.5px;
+		padding:5px;
 		border-radius: 4px;
 	}
 	form button{
 		background-color: #008b8b;
-		padding: 4px 8px;
+		padding: 3px 7px;
 		border-color: transparent;
 		border-radius: 3px;
 		color: white;
@@ -84,69 +85,56 @@ body{
 </style>
 </head>
 <body>
-<form action="filterfoods" method="post">
 <div class="nav">
+<form>
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
-        <li> <button>Search</button></a></li>
+        <li><input type="text" class="text"></li>
+        <li><button>search</button></li>
         <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="ShowRestaurantServ">Restaurants</a></li>
         <li><a href="ShowCartServ">Cart</a></li>
-        <li><a href="walletrecharge.jsp">Wallet</a></li>
+        <li><a href="walletRecharge.jsp">Wallet</a></li>
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
     </ul>
+</form>
 </div>
 
 <div class="table">
 <table>
 <tbody>
-	<tr>
-	   <c:set var="count" value="1"/>
-       <c:forEach items="${fooditemslistobj}" var="foodlist">
-       <td>
-         
-         <table>
-         <tbody>
-          <tr>
-             <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="image/${foodlist.foodImage}" alt="foodimage"></a></td>    
-             <td>
-             <div class="names">${foodlist.foodName}<br>
-             	Price :${foodlist.price}<br>
-                ${foodlist.restaurantName}
-             </div>
-             </td>
+	   <tr>
+        <c:set var="count" value="1"/>
+        <c:forEach items="${filterfoods}" var="foodnames">
+        <td>
+           <table id="foodtable">
+           <tbody>
+           <tr>
+              <td><img src="image/${foodnames.foodImage}" alt="foodimage"></td>    
+              <td>
+              <div class="names">${foodnames.foodName}<br>
+              Food Price :${foodnames.price}<br>
+              <button><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}">Add to cart</a></button></div>
+              </td>
            </tr>
-         </tbody>
-         </table>         
-       
-       </td>
-     
-     <c:choose>
-     <c:when test="${count==4}">
-     <c:set var="count" value="1"/>
-       
-    </tr>
-    <tr>
-     
-     </c:when>
-     <c:otherwise>
-     	<c:set var="count" value="${count+1}"/>
-     </c:otherwise>
-     </c:choose> 
-     </c:forEach> 
-    
-    </tr>
+           </tbody>
+           </table>  
+                       
+        </td>
+        <c:choose>
+        	<c:when test="${count==4}">
+        	<c:set var="count" value="1"/>
+        </tr>
+        <tr>
+        	</c:when>
+        	<c:otherwise>
+        	<c:set var="count" value="${count+1}"/>
+        	</c:otherwise>
+        </c:choose>
+        </c:forEach>
+        </tr>
 </tbody>
 </table>
 </div>
-</form>
 </body>
-
-
-
-
-
-
-

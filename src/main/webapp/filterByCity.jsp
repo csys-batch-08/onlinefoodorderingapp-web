@@ -3,7 +3,8 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/showfood33.jpeg");
+    background-image: url("image/foodsbackground4.jpeg");
     font-size:13.5px;
     background-size: 4000px 1500px;
     background-attachment: fixed;
@@ -58,7 +59,7 @@ body{
 		height:230px;
 		width:280px;
 		overflow:hidden;
-		padding-left :20px; 
+		padding-left :50px; 
 	}
 	.names{
 		position : relative;
@@ -66,7 +67,6 @@ body{
 		left: -283px;
 		width: 200%;
 		font-weight: bold;
-		color: black;
 	}
 	
 	button{
@@ -96,17 +96,17 @@ body{
 </style>
 </head>
 <body>
-<form action="filterbycityserv" method="post">
+<form>
  <div class="nav">
     <ul>
         <li><input type="text" name="city" class="text" placeholder="   City name  "></li>
-        <li><button>Search</button></a></li>
-        <li><a href="showfoodsservlet">Food Items</a></li>
-        <li><a href="showrestaurant.jsp">Restaurants</a></li>
-        <li><a href="ShowCartServ">Cart</a></li>
-        <li><a href="walletrecharge.jsp">Wallet</a></li>
+        <li> <button>Search</button></a></li>
+        <li><a href="showFoods.jsp">Food Items</a></li>
+        <li><a href="showRestaurant.jsp">Restaurants</a></li>
+        <li><a href="showCart.jsp">Cart</a></li>
+        <li><a href="walletRecharge.jsp">Wallet</a></li>
         <li><a href="viewOrderUser.jsp">My Orders</a>
-        <li><a href="userprofile.jsp">My profile</a></li>
+        <li><a href="userProfile.jsp">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
     </ul>
 </div>
@@ -118,13 +118,13 @@ body{
 		<c:set var="count" value="1"/>
        	<c:forEach items="${restaurantList}" var="restaurantlist">
              <td>
-                <table id="foodtable">
+                <table>
                 <tbody>
                   <tr>
                       <td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>    
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
-                       Address : ${restaurantlist.area}${restaurantlist.city}<br>  
+                       Address : ${restaurantlist.area} ${restaurantlist.city}<br>  
                        <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
                        Ratings :${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
                       </div>

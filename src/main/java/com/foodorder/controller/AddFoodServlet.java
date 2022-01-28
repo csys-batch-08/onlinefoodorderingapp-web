@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,17 +16,23 @@ import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
 public class AddFoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String email = request.getParameter("emailid");
-		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-		int restaurantid = restaurantdao.findRestaurantId(email);
+		
+		try {
+			String email = request.getParameter("emailid");
+			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
+			int restaurantid;
+			restaurantid = restaurantdao.findRestaurantId(email);
+			HttpSession session = request.getSession();
+			session.setAttribute("restaurantid", restaurantid);
+			RequestDispatcher rd = request.getRequestDispatcher("foodItems.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	
-		HttpSession session = request.getSession();
-		session.setAttribute("restaurantid", restaurantid);
-		RequestDispatcher rd = request.getRequestDispatcher("fooditems.jsp");
-		rd.forward(request, response);
+		
 	}
 
 }

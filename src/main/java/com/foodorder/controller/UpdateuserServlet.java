@@ -1,6 +1,8 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,21 +17,24 @@ import com.onlinefoodorder.model.User;
 public class UpdateuserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getParameter("username");
-		Long phonenumber = Long.parseLong(request.getParameter("phonenumber"));
-		String address = request.getParameter("address");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		User user = new User(username, phonenumber, address, email, password);
-		System.out.println(user);
-		
-		UserDaoimpl userdao = new UserDaoimpl();
-		userdao.userProfileUpdate(user);
-		response.sendRedirect("UserProfileServ");	
+		try {
+			String username = request.getParameter("username");
+			Long phonenumber = Long.parseLong(request.getParameter("phonenumber"));
+			String address = request.getParameter("address");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			
+			User user = new User(username, phonenumber, address, email, password);
+			
+			UserDaoimpl userdao = new UserDaoimpl();
+			userdao.userProfileUpdate(user);
+			response.sendRedirect("UserProfileServ");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+			
+	}
 }

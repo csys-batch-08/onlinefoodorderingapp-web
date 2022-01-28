@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,13 +21,20 @@ public class SearchuserServ extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String emailid = request.getParameter("email");
-	
-		UserDaoimpl userdao = new UserDaoimpl();
-		List<User> userList = userdao.viewSingleUser(emailid);
 		
-		request.setAttribute("userlist", userList);
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("adminSearchUser.jsp");
-		requestdispatcher.forward(request, response);
+		try {
+			String emailid = request.getParameter("email");
+			
+			UserDaoimpl userdao = new UserDaoimpl();
+			List<User> userList;
+			userList = userdao.viewSingleUser(emailid);
+			request.setAttribute("userlist", userList);
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("adminSearchUser.jsp");
+			requestdispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

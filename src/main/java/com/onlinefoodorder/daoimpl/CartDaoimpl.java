@@ -12,15 +12,14 @@ import com.onlinefoodorder.model.FoodItems;
 
 public class CartDaoimpl
 {
-	public void insertCart(int itemId,int customerid)
+	public void insertCart(int itemId,int customerid) throws SQLException
 	{	 
 		String insertQuery = "insert into cart(user_id,item_id)values(?,?)";
-		ConnectionUtil con = new ConnectionUtil();
-		Connection c1 = con.getDbConnection();
-		PreparedStatement p1;
+		Connection con = ConnectionUtil.getDbConnection();
+		PreparedStatement p1 = null;
 		int itemid=0;
 		try {
-			p1 = c1.prepareStatement(insertQuery);
+			p1 = con.prepareStatement(insertQuery);
 			p1.setInt(1,customerid );
 			p1.setInt(2, itemId);
 			 
@@ -29,16 +28,24 @@ public class CartDaoimpl
 			System.out.println("Food items are inserted");
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(p1!=null) {
+				p1.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
 		}
 	}
-	public List<FoodItems> fetchCart(int userid) 
+	
+	public List<FoodItems> fetchCart(int userid) throws SQLException 
 	{
 		List<FoodItems> foodItems = new ArrayList<FoodItems>();
-		String Query = "select * from food_items where item_id in (select item_id from cart where user_id = ?) ";
-		ConnectionUtil con = new ConnectionUtil();
-		Connection c1 = con.getDbConnection();
+		String Query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
+		Connection con = ConnectionUtil.getDbConnection();
+		PreparedStatement p1 = null;
 		try {
-			PreparedStatement p1 = c1.prepareStatement(Query);
+			p1 = con.prepareStatement(Query);
 			p1.setInt(1, userid);
 			ResultSet rs = p1.executeQuery();
 			while(rs.next()) {
@@ -46,10 +53,18 @@ public class CartDaoimpl
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(p1!=null) {
+				p1.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
 		}
 		return foodItems;
 	}
-	public int removeCart(int itemId, int userId) 
+	
+	public int removeCart(int itemId, int userId) throws SQLException 
 	{
 		String deletecart="delete from cart where item_id = ? and user_id = ?";
 		Connection con = ConnectionUtil.getDbConnection();
@@ -61,6 +76,13 @@ public class CartDaoimpl
 			int i=p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(p1!=null) {
+				p1.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
 		}
 		return 0;
 	}	

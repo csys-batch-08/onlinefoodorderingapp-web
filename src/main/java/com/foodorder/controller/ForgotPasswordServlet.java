@@ -1,6 +1,8 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +15,21 @@ import com.onlinefoodorder.daoimpl.UserDaoimpl;
 public class ForgotPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		UserDaoimpl userdao = new UserDaoimpl();
-		boolean flag=userdao.forgotPassword(email, password);
-		if (flag==true)
-		response.sendRedirect("login.jsp");
-		else
-			System.out.println("failed");
+		try {
+
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			UserDaoimpl userdao = new UserDaoimpl();
+			boolean flag;
+			flag = userdao.forgotPassword(email, password);
+			if (flag)
+				response.sendRedirect("login.jsp");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

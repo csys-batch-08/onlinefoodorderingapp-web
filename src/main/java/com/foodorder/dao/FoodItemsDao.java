@@ -1,14 +1,20 @@
 package com.foodorder.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.onlinefoodorder.model.FoodItems;
 
 public interface FoodItemsDao
 {
-	public void insertFoodItems(FoodItems fooditem);
-	public List<FoodItems> showFoodItems();
-	public List<FoodItems> findfoodNames(int r_id);
-	public int findFoodItemId(String food_name);
-	public int findFoodPrice(int foodid);
+	public void insertFoodItems(FoodItems fooditem) throws SQLException;
+	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException;
+	public List<FoodItems> showFoodItems() throws SQLException;
+	public List<FoodItems> findfoodNames(int resid) throws SQLException;
+	public String findFoodname(int foodid) throws SQLException;
+	public int findFoodPrice(int foodid) throws SQLException;
+	public int finditemid(String foodname, int restaurantid) throws SQLException;
+	public void deletefooditem(int itemid) throws SQLException;
+	public List<FoodItems> filterbyPrice(double price) throws SQLException;
+	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException;
 }

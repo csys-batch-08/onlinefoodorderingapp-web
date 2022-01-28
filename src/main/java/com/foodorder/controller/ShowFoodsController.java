@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,12 +26,14 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
 				List<FoodItems> foodItemList = fooditemdao.showFoodItems(); 
 				req.setAttribute("fooditemslistobj", foodItemList);
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showfoods.jsp");
+				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
 				requestDispatcher.forward(req, resp);		
 		} catch (IOException e) {
 				e.printStackTrace();
-			}catch(ServletException e) {
+		}catch(ServletException e) {
 				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+				e.printStackTrace();
+		}
 	}
 }

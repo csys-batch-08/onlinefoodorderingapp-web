@@ -41,7 +41,7 @@ body{
       padding-left: 7px;
   }
   li button{
-      margin-right: 500px;
+      margin-right: 380px;
   }
   .text{
         margin-right: 20px;
@@ -80,15 +80,15 @@ body{
 <body>
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text"></li>
-        <li> <button>search</button></a></li>
-        <li><a href="showfoods.jsp">Foods</a></li>
-        <li><a href="showrestaurant.jsp">Restaurants</a></li>
-        <li><a href="showcart.jsp">Cart</a></li>
+        <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
+        <li> <button>Search</button></a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
+        <li><a href="ShowRestaurantServ">Restaurants</a></li>
+        <li><a href="ShowCartServ">Cart</a></li>
         <li><a href="walletrecharge.jsp">Wallet</a></li>
-        <li><a href="viewOrderUser.jsp">My Orders</a>
-        <li><a href="userprofile.jsp">User profile</a></li>
-        <li><a href="ratings.jsp">rating</a></li>
+        <li><a href="MyOrdersServ">My Orders</a>
+        <li><a href="UserProfileServ">My profile</a></li>
+        <li><a href="ratings.jsp">Ratings</a></li>
     </ul>
 </div>
 

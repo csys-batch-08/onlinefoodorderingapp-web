@@ -60,14 +60,14 @@
 <aside>
 <ul>
         <li><a href="ViewAlluserServ">View users & Search User</a></li>
-        <li><a href="inactiveuser.jsp">Active & Inactive users</a></li>
-        <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
-        <li><a href="addfooditems.jsp">Add Food Items</a></li>
-        <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
-        <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
-        <li><a href="deleterestaurant.jsp">Change Restaurant Status</a></li>
-        <li><a href="ViewFoodsServ">View food details</a></li>
-        <li><a href="ViewOrderServ">View Orders</a>
+       <li><a href="inactiveUser.jsp">Inactive users</a></li>
+       <li><a href="restaurantDetails.jsp">Register Restaurant</a></li>
+       <li><a href="addFoodItems.jsp">Add Food Items</a></li>
+       <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
+       <li><a href="updateRestaurant.jsp">Edit Restaurant</a></li>
+       <li><a href="deleteRestaurant.jsp">Inactive Restaurant</a></li>
+       <li><a href="ViewFoodsServ">View food details</a></li>
+       <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
 	

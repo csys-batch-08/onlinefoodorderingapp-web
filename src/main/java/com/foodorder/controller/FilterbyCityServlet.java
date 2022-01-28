@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,16 +18,22 @@ import com.onlinefoodorder.model.RestaurantDetails;
 public class FilterbyCityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
+			String city = request.getParameter("city");
+			
+			List<RestaurantDetails> restaurantlist;
+			restaurantlist = restaurantdao.filterbyCity(city);
+			request.setAttribute("restaurantList", restaurantlist);
+			
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");
+			requestdispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-		String city = request.getParameter("city");
 		
-		List<RestaurantDetails> restaurantlist = restaurantdao.filterbyCity(city);
-		
-		request.setAttribute("restaurantList", restaurantlist);
-		
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterbyCity.jsp");
-		requestdispatcher.forward(request, response);
 	}
 }

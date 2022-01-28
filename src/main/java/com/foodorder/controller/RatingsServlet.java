@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,24 +20,31 @@ public class RatingsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		RestaurantdetailsDaoimpl restaurant = new RestaurantdetailsDaoimpl();
-		RatingsDaoimpl ratingdao = new RatingsDaoimpl();
+		
+		try {
+			HttpSession session = request.getSession();
+			RestaurantdetailsDaoimpl restaurant = new RestaurantdetailsDaoimpl();
+			RatingsDaoimpl ratingdao = new RatingsDaoimpl();
 
-		int userid = (int)session.getAttribute("Userid1");
-		
-		String resname = request.getParameter("restaurantname");	
-		
-		int resid = restaurant.findRestaurantId2(resname);
+			int userid = (int)session.getAttribute("Userid1");
+			
+			String resname = request.getParameter("restaurantname");	
+			
+			int resid;
+			resid = restaurant.findRestaurantId2(resname);
+			double resrating = Double.parseDouble(request.getParameter("rating"));
+			
+			Ratings rating = new Ratings(userid, resid, resrating);
+			ratingdao.insertRatings(rating);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowRestaurantServ");
+			requestDispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 				
-		double resrating = Double.parseDouble(request.getParameter("rating"));
 		
-		Ratings rating = new Ratings(userid, resid, resrating);
-		System.out.println(rating);
-		ratingdao.insertRatings(rating);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowRestaurantServ");
-		requestDispatcher.forward(request, response);
 	}
 }

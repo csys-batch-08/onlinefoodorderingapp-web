@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,15 +19,22 @@ import com.onlinefoodorder.model.User;
 public class UserProfileServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		int customerid = (int)session.getAttribute("Userid1");
-		UserDaoimpl userdao = new UserDaoimpl();
-		List<User> userList = userList = userdao.currentuserprofile(customerid);
-		request.setAttribute("userlist", userList);
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("userprofile.jsp");
-		requestdispatcher.forward(request, response);
+		
+		try {
+			HttpSession session = request.getSession();
+			int customerid = (int)session.getAttribute("Userid1");
+			UserDaoimpl userdao = new UserDaoimpl();
+			List<User> userList = userdao.currentuserprofile(customerid);
+			request.setAttribute("userlist", userList);
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("userProfile.jsp");
+			requestdispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

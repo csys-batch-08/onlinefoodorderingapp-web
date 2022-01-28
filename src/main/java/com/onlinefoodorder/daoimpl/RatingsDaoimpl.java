@@ -21,11 +21,9 @@ public class RatingsDaoimpl {
 				p1.setDouble(3, rating.getRating());
 				int resid = p1.executeUpdate();
 				p1.executeUpdate("commit");
-				System.out.println("insrted");
 				return resid;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("try again");
 			return -1;
 		}finally {
 			if(p1!=null) {

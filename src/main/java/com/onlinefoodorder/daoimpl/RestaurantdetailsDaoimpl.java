@@ -17,8 +17,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException
 	{
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
-		ConnectionUtil con1 = new ConnectionUtil();
-		Connection con = con1.getDbConnection();
+		Connection con = ConnectionUtil.getDbConnection();
 		PreparedStatement p1 = null;
 		
 		try {
@@ -241,7 +240,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public List<RestaurantDetails> showRestaurant() throws SQLException
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
-		String query = "select * from restaurant_details where restaurant_status='active'";
+		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
 		Connection con = ConnectionUtil.getDbConnection();
 		Statement statement = null;
 		try {
@@ -268,7 +267,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
-		String query = "select * from restaurant_details where city= ?";
+		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
 		Connection con = ConnectionUtil.getDbConnection();
 		PreparedStatement p1 = null;
 		try {

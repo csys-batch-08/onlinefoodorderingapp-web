@@ -43,7 +43,6 @@
 	<c:set var="i" value="${i+1}"/>
 <tr>
 
-<%-- <td> <%=fooditemdao.findFoodname(userViewOrder.getItem_id())%></td> --%>
 <td>${i}</td>
 <td>${orderlist.itemId}</td>
 <td>${orderlist.quantity}</td>

@@ -95,29 +95,29 @@ aside{
 <body>
 <aside>
 <ul>
-        <li><a href="viewuser.jsp">View users & Search User</a></li>
-        <li><a href="inactiveuser.jsp">Active & Inactive users</a></li>
-        <li><a href="restaurantdetails.jsp">Register Restaurant</a></li>
-        <li><a href="addfooditems.jsp">Add Food Items</a></li>
-        <li><a href="viewrestaurant.jsp">View all Restaurant details</a></li> 
-        <li><a href="updaterestaurant.jsp">Edit Restaurant</a></li>
-        <li><a href="deleterestaurant.jsp">Change Restaurant Status</a></li>
-        <li><a href="viewfoods.jsp">View food details</a></li>
-        <li><a href="vieworders.jsp">View Orders</a>
+         <li><a href="ViewAlluserServ">View users & Search User</a></li>
+       <li><a href="inactiveUser.jsp">Inactive users</a></li>
+       <li><a href="restaurantDetails.jsp">Register Restaurant</a></li>
+       <li><a href="addFoodItems.jsp">Add Food Items</a></li>
+       <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
+       <li><a href="updateRestaurant.jsp">Edit Restaurant</a></li>
+       <li><a href="deleteRestaurant.jsp">Inactive Restaurant</a></li>
+       <li><a href="ViewFoodsServ">View food details</a></li>
+       <li><a href="ViewOrderServ">View Orders</a>
         
 </ul>
 </aside>
 <nav>
-	<button class="nav"><a href="inactiveuser.jsp">Inactive User</a></button>
-	<button class="nav"><a href="#activeuser.jsp">Active User</a></button>
+	<button class="nav"><a href="#inactiveuser">Inactive User</a></button>
+	<button class="nav"><a href="activeuser.jsp">Active User</a></button>
 </nav>
 <div class="t1">
 <div class="set1">
-<form action="activeusers" method="post">
-	<h3>Active user</h3><br>
+<form action="inactiveusers" method="post">
+	<h3>Inactive user</h3><br>
 	<label>User Email address </label><br><br>
 	<input type="text" class="input" name="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
-	<button class="button">Active</button>
+	<button class="button">Inactive</button>
 </form>
 </div>
 </div>

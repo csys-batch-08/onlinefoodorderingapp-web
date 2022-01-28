@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,16 +17,21 @@ import com.onlinefoodorder.daoimpl.CartDaoimpl;
 public class RemoveCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession();
+			CartDaoimpl cartdao = new CartDaoimpl();
+			int itemId = Integer.parseInt(request.getParameter("itemId"));
+			int userId = (int)session.getAttribute("Userid1");
+			session.setAttribute("cartid", itemId);
+			cartdao.removeCart(itemId, userId);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServ");
+			requestDispatcher.forward(request, response);	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		HttpSession session = request.getSession();
-		CartDaoimpl cartdao = new CartDaoimpl();
-		int itemId = Integer.parseInt(request.getParameter("itemId"));
-		int userId = (int)session.getAttribute("Userid1");
-		session.setAttribute("cartid", itemId);
-		cartdao.removeCart(itemId, userId);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServ");
-		requestDispatcher.forward(request, response);	
 	}
 
 }

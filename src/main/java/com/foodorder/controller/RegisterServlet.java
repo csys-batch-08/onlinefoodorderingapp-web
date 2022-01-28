@@ -1,6 +1,7 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,18 +17,24 @@ import com.onlinefoodorder.model.User;
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		long phoneno = (Long.parseLong(request.getParameter("phonenumber")));
-		String address = request.getParameter("address");
-		String emailid = request.getParameter("email");
-		String password = request.getParameter("password");
-		//doGet(request, response);
-		User user = new User(username, phoneno, address, emailid, password);
-		UserDaoimpl userdao = new UserDaoimpl();
-		userdao.insertUser(user);
-		response.sendRedirect("login.jsp");
+		
+		try {
+			String username = request.getParameter("username");
+			long phoneno = (Long.parseLong(request.getParameter("phonenumber")));
+			String address = request.getParameter("address");
+			String emailid = request.getParameter("email");
+			String password = request.getParameter("password");
+
+			User user = new User(username, phoneno, address, emailid, password);
+			UserDaoimpl userdao = new UserDaoimpl();
+			userdao.insertUser(user);
+			response.sendRedirect("login.jsp");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

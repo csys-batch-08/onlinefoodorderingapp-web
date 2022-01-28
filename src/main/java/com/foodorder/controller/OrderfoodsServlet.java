@@ -1,6 +1,8 @@
 package com.foodorder.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,8 @@ public class OrderfoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	try {
 		HttpSession session = request.getSession();
 		FoodItemsDaoimpl fooditem = new FoodItemsDaoimpl();
 		
@@ -62,10 +66,10 @@ public class OrderfoodsServlet extends HttpServlet {
 			session.setAttribute("walletbalance", walletbalance);
 			User user = new User(null, 0, null, emailaddress, null, walletbalance);
 			userdao.updatewallet(user);
-			response.sendRedirect("orderconfirm.jsp");
+			response.sendRedirect("orderConfirm.jsp");
 		}
-		else {
-			System.out.println("Please recharge your wallet..");
-		}
+	} catch (SQLException e) {
+			e.printStackTrace();
 	}
+  }
 }

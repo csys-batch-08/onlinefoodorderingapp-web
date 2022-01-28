@@ -1,5 +1,7 @@
 package com.foodorder.controller;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +17,19 @@ public class InactiveuserServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String email = request.getParameter("email");
-		UserDaoimpl userdao = new UserDaoimpl();
-		userdao.userProfileDelete(email);
-		HttpSession session = request.getSession();
-		session.setAttribute("userInactiver", "User Inactive");
-		response.sendRedirect("admin.jsp");	
+		
+		try {
+			String email = request.getParameter("email");
+			UserDaoimpl userdao = new UserDaoimpl();
+			userdao.userProfileDelete(email);
+			HttpSession session = request.getSession();
+			session.setAttribute("userInactiver", "User Inactive");
+			response.sendRedirect("admin.jsp");	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
