@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
-@WebServlet("/filterbycityservs")
+@WebServlet("/filterbycityserv")
 public class FilterbyCityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

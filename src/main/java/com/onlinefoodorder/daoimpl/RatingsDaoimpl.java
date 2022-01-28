@@ -9,7 +9,7 @@ import com.onlinefoodorder.model.Ratings;
 
 public class RatingsDaoimpl {
 
-	public int insertRatings(Ratings rating)
+	public int insertRatings(Ratings rating) throws SQLException
 	{
 		String query = "insert into ratings(user_id, restaurant_id, rating) values(?,?,?)";
 		Connection con = ConnectionUtil.getDbConnection();
@@ -27,15 +27,24 @@ public class RatingsDaoimpl {
 			e.printStackTrace();
 			System.out.println("try again");
 			return -1;
-		}		
+		}finally {
+			if(p1!=null) {
+				p1.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}	
 	}
-	public double fetchRating(int restarantid)
+	
+	public double fetchRating(int restarantid) throws SQLException
 	{
 		System.out.println(restarantid + "reid");
 		Connection con =ConnectionUtil.getDbConnection();
-		String query = "select avg(rating) from ratings where restaurant_id = ?";
+		String query = "select floor(avg(rating)) from ratings where restaurant_id = ?";
+		PreparedStatement p1=null;
 		try {
-			PreparedStatement p1 = con.prepareStatement(query);
+			p1 = con.prepareStatement(query);
 			p1.setDouble(1, restarantid);
 			ResultSet rs = p1.executeQuery();
 			while(rs.next())
@@ -44,6 +53,13 @@ public class RatingsDaoimpl {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(p1!=null) {
+				p1.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
 		}
 		return -1;
 	}	

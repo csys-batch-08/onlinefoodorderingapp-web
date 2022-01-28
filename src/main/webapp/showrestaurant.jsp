@@ -58,7 +58,7 @@ body{
 		height:230px;
 		width:280px;
 		overflow:hidden;
-		padding-left :50px; 
+		padding-left :20px; 
 	}
 	.names{
 		position : relative;

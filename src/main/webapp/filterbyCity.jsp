@@ -118,13 +118,13 @@ body{
 		<c:set var="count" value="1"/>
        	<c:forEach items="${restaurantList}" var="restaurantlist">
              <td>
-                <table id="foodtable">
+                <table>
                 <tbody>
                   <tr>
                       <td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>    
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
-                       Address : ${restaurantlist.area}${restaurantlist.city}<br>  
+                       Address : ${restaurantlist.area} ${restaurantlist.city}<br>  
                        <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
                        Ratings :${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
                       </div>
