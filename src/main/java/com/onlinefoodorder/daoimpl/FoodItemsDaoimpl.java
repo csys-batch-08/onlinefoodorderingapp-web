@@ -18,10 +18,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	public void insertFoodItems(FoodItems fooditem) throws SQLException
 	{
 		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)values(?,?,?,?,?,?)";
-		ConnectionUtil con1 = new ConnectionUtil();
-		Connection con = con1.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(insertQuery);
 			p1.setInt(1, fooditem.getRestaurantId());
 			p1.setString(2, fooditem.getFoodName());
@@ -47,10 +47,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	{
 		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where restaurant_id = ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setInt(1, restaurantid);
 			ResultSet rs = p1.executeQuery();
@@ -78,11 +79,12 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	{
 		List<FoodItems> foodItemList = new ArrayList< FoodItems>();
 		String showQuery = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		FoodItems showFoodItems = new FoodItems();
 		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
 		Statement statement = null;
 		try {
+				con = ConnectionUtil.getDbConnection();
 				statement = con.createStatement();
 				ResultSet rs =statement.executeQuery(showQuery);
 				while(rs.next())
@@ -109,11 +111,12 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	{
 		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
 		String query = "select food_name, price, foodimages from food_items where restaurant_id = "+resid;
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		try {
-			Statement p1 = con.createStatement();
-			ResultSet rs = p1.executeQuery(query);
+			con = ConnectionUtil.getDbConnection();
+			statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(query);
 			while(rs.next())
 			{
 				FoodItems fooditem = new FoodItems(resid, rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7));
@@ -136,10 +139,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	public String findFoodname(int foodid) throws SQLException
 	{
 		String findname = "select food_name from food_items where food_name = '"+foodid+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		String itemname = null;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(findname);
 			if(rs.next())
@@ -163,10 +167,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	public int findFoodPrice(int foodid) throws SQLException
 	{
 		String price ="select price from food_items where item_id= '"+foodid+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		int foodprice = 0;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement=con.createStatement();
 			ResultSet rs = statement.executeQuery(price);
 			if(rs.next())
@@ -189,17 +194,17 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	public int finditemid(String foodname, int restaurantid) throws SQLException
 	{
 		String price ="select item_id from food_items where restaurant_id = ? and food_name = ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1=null;
 		
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(price);
 			p1.setInt(1, restaurantid);
 			p1.setString(2, foodname);
 			ResultSet rs = p1.executeQuery();
 			while(rs.next())
 			{
-				System.out.println("insert");
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -218,9 +223,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	public void deletefooditem(int itemid) throws SQLException
 	{
 		String deleteQuery = "delete from food_items where itemid=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
 			p1.setInt(1, itemid);
 			int i = p1.executeUpdate();
@@ -240,9 +246,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	{
 		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where price<=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setDouble(1, price);
 			ResultSet rs = p1.executeQuery();
@@ -268,9 +275,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	{
 		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setString(1, foodname);
 			ResultSet rs = p1.executeQuery();

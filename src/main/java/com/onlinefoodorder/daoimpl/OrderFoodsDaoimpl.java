@@ -18,9 +18,10 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	public void insertOrderFoods(Orderfoods order) throws SQLException
 	{
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(insert);
 			p1.setInt(1, order.getUserId());
 			p1.setInt(2, order.getItemId());
@@ -44,9 +45,10 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	{
 		List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date from order_foods";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(showQuery);
 			while(rs.next())
@@ -72,9 +74,10 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	{
 		List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id='"+userid+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(showQuery);
 			while(rs.next())
@@ -96,14 +99,15 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return orderlist;
 	}
 	
-	public int updateOrderdetails(int order_id) throws SQLException
+	public int updateOrderdetails(int orderId) throws SQLException
 	{
-		String updateQuery="update order_foods set order_status = 'Cancel' where order_id=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		String updateQuery="update order_foods set order_status = 'Cancel' where orderId=?";
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(updateQuery);
-			p1.setInt(1, order_id);
+			p1.setInt(1, orderId);
 			int i=p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
@@ -119,14 +123,15 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return 0;
 	}	
 	
-	public String findOrderstatus(int order_id) throws SQLException
+	public String findOrderstatus(int orderId) throws SQLException
 	{
-		String findQuery="select order_status from order_foods where order_id=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		String findQuery="select order_status from order_foods where orderId=?";
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(findQuery);
-			p1.setInt(1, order_id);
+			p1.setInt(1, orderId);
 			int i=p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
@@ -142,14 +147,15 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return null;
 	}
 	
-	public void deleteOrder(int item_id) throws SQLException 
+	public void deleteOrder(int itemId) throws SQLException 
 	{
 		String delete="delete order_foods from where item_id=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(delete);
-			p1.setInt(1, item_id);
+			p1.setInt(1, itemId);
 			int i=p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -167,10 +173,11 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	public int findfoodPrice(int orderid) throws SQLException
 	{
 		String price ="select price from order_foods where order_id= '"+orderid+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		int foodprice = 0;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement=con.createStatement();
 			ResultSet rs = statement.executeQuery(price);
 			if(rs.next())

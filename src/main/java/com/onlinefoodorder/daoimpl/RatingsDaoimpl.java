@@ -12,9 +12,10 @@ public class RatingsDaoimpl {
 	public int insertRatings(Ratings rating) throws SQLException
 	{
 		String query = "insert into ratings(user_id, restaurant_id, rating) values(?,?,?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+				con = ConnectionUtil.getDbConnection();
 				p1 = con.prepareStatement(query);
 				p1.setInt(1, rating.getUserId());
 				p1.setInt(2, rating.getRestaurantId());
@@ -37,11 +38,11 @@ public class RatingsDaoimpl {
 	
 	public double fetchRating(int restarantid) throws SQLException
 	{
-		System.out.println(restarantid + "reid");
-		Connection con =ConnectionUtil.getDbConnection();
+		Connection con = null;
 		String query = "select floor(avg(rating)) from ratings where restaurant_id = ?";
 		PreparedStatement p1=null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setDouble(1, restarantid);
 			ResultSet rs = p1.executeQuery();

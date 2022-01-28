@@ -15,17 +15,17 @@ public class CartDaoimpl
 	public void insertCart(int itemId,int customerid) throws SQLException
 	{	 
 		String insertQuery = "insert into cart(user_id,item_id)values(?,?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		int itemid=0;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(insertQuery);
 			p1.setInt(1,customerid );
 			p1.setInt(2, itemId);
 			 
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
-			System.out.println("Food items are inserted");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -41,11 +41,12 @@ public class CartDaoimpl
 	public List<FoodItems> fetchCart(int userid) throws SQLException 
 	{
 		List<FoodItems> foodItems = new ArrayList<FoodItems>();
-		String Query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		String query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
-			p1 = con.prepareStatement(Query);
+			con = ConnectionUtil.getDbConnection();
+			p1 = con.prepareStatement(query);
 			p1.setInt(1, userid);
 			ResultSet rs = p1.executeQuery();
 			while(rs.next()) {
@@ -67,9 +68,10 @@ public class CartDaoimpl
 	public int removeCart(int itemId, int userId) throws SQLException 
 	{
 		String deletecart="delete from cart where item_id = ? and user_id = ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(deletecart);
 			p1.setInt(1, itemId);
 			p1.setInt(2, userId);

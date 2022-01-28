@@ -17,10 +17,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException
 	{
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(insertQuery);
 			p1.setString(1, restaurant.getRestaurantName());
 			p1.setString(2, restaurant.getArea());
@@ -33,12 +34,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			p1.setString(9, restaurant.getPassword());
 			p1.setString(10, restaurant.getRestaurantImages());
 			p1.executeUpdate();
-			System.out.println("Restaurant details are inserted");
 		} 
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-			System.out.println("Try again");
 		}finally {
 			if(p1!=null) {
 				p1.close();
@@ -51,9 +50,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, password=? where email=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1=null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(updateQuery);
 			p1.setString(1, restaurant.getRestaurantName());
 			p1.setLong(2, restaurant.getRestaurantLandlineNo());
@@ -62,8 +62,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			p1.setString(5, restaurant.getPassword());
 			p1.setString(6, restaurant.getEmail());
 			int i = p1.executeUpdate();
-			p1.executeUpdate("commit");
-			System.out.println(i+" restaurant details updated");
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,14 +79,13 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public void inactiveRestaurant(String emailid) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'Inactive' where email = ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1=null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(updateQuery);
 			p1.setString(1, emailid);
 			int i = p1.executeUpdate();
-			p1.executeUpdate("commit");
-			System.out.println(i+ "restaurant deleted");
 			p1.close();
 			con.close();
 		} catch (SQLException e) {
@@ -106,14 +103,14 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public void activeRestaurant(String emailid) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'active' where email =?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1=null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(updateQuery);
 			p1.setString(1, emailid);
 			int i = p1.executeUpdate();
 			p1.executeUpdate("commit");
-			System.out.println(i+ "restaurant deleted");
 			p1.close();
 			con.close();
 		} catch (SQLException e) {
@@ -131,16 +128,16 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public int findRestaurantId(String email) throws SQLException
 	{
 		String findid = "select restaurant_id from restaurant_details where email='"+email+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement= null; 
 		int restaurantid = 0;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(findid);
 			if(rs.next())
 			{
 				restaurantid = rs.getInt(1);
-				System.out.println("resid" +restaurantid);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,18 +154,17 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	
 	public int findRestaurantId2(String restaurantName) throws SQLException
 	{
-		System.out.println(restaurantName + "resname");
 		String findId = "select restaurant_id from restaurant_details where restaurant_name='"+restaurantName+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		int restaurantId = 0;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(findId);
 			if(rs.next())
 			{
 				restaurantId = rs.getInt(1);
-				System.out.println(restaurantId + "ridfind");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,10 +183,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	public String findRestaurantName(int restaurantId) throws SQLException
 	{
 		String findname = "select restaurant_name from restaurant_details where restaurant_id='"+restaurantId+"'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		String restaurantname = null;
 		Statement statement=null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(findname);
 			if(rs.next())
@@ -213,10 +210,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	
 	public int findmaxresid() throws SQLException {
 		String findId = "select max(restaurant_id) from restaurant_details";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		int restaurantId = -1;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(findId);
 			if(rs.next())
@@ -241,9 +239,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		Statement statement = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(query); 
 			while(rs.next())
@@ -268,9 +267,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setString(1, city);
 			ResultSet rs = p1.executeQuery();
