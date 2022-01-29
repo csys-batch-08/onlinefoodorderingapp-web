@@ -104,8 +104,7 @@ button:hover{
 <form action="rechargewallet" method="post">
        <h2>Recharge Your Wallet..</h2><br>
 
-         <label for="emailid">Email address</label><br>
-         <input type="email" class="input" name="email"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+         <input type="hidden" name="email" value="${emailid}"><br><br>
                  
          <label for="cardnumber">Card Number</label><br>
          <input type="text" class="input" name="cardnumber" pattern ="[1-9]{16}" required><br><br>

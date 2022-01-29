@@ -20,7 +20,7 @@ body{
     font-size:13.5px;
     background-size: cover;
     background-attachment: fixed;
-   	overflow-x:hidden;
+   	overflow-x:hidden; 
 }
   ul
   {
@@ -50,7 +50,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 284px;
+      margin-right: 298px;
   }
   img{
   	
@@ -75,7 +75,7 @@ body{
 	}
 	form button{
 		background-color: #008b8b;
-		padding: 4px 8px;
+		padding: 3px 8px;
 		border-color: transparent;
 		border-radius: 3px;
 		color: white;
@@ -85,6 +85,7 @@ body{
 </head>
 <body>
 <div class="nav">
+<form>
     <ul>
         <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
         <li> <button>Search</button></a></li>
@@ -134,4 +135,5 @@ body{
        </tr>
 </tbody>
 </table>
+</form>
 </body>

@@ -111,11 +111,10 @@ body{
            <table id="foodtable">
            <tbody>
            <tr>
-              <td><img src="image/${foodnames.foodImage}" alt="foodimage"></td>    
+              <td><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}"><img src="image/${foodnames.foodImage}" alt="foodimage"></a></td>    
               <td>
               <div class="names">${foodnames.foodName}<br>
               Food Price :${foodnames.price}<br>
-              <button><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}">Add to cart</a></button></div>
               </td>
            </tr>
            </tbody>

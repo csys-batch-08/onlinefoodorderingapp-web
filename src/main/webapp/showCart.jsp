@@ -67,7 +67,6 @@ body{
 		top:180px;
 		right:250px;
 		width:200%;
-		color: white;
 		font-weight: bold;
 		font-size: 14px;
 	}
@@ -88,7 +87,8 @@ body{
 	button a{
 		text-decoration :none;
 		link-style: none;
-		color: black; 
+		color: black;
+		font-weight:bold; 
 	}
 </style>
 </head>
@@ -117,11 +117,10 @@ body{
                         <table id="foodtable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/${cartlist.foodImage}" alt="foodimage"></td>    
+                                    <td><a href = "orderFoods.jsp?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="image/${cartlist.foodImage}" alt="foodimage"></a></td>    
                                     <td>
                                   	    <div class="names">${cartlist.foodName}</span><br>
-                                        Food Price :${cartlist.price}</span><br>
-                                        <button><a href = "orderfoods.jsp?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}">Buy</a></button>
+                                        Food Price :${cartlist.price}</span>
                                         <button><a href = "removeCartserv?itemId=${cartlist.itemId}">Remove Item</a></button></div>    
                                     </td>
                                 </tr>

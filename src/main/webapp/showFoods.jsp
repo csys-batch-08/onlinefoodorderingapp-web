@@ -75,7 +75,7 @@ body{
 	}
 	form button{
 		background-color: #008b8b;
-		padding: 4px 8px;
+		padding: 3px 8px;
 		border-color: transparent;
 		border-radius: 3px;
 		color: white;

@@ -19,6 +19,7 @@ import com.onlinefoodorder.model.Orderfoods;
 public class ViewOrderServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
@@ -32,8 +33,6 @@ public class ViewOrderServ extends HttpServlet {
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 }

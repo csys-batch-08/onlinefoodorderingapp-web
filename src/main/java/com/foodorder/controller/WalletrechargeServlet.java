@@ -22,33 +22,27 @@ public class WalletrechargeServlet extends HttpServlet {
 	try{
 			HttpSession session = request.getSession();	
 			Long cardnumber = Long.parseLong(request.getParameter("cardnumber"));
-			String email = (String) session.getAttribute("emailid");
+			String emailid = (String) session.getAttribute("email");
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			int cvv = Integer.parseInt(request.getParameter("cvv"));
 			
-			if(email != session.getAttribute("emailid"))
+			UserDaoimpl userdao = new UserDaoimpl();
+			int userid = (int)session.getAttribute("Userid1");
+			int balance;
+			balance = userdao.walletbal(userid);
+			int currentbalance = balance+amount;
+		
+			User user = new User(null, 0, null, emailid, null, currentbalance);
+			boolean wallet = userdao.updatewallet(user);
+		
+			if(wallet)
 			{
-				response.sendRedirect("invalidWalledRecharge.jsp");
+				response.sendRedirect("UserProfileServ");
 			}
-			else {
-				UserDaoimpl userdao = new UserDaoimpl();
-				int userid = (int)session.getAttribute("Userid1");
-				int balance;
-				balance = userdao.walletbal(userid);
-				int currentbalance = balance+amount;
-			
-				User user = new User(null, 0, null, email, null, currentbalance);
-				boolean wallet = userdao.updatewallet(user);
-			
-				if(wallet)
-				{
-					response.sendRedirect("UserProfileServ");
-				}
-				else
-				{
-					response.getWriter().print("Wallet not recharged");
-				}
-			}
+			else
+			{
+				response.getWriter().print("Wallet not recharged");
+			}		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		

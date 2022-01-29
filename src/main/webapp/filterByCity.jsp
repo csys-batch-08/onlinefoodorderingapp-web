@@ -17,7 +17,7 @@
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/foodsbackground4.jpeg");
+    background-image: url("image/showfood33.jpeg");
     font-size:13.5px;
     background-size: 4000px 1500px;
     background-attachment: fixed;
@@ -51,7 +51,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 380px;
+      margin-right: 280px;
   }
 	img
 	{
@@ -59,7 +59,7 @@ body{
 		height:230px;
 		width:280px;
 		overflow:hidden;
-		padding-left :50px; 
+		padding-left :20px; 
 	}
 	.names{
 		position : relative;
@@ -67,6 +67,7 @@ body{
 		left: -283px;
 		width: 200%;
 		font-weight: bold;
+		color: black;
 	}
 	
 	button{

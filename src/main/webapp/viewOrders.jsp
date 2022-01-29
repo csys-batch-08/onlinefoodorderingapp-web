@@ -95,11 +95,11 @@
 
 <div class="t1">
 <div class="set1">
-<h2><b>View Orders</b></h2>
+<h2><strong>View Orders</strong></h2>
 <table>
 	<thead>
 	<tr>
-  		<th >S.no</th>
+  		<th>S.no</th>
 		<th>User Id</th>
 		<th>Item Id</th>
 		<th>Quantity</th>

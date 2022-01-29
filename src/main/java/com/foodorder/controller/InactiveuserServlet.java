@@ -29,7 +29,6 @@ public class InactiveuserServlet extends HttpServlet
 			response.sendRedirect("admin.jsp");	
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 }

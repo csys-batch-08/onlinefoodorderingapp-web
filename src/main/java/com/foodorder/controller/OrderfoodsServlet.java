@@ -22,6 +22,7 @@ import com.onlinefoodorder.model.User;
 public class OrderfoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	try {
@@ -30,7 +31,6 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		System.out.println(quantity);
 		
 		int userid = (int)(session.getAttribute("Userid1"));
 		
@@ -67,6 +67,9 @@ public class OrderfoodsServlet extends HttpServlet {
 			User user = new User(null, 0, null, emailaddress, null, walletbalance);
 			userdao.updatewallet(user);
 			response.sendRedirect("orderConfirm.jsp");
+		}
+		else {
+			response.sendRedirect("walletRecharge.jsp");
 		}
 	} catch (SQLException e) {
 			e.printStackTrace();

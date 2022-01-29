@@ -94,7 +94,7 @@
 
 <div class="t1">
 <div class="set1">
-<h3><b>Search User</b></h3>
+<h3><strong>Search User</strong></h3>
 <form action="searchUser" method="post">
 		<label for="email">User Email address</label>
 		<input type="email" name="email" class="input">

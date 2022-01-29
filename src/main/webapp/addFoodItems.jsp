@@ -46,7 +46,7 @@ li{
 }
 li a{
      text-decoration: none;
-     color:white;
+     color: black;
 }
 td, th{
    	padding: 10px;
