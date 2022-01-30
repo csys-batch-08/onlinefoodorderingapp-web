@@ -43,7 +43,7 @@ public class WalletrechargeServlet extends HttpServlet {
 			{
 				response.getWriter().print("Wallet not recharged");
 			}		
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}		
 	}

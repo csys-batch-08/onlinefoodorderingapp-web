@@ -29,7 +29,7 @@ public class InactiveuserServlet extends HttpServlet
 			request.setAttribute("username", userName);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("userInactiveMsg.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}	
 	}

@@ -28,7 +28,7 @@ public class ViewrestaurantServ extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("viewRestaurant.jsp");
 			rd.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

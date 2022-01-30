@@ -32,7 +32,7 @@ public class UpdateuserServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.userProfileUpdate(user);
 			response.sendRedirect("UserProfileServ");
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 			

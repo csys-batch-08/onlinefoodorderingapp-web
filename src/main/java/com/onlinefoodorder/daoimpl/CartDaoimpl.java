@@ -12,7 +12,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class CartDaoimpl
 {
-	public void insertCart(int itemId,int customerid) throws SQLException
+	public void insertCart(int itemId,int customerid) throws SQLException, ClassNotFoundException
 	{	 
 		String insertQuery = "insert into cart(user_id,item_id)values(?,?)";
 		Connection con = null;
@@ -38,7 +38,7 @@ public class CartDaoimpl
 		}
 	}
 	
-	public List<FoodItems> fetchCart(int userid) throws SQLException 
+	public List<FoodItems> fetchCart(int userid) throws SQLException, ClassNotFoundException 
 	{
 		List<FoodItems> foodItems = new ArrayList<>();
 		String query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
@@ -65,7 +65,7 @@ public class CartDaoimpl
 		return foodItems;
 	}
 	
-	public int removeCart(int itemId, int userId) throws SQLException 
+	public int removeCart(int itemId, int userId) throws SQLException, ClassNotFoundException 
 	{
 		String deletecart="delete from cart where item_id = ? and user_id = ?";
 		Connection con = null;

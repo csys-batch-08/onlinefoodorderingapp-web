@@ -15,7 +15,7 @@ import com.onlinefoodorder.model.FoodItems;
 
 public class FoodItemsDaoimpl implements FoodItemsDao
 {
-	public void insertFoodItems(FoodItems fooditem) throws SQLException
+	public void insertFoodItems(FoodItems fooditem) throws SQLException, ClassNotFoundException
 	{
 		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)values(?,?,?,?,?,?)";
 		Connection con = null;
@@ -43,7 +43,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		}
 	}
 	
-	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException
+	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException, ClassNotFoundException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where restaurant_id = ?";
@@ -75,12 +75,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodnamelist;
 	}
 		
-	public List<FoodItems> showFoodItems() throws SQLException
+	public List<FoodItems> showFoodItems() throws SQLException, ClassNotFoundException
 	{
 		List<FoodItems> foodItemList = new ArrayList<>();
 		String showQuery = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items";
 		Connection con = null;
-		FoodItems showFoodItems = new FoodItems();
 		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
 		Statement statement = null;
 		try {
@@ -107,7 +106,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodItemList;
 	}
 	
-	public List<FoodItems> findfoodNames(int resid) throws SQLException
+	public List<FoodItems> findfoodNames(int resid) throws SQLException, ClassNotFoundException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select food_name, price, foodimages from food_items where restaurant_id = "+resid;
@@ -136,7 +135,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodnamelist;	
 	}
 
-	public String findFoodname(int foodid) throws SQLException
+	public String findFoodname(int foodid) throws SQLException, ClassNotFoundException
 	{
 		String findname = "select food_name from food_items where food_name = '"+foodid+"'";
 		Connection con = null;
@@ -164,7 +163,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return itemname;
 	}
 	
-	public int findFoodPrice(int foodid) throws SQLException
+	public int findFoodPrice(int foodid) throws SQLException, ClassNotFoundException
 	{
 		String price ="select price from food_items where item_id= '"+foodid+"'";
 		Connection con = null;
@@ -191,7 +190,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodprice;			
 	}
 		
-	public int finditemid(String foodname, int restaurantid) throws SQLException
+	public int finditemid(String foodname, int restaurantid) throws SQLException, ClassNotFoundException
 	{
 		String price ="select item_id from food_items where restaurant_id = ? and food_name = ?";
 		Connection con = null;
@@ -220,7 +219,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return -1;
 	}
 	
-	public void deletefooditem(int itemid) throws SQLException
+	public void deletefooditem(int itemid) throws SQLException, ClassNotFoundException
 	{
 		String deleteQuery = "delete from food_items where itemid=?";
 		Connection con = null;
@@ -242,7 +241,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			}
 		}
 	}
-	public List<FoodItems> filterbyPrice(double price) throws SQLException
+	public List<FoodItems> filterbyPrice(double price) throws SQLException, ClassNotFoundException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where price<=?";
@@ -271,7 +270,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodnamelist;
 	}
 	
-	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException
+	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException, ClassNotFoundException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name=?";

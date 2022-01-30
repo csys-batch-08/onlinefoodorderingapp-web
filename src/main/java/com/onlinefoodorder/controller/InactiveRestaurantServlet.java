@@ -28,7 +28,7 @@ public class InactiveRestaurantServlet extends HttpServlet {
 			request.setAttribute("restaurantname", restaurantName);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("restaurantInactiveMsg.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}	
 	}

@@ -28,7 +28,7 @@ public class RemoveCartServlet extends HttpServlet {
 			cartdao.removeCart(itemId, userId);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowCartServ");
 			requestDispatcher.forward(request, response);	
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}
 		

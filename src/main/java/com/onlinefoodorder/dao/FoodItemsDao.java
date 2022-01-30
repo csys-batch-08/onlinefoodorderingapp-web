@@ -7,14 +7,15 @@ import com.onlinefoodorder.model.FoodItems;
 
 public interface FoodItemsDao
 {
-	public void insertFoodItems(FoodItems fooditem) throws SQLException;
-	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException;
-	public List<FoodItems> showFoodItems() throws SQLException;
-	public List<FoodItems> findfoodNames(int resid) throws SQLException;
-	public String findFoodname(int foodid) throws SQLException;
-	public int findFoodPrice(int foodid) throws SQLException;
-	public int finditemid(String foodname, int restaurantid) throws SQLException;
-	public void deletefooditem(int itemid) throws SQLException;
-	public List<FoodItems> filterbyPrice(double price) throws SQLException;
-	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException;
+	public void insertFoodItems(FoodItems fooditem) throws SQLException
+	, ClassNotFoundException;
+	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException, ClassNotFoundException;
+	public List<FoodItems> showFoodItems() throws SQLException, ClassNotFoundException;
+	public List<FoodItems> findfoodNames(int resid) throws SQLException, ClassNotFoundException;
+	public String findFoodname(int foodid) throws SQLException, ClassNotFoundException;
+	public int findFoodPrice(int foodid) throws SQLException, ClassNotFoundException;
+	public int finditemid(String foodname, int restaurantid) throws SQLException, ClassNotFoundException;
+	public void deletefooditem(int itemid) throws SQLException, ClassNotFoundException;
+	public List<FoodItems> filterbyPrice(double price) throws SQLException, ClassNotFoundException;
+	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException, ClassNotFoundException;
 }

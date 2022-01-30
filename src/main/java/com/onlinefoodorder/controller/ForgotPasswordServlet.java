@@ -27,7 +27,7 @@ public class ForgotPasswordServlet extends HttpServlet {
 			flag = userdao.forgotPassword(email, password);
 			if (flag)
 				response.sendRedirect("login.jsp");
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}
 		

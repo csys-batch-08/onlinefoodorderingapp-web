@@ -15,7 +15,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao
 {
-	public void insertOrderFoods(Orderfoods order) throws SQLException
+	public void insertOrderFoods(Orderfoods order) throws SQLException, ClassNotFoundException
 	{
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
 		Connection con = null;
@@ -41,7 +41,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		}
 		
 	}
-	public List<Orderfoods> viewOrderFoods() throws SQLException
+	public List<Orderfoods> viewOrderFoods() throws SQLException, ClassNotFoundException
 	{
 		List<Orderfoods> orderlist = new ArrayList<>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods";
@@ -70,7 +70,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return orderlist;
 	}
 	
-	public List<Orderfoods> userViewOrder(int userid) throws SQLException
+	public List<Orderfoods> userViewOrder(int userid) throws SQLException, ClassNotFoundException
 	{
 		List<Orderfoods> orderlist = new ArrayList<>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id='"+userid+"' order by order_date desc";
@@ -99,7 +99,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return orderlist;
 	}
 	
-	public int updateOrderdetails(int orderId) throws SQLException
+	public int updateOrderdetails(int orderId) throws SQLException, ClassNotFoundException
 	{
 		String updateQuery="update order_foods set order_status = 'Cancel' where orderId=?";
 		Connection con = null;
@@ -123,7 +123,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return 0;
 	}	
 	
-	public String findOrderstatus(int orderId) throws SQLException
+	public String findOrderstatus(int orderId) throws SQLException, ClassNotFoundException
 	{
 		String findQuery="select order_status from order_foods where orderId=?";
 		Connection con = null;
@@ -147,7 +147,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return null;
 	}
 	
-	public void deleteOrder(int itemId) throws SQLException 
+	public void deleteOrder(int itemId) throws SQLException, ClassNotFoundException 
 	{
 		String delete="delete order_foods from where item_id=?";
 		Connection con = null;
@@ -170,7 +170,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		
 	}
 
-	public int findfoodPrice(int orderid) throws SQLException
+	public int findfoodPrice(int orderid) throws SQLException, ClassNotFoundException
 	{
 		String price ="select price from order_foods where order_id= '"+orderid+"'";
 		Connection con = null;

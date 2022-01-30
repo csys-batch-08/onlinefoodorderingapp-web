@@ -28,7 +28,7 @@ public class ViewAlluserServ extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("viewAllUser.jsp");
 			rd.forward(request, response);
 			
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		

@@ -31,7 +31,7 @@ public class ViewOrderServ extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("viewOrders.jsp");
 			rd.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}	
 	}

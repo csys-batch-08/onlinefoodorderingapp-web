@@ -31,7 +31,7 @@ public class UserProfileServ extends HttpServlet {
 			request.setAttribute("userlist", userList);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("userProfile.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		

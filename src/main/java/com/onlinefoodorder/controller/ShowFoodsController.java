@@ -24,7 +24,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 {
 		try {
 				FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-				List<FoodItems> foodItemList = fooditemdao.showFoodItems(); 
+				List<FoodItems> foodItemList;
+				foodItemList = fooditemdao.showFoodItems();	
 				req.setAttribute("fooditemslistobj", foodItemList);
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
 				requestDispatcher.forward(req, resp);		
@@ -34,6 +35,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				e.printStackTrace();
 		} catch (SQLException e) {
 				e.printStackTrace();
-		}
+		}catch (ClassNotFoundException e) {
+				e.printStackTrace();
+		} 
 	}
 }

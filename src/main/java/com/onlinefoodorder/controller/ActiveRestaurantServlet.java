@@ -29,7 +29,7 @@ public class ActiveRestaurantServlet extends HttpServlet
 			request.setAttribute("restaurantname", restaurantName);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("restaurantActiveMsg.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}
 		

@@ -14,7 +14,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 {
-	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException
+	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException, ClassNotFoundException
 	{
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
@@ -47,7 +47,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			}
 		}
 	}
-	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException
+	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException, ClassNotFoundException
 	{
 		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, password=? where email=?";
 		Connection con = null;
@@ -76,7 +76,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		
 	}
 	
-	public int inactiveRestaurant(String emailid) throws SQLException
+	public int inactiveRestaurant(String emailid) throws SQLException, ClassNotFoundException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'Inactive' where email = ?";
 		Connection con = null;
@@ -103,7 +103,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return i;
 	}
 	
-	public void activeRestaurant(String emailid) throws SQLException
+	public void activeRestaurant(String emailid) throws SQLException, ClassNotFoundException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'active' where email =?";
 		Connection con = null;
@@ -128,7 +128,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		}
 	}
 	
-	public int findRestaurantId(String email) throws SQLException
+	public int findRestaurantId(String email) throws SQLException, ClassNotFoundException
 	{
 		String findid = "select restaurant_id from restaurant_details where email='"+email+"'";
 		Connection con = null;
@@ -155,7 +155,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantid;
 	}
 	
-	public String findRestaurantName(String email) throws SQLException
+	public String findRestaurantName(String email) throws SQLException, ClassNotFoundException
 	{
 		String findName = "select restaurant_name from restaurant_details where email='"+email+"'";
 		Connection con = null;
@@ -182,7 +182,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantName;
 	}
 	
-	public int findRestaurantId2(String restaurantName) throws SQLException
+	public int findRestaurantId2(String restaurantName) throws SQLException, ClassNotFoundException
 	{
 		String findId = "select restaurant_id from restaurant_details where restaurant_name='"+restaurantName+"'";
 		Connection con = null;
@@ -210,7 +210,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantId;
 	}
 	
-	public String findRestaurantName(int restaurantId) throws SQLException
+	public String findRestaurantName(int restaurantId) throws SQLException, ClassNotFoundException
 	{
 		String findname = "select restaurant_name from restaurant_details where restaurant_id='"+restaurantId+"'";
 		Connection con = null;
@@ -238,7 +238,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantname;
 	}
 	
-	public int findmaxresid() throws SQLException {
+	public int findmaxresid() throws SQLException, ClassNotFoundException {
 		String findId = "select max(restaurant_id) from restaurant_details";
 		Connection con = null;
 		int restaurantId = -1;
@@ -265,7 +265,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantId;
 	}
 	
-	public List<RestaurantDetails> showRestaurant() throws SQLException
+	public List<RestaurantDetails> showRestaurant() throws SQLException, ClassNotFoundException
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
@@ -293,7 +293,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantlist;
 	}
 	
-	public List<RestaurantDetails> filterbyCity(String city) throws SQLException
+	public List<RestaurantDetails> filterbyCity(String city) throws SQLException, ClassNotFoundException
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";

@@ -71,7 +71,7 @@ public class OrderfoodsServlet extends HttpServlet {
 		else {
 			response.sendRedirect("walletRecharge.jsp");
 		}
-	} catch (SQLException e) {
+	} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 	}
   }

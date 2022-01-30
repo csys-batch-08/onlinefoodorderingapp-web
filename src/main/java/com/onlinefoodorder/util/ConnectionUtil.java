@@ -8,22 +8,15 @@ import java.sql.SQLException;
 
 public class ConnectionUtil
 {
-	public static Connection getDbConnection()
+	private ConnectionUtil()
 	{
-		Connection con = null;
-		try {
+		
+	}
+	public static Connection getDbConnection() throws ClassNotFoundException, SQLException
+	{
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(url, "system", "oracle");
-		}
-		catch (ClassNotFoundException e) 
-		{
-			e.getMessage();
-		} 
-		catch (SQLException e) 
-		{
-			e.getMessage();
-		}
-		return con;
+			Connection con = DriverManager.getConnection(url, "system", "oracle");
+			return con;
 	}
 }

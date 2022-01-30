@@ -35,7 +35,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showRestaurant.jsp");
 				requestDispatcher.forward(req, resp);
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 		}
 			
