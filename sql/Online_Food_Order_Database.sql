@@ -153,3 +153,10 @@ select * from food_items where item_id in (select item_id from cart where user_i
 select Item_id, food_name form food_items inner join 
 
 select order_id, user_id, item_id, quantity, total_price, order_date from order_foods;
+
+select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city='Trichy';
+
+select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city='Madurai';
+
+select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id=120 ordr by order_date desc"
+

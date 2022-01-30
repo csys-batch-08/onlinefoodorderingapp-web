@@ -5,7 +5,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Food Items</title>
-<head>
 <style>
 *{
 	margin:0;

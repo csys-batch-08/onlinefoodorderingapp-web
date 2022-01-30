@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foodorder.dao.FoodItemsDao;
-import com.foodorder.util.ConnectionUtil;
+import com.onlinefoodorder.dao.FoodItemsDao;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorder.util.ConnectionUtil;
 import com.onlinefoodorder.model.FoodItems;
 
 public class FoodItemsDaoimpl implements FoodItemsDao

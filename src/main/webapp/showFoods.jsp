@@ -102,6 +102,7 @@ body{
 
 <div class="table">
 <table>
+
 <tbody>
 	<tr>
 	   <c:set var="count" value="1"/>
@@ -109,6 +110,7 @@ body{
        <td>
          
          <table>
+      
          <tbody>
           <tr>
              <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="image/${foodlist.foodImage}" alt="foodimage"></a></td>    

@@ -43,7 +43,7 @@ body{
       text-decoration: none;
       font-weight:bold;
       display:block;
-      padding-right: 20px;
+      padding-right: 89px;
       padding-left: 10px;
       color: white;
   }
@@ -70,11 +70,6 @@ body{
 		font-weight: bold;
 		font-size: 14px;
 	}
-	.text
-	{
-		padding:5.5px;
-		border-radius: 4px;
-	}
 	.table{
 		padding-left: 10px;
 	}
@@ -95,8 +90,6 @@ body{
 <body>
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
-        <li> <button>Search</button></a></li>
         <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="ShowRestaurantServ">Restaurants</a></li>
         <li><a href="ShowCartServ">Cart</a></li>

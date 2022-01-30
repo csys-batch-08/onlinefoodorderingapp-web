@@ -65,7 +65,7 @@
 
 <div class="t1">
 <div class="detail">
-<h3><b>User List</b></h3><br>
+<h3><strong>User List</strong></h3><br>
 
 <c:set var="i" value="0"/>
 <c:forEach items="${userlist}" var="searchUser">

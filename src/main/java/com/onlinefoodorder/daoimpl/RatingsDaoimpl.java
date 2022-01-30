@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.foodorder.util.ConnectionUtil;
 import com.onlinefoodorder.model.Ratings;
+import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RatingsDaoimpl {
 

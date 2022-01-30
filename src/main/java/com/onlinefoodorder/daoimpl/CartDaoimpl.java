@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foodorder.util.ConnectionUtil;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorder.util.ConnectionUtil;
 
 public class CartDaoimpl
 {

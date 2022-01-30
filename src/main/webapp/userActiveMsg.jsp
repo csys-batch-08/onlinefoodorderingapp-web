@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -27,6 +28,6 @@ body{
        <li><a href="ViewOrderServ">View Orders</a>
 </ul>
 </aside>
-    <h1>Welcome Admin..</h1>  
+    <h1>${username} Successfully Active</h1> 
 </body>
 </html>

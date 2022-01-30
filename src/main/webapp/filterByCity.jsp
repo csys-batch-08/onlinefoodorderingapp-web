@@ -42,17 +42,14 @@ body{
       text-decoration: none;
       font-weight:bold;
       display:block;
-      padding-right: 20px;
+      padding-right: 91px;
       padding-left: 10px;
       color: white;
   }
   li a:hover{
   	opacity: 0.8;
   	color: LightSeaGreen;
-  }
-  li button{
-  	margin-right: 200px;
-  }
+  } 
 	img
 	{
 		padding-top: 70px;	
@@ -69,30 +66,10 @@ body{
 		font-weight: bold;
 		color: black;
 	}
-	
-	button{
-		border : 1px solid #bebebe;
-		background-color:#bebebe;
-		padding: 5px 5px;
-		border-radius: 4px;
-	}
-	button a{
-		text-decoration :none;
-		link-style: none;
-		color: black; 
-	}
 	.text
 	{
 		padding:5.5px;
 		border-radius: 4px;
-	}
-	form button{
-		background-color: #008b8b;
-		padding: 4px 8px;
-		border-color: transparent;
-		border-radius: 3px;
-		color: white;
-		font-weight: bold;		
 	}
 </style>
 </head>
@@ -100,15 +77,14 @@ body{
 <form>
  <div class="nav">
     <ul>
-        <li><input type="text" name="city" class="text" placeholder="   City name  "></li>
-        <li> <button>Search</button></a></li>
-        <li><a href="showFoods.jsp">Food Items</a></li>
-        <li><a href="showRestaurant.jsp">Restaurants</a></li>
-        <li><a href="showCart.jsp">Cart</a></li>
+        <li><a href="showfoodsservlet">Food Items</a></li>
+        <li><a href="ShowRestaurantServ">Restaurants</a></li>
+        <li><a href="ShowCartServ">Cart</a></li>
         <li><a href="walletRecharge.jsp">Wallet</a></li>
-        <li><a href="viewOrderUser.jsp">My Orders</a>
-        <li><a href="userProfile.jsp">My profile</a></li>
+        <li><a href="MyOrdersServ">My Orders</a>
+        <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
+        <li><a href="login.jsp">Logout</a></li>
     </ul>
 </div>
 

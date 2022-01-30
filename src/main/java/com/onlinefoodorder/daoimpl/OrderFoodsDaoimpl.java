@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.foodorder.dao.OrderFoodsDao;
-import com.foodorder.util.ConnectionUtil;
+import com.onlinefoodorder.dao.OrderFoodsDao;
 import com.onlinefoodorder.model.Orderfoods;
+import com.onlinefoodorder.util.ConnectionUtil;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao
 {

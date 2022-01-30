@@ -8,9 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.foodorder.dao.UserDao;
-import com.foodorder.util.ConnectionUtil;
+import com.onlinefoodorder.dao.UserDao;
 import com.onlinefoodorder.model.User;
+import com.onlinefoodorder.util.ConnectionUtil;
 
 public class UserDaoimpl implements UserDao
 {
@@ -323,6 +323,36 @@ public class UserDaoimpl implements UserDao
 		}
 		return userId;
 	}
+	
+	public String findUserName(String emailAddress) throws SQLException
+	{
+		String findUser = "select user_name from user_details where email_address = '"+emailAddress+"'";
+		Connection con = null;
+		String userName = null;
+		Statement statement = null;
+		
+		try {
+			con = ConnectionUtil.getDbConnection();
+			statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(findUser);
+			if(rs.next())
+			{
+				userName = rs.getString(1);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(statement!=null) {
+				statement.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}
+		return userName;
+	}
+	
+	
 	
 	public int walletbal(int id) throws SQLException 
 	{

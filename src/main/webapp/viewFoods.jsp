@@ -70,7 +70,8 @@
 <div class="t1">
 <div class="set1">
 <table>
-		<h2><strong>View food details</strong>></h2>
+<caption></caption>
+		<h2><strong>View food details</strong></h2>
 		<thead>
 		<tr>
   		<th >S.no</th>

@@ -97,7 +97,7 @@
 <div class="set1">
 <h2><strong>View Orders</strong></h2>
 <table>
-<caption>Meena</caption>
+<caption></caption>
 	<thead>
 	<tr>
   		<th>S.no</th>

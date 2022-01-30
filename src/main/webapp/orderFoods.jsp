@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -67,8 +69,8 @@ form{
 
 	<label for="quantity">Food Quantity</label><br>
 	<input type="number" name="quantity" class="input" pattern="[1-9][0-9]+" maxlength="3" required><br>
-	<input type="hidden" name="number" value="<%=Integer.parseInt(request.getParameter("resid")) %>">
-	<input type="hidden" name="foodname" value="<%=request.getParameter("fname")%>">
+	<input type="hidden" name="number" value="${resid}">
+	<input type="hidden" name="foodname" value="${fname}">
 	<br><button type="submit" class="button">Order</button>
 </form>
 </div>

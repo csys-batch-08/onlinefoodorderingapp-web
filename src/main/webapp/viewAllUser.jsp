@@ -106,6 +106,7 @@
 <div class ="t3">
 <div class="t2">
 <table>
+<caption></caption>
 	<thead>
 	<tr>
   		<th >S.no</th>

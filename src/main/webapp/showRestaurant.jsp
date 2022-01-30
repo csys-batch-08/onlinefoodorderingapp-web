@@ -50,7 +50,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 280px;
+      margin-right: 289px;
   }
 	img
 	{
