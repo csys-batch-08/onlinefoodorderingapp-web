@@ -35,7 +35,7 @@ a{
 </style>
 </head>
 <body>
-<p><i>Item Added To Cart Successfully..!</i></p>
+<p><em>Item Added To Cart Successfully..!</em></p>
 <button><a href="ShowCartServ">Go to Cart</a></button>
 </body>
 </html>

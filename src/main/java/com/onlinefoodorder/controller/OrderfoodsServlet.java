@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.dao.UserDao;
 import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
 import com.onlinefoodorder.daoimpl.OrderFoodsDaoimpl;
 import com.onlinefoodorder.daoimpl.UserDaoimpl;
-import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.model.User;
 

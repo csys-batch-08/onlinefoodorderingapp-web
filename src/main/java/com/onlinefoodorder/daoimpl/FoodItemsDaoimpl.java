@@ -11,7 +11,6 @@ import java.util.List;
 import com.onlinefoodorder.dao.FoodItemsDao;
 import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorder.util.ConnectionUtil;
-import com.onlinefoodorder.model.FoodItems;
 
 public class FoodItemsDaoimpl implements FoodItemsDao
 {
@@ -228,7 +227,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
 			p1.setInt(1, itemid);
-			int i = p1.executeUpdate();
+			p1.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

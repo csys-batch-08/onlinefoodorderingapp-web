@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
@@ -23,8 +22,8 @@ public class FilterbyCityServlet extends HttpServlet {
 		try {
 			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 			String city = request.getParameter("city");
-			List<RestaurantDetails> restaurantlist;
-			restaurantlist = restaurantdao.filterbyCity(city);
+			List<RestaurantDetails> restaurantlist = restaurantdao.filterbyCity(city);
+			
 			request.setAttribute("restaurantList", restaurantlist);
 			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");

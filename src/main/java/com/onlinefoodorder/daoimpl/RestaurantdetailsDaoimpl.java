@@ -61,7 +61,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			p1.setString(4, restaurant.getOperationalHours());
 			p1.setString(5, restaurant.getPassword());
 			p1.setString(6, restaurant.getEmail());
-			int i = p1.executeUpdate();
+			p1.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -112,7 +112,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(updateQuery);
 			p1.setString(1, emailid);
-			int i = p1.executeUpdate();
+			p1.executeUpdate();
 			p1.executeUpdate("commit");
 			p1.close();
 			con.close();

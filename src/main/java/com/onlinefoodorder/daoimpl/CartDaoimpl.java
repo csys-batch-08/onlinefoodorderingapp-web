@@ -17,7 +17,6 @@ public class CartDaoimpl
 		String insertQuery = "insert into cart(user_id,item_id)values(?,?)";
 		Connection con = null;
 		PreparedStatement p1 = null;
-		int itemid=0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(insertQuery);
@@ -75,7 +74,7 @@ public class CartDaoimpl
 			p1=con.prepareStatement(deletecart);
 			p1.setInt(1, itemId);
 			p1.setInt(2, userId);
-			int i=p1.executeUpdate();
+			p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

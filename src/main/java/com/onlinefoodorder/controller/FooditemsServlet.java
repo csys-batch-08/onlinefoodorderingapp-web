@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
-import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
-import com.onlinefoodorder.model.RestaurantDetails;
 @WebServlet("/foodorderserv")
 public class FooditemsServlet extends HttpServlet 
 {
@@ -26,7 +23,6 @@ public class FooditemsServlet extends HttpServlet
 	{
 		
 		try {
-			RestaurantdetailsDaoimpl restaurant = new RestaurantdetailsDaoimpl();
 			HttpSession session = request.getSession();
 			
 			String foodname = request.getParameter("foodname");

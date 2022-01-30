@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import com.onlinefoodorder.dao.OrderFoodsDao;
 import com.onlinefoodorder.model.Orderfoods;
@@ -108,7 +107,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(updateQuery);
 			p1.setInt(1, orderId);
-			int i=p1.executeUpdate();
+			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +131,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(findQuery);
 			p1.setInt(1, orderId);
-			int i=p1.executeUpdate();
+			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,7 +155,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			con = ConnectionUtil.getDbConnection();
 			p1=con.prepareStatement(delete);
 			p1.setInt(1, itemId);
-			int i=p1.executeUpdate();
+			p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

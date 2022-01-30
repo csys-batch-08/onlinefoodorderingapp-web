@@ -56,7 +56,7 @@ public class UserDaoimpl implements UserDao
 			p1.setString(3, user.getAddress());
 			p1.setString(4, user.getPassword());
 			p1.setString(5, user.getEmailAddress());
-			int i = p1.executeUpdate();
+			p1.executeUpdate();
 		} 
 		catch (SQLException e)
 		{	
@@ -83,7 +83,7 @@ public class UserDaoimpl implements UserDao
 			p1 = con.prepareStatement(query);
 			p1.setString(1, password);
 			p1.setString(2, emailid);
-			int i=p1.executeUpdate();
+			p1.executeUpdate();
 			flag=true;
 		} catch (SQLException e) {
 
@@ -168,7 +168,7 @@ public class UserDaoimpl implements UserDao
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
 			p1.setString(1, inactive);
-			int i = p1.executeUpdate();
+			p1.executeUpdate();
 			p1.close();
 			con.close();
 		} catch (SQLException e) {
@@ -193,9 +193,7 @@ public class UserDaoimpl implements UserDao
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
 			p1.setString(1, active);
-			int i = p1.executeUpdate();
-			p1.close();
-			con.close();
+			p1.executeUpdate();
 		} catch (SQLException e) {
 				e.printStackTrace();
 		}
@@ -391,7 +389,7 @@ public class UserDaoimpl implements UserDao
 			p1 = con.prepareStatement(query);
 			p1.setInt(1,user.getWallet());
 			p1.setString(2, user.getEmailAddress());
-			int res = p1.executeUpdate();
+			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 		

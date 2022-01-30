@@ -10,8 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.onlinefoodorder.daoimpl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
 
@@ -19,6 +17,7 @@ import com.onlinefoodorder.model.User;
 public class SearchuserServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
@@ -26,8 +25,8 @@ public class SearchuserServ extends HttpServlet {
 			String emailid = request.getParameter("email");
 			
 			UserDaoimpl userdao = new UserDaoimpl();
-			List<User> userList;
-			userList = userdao.viewSingleUser(emailid);
+			List<User> userList = userdao.viewSingleUser(emailid);
+			
 			request.setAttribute("userlist", userList);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("adminSearchUser.jsp");
 			requestdispatcher.forward(request, response);

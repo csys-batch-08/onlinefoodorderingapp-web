@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.CartDaoimpl;
 import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
-import com.onlinefoodorder.model.FoodItems;
 @WebServlet("/addcartserv")
 public class AddcartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		

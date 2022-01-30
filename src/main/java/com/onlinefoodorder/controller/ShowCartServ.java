@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.daoimpl.CartDaoimpl;
-import com.onlinefoodorder.model.Cart;
 import com.onlinefoodorder.model.FoodItems;
 
 @WebServlet("/ShowCartServ")
