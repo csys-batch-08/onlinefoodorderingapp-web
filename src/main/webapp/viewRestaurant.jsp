@@ -77,7 +77,7 @@
 		<h2>View Restaurant details</h2>
 	<thead>
 		<tr>
-  		<th >S.no</th>
+  		<th>S.no</th>
 		<th>Restaurant name</th>
 		<th>Area</th>
 		<th>City</th>

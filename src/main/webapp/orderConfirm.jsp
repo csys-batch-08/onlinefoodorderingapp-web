@@ -34,7 +34,7 @@ button{
 </style>
 </head>
 <body>
-<p><i>Order Confirmed..!</i></p>
-<button><a href="showfoodsservlet"><i>Back</i></a></button>
+<p><em>Order Confirmed..!</em></p>
+<button><a href="showfoodsservlet"><em>Back</em></a></button>
 </body>
 </html>

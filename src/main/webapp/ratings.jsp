@@ -78,7 +78,7 @@ form{
 	<input type="text" name="rating" class="input" pattern="[0-5]" required><br><br>
 	<div class="btn"><button class="button" type="submit">Add</a></button>
 	<button class="button">Back</a></button>
-	 </button></div>
+	</div>
 </form>
 </div>
 </div>

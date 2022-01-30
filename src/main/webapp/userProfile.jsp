@@ -64,7 +64,7 @@ button a{
 	<c:set var="i" value="${i+1}"/>
 	
 <div class="detail">
-<h3><b>My Profile</b></h3><br><br><br>
+<h3><strong>My Profile</strong></h3><br><br><br>
 <p>User name       :${userList.userName}</p><br>
 <p>Phone Number    :${userList.phoneNo}</p><br>
 <p>Address         :${userList.address}</p><br>

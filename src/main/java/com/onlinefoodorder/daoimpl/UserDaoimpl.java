@@ -130,7 +130,7 @@ public class UserDaoimpl implements UserDao
 	
 	public List<User> viewSingleUser(String emailid) throws SQLException
 	{
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where email_address= ? ";
 		Connection con = null;
 		PreparedStatement p1=null;
@@ -221,7 +221,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs=statement.executeQuery(adminQuery);
 			if(rs.next())
 			{
-				user = new User(rs.getString(2),(rs.getLong(3)),rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+				user = new User(rs.getString(2),rs.getLong(3),rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -238,7 +238,7 @@ public class UserDaoimpl implements UserDao
 	
 	public List<User> viewUser() throws SQLException
 	{
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where not role='Admin'";
 		Connection con = null;
 		Statement statement=null;
@@ -267,7 +267,7 @@ public class UserDaoimpl implements UserDao
 	
 	public List<User> currentuserprofile(int userid) throws SQLException
 	{
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_name, phone_no, address, email_address, password, wallet from user_details where user_id=?";
 		Connection con = null;
 		PreparedStatement p1=null;

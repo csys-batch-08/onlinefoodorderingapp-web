@@ -77,7 +77,7 @@ td, th{
 <body>
 <aside>
 <ul>
-         <li><a href="ViewAlluserServ">View users & Search User</a></li>
+       <li><a href="ViewAlluserServ">View users & Search User</a></li>
        <li><a href="inactiveUser.jsp">Inactive users</a></li>
        <li><a href="restaurantDetails.jsp">Register Restaurant</a></li>
        <li><a href="addFoodItems.jsp">Add Food Items</a></li>

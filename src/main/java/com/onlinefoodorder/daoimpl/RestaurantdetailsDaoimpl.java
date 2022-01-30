@@ -237,7 +237,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	
 	public List<RestaurantDetails> showRestaurant() throws SQLException
 	{
-		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
+		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
 		Connection con = null;
 		Statement statement = null;
@@ -265,7 +265,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 	
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException
 	{
-		List<RestaurantDetails> restaurantlist = new ArrayList<RestaurantDetails>();
+		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -273,11 +273,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setString(1, city);
-			ResultSet rs = p1.executeQuery();
-			p1.executeUpdate("commit");
-			while(rs.next())
+			ResultSet resultSet = p1.executeQuery();
+			while(resultSet.next())
 			{
-				RestaurantDetails restaurant = new RestaurantDetails(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getLong(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11));
+				System.out.println("filterbyCity");
+				RestaurantDetails restaurant = new RestaurantDetails(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getInt(5), resultSet.getLong(6), resultSet.getString(7), resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), resultSet.getString(11));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {

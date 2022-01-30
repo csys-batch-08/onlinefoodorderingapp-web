@@ -32,7 +32,7 @@
 <body>
 
 <div class ="t1">
-<h3><b>My Orders</b></h3>
+<h3><strong>My Orders</strong></h3>
 <div class="t2">
 <div class="container mt-1">
 <table class="table table-striped table-dark">

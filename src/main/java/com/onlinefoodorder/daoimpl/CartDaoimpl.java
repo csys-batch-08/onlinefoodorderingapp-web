@@ -40,7 +40,7 @@ public class CartDaoimpl
 	
 	public List<FoodItems> fetchCart(int userid) throws SQLException 
 	{
-		List<FoodItems> foodItems = new ArrayList<FoodItems>();
+		List<FoodItems> foodItems = new ArrayList<>();
 		String query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
 		Connection con = null;
 		PreparedStatement p1 = null;

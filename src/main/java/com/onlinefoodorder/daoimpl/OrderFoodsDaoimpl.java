@@ -43,7 +43,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	}
 	public List<Orderfoods> viewOrderFoods() throws SQLException
 	{
-		List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
+		List<Orderfoods> orderlist = new ArrayList<>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods";
 		Connection con = null;
 		Statement statement = null;
@@ -72,8 +72,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 	
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException
 	{
-		List<Orderfoods> orderlist = new ArrayList<Orderfoods>();
-		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id='"+userid+"'";
+		List<Orderfoods> orderlist = new ArrayList<>();
+		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id='"+userid+"' order by order_date desc";
 		Connection con = null;
 		Statement statement = null;
 		try {

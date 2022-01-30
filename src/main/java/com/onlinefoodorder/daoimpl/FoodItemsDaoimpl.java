@@ -45,7 +45,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	
 	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException
 	{
-		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
+		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where restaurant_id = ?";
 		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao= new RestaurantdetailsDaoimpl();
@@ -77,7 +77,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		
 	public List<FoodItems> showFoodItems() throws SQLException
 	{
-		List<FoodItems> foodItemList = new ArrayList< FoodItems>();
+		List<FoodItems> foodItemList = new ArrayList<>();
 		String showQuery = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items";
 		Connection con = null;
 		FoodItems showFoodItems = new FoodItems();
@@ -109,7 +109,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	
 	public List<FoodItems> findfoodNames(int resid) throws SQLException
 	{
-		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
+		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select food_name, price, foodimages from food_items where restaurant_id = "+resid;
 		Connection con = null;
 		Statement statement = null;
@@ -244,7 +244,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	}
 	public List<FoodItems> filterbyPrice(double price) throws SQLException
 	{
-		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
+		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where price<=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -273,7 +273,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 	
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException
 	{
-		List<FoodItems> foodnamelist = new ArrayList<FoodItems>();
+		List<FoodItems> foodnamelist = new ArrayList<>();
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
