@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.insertUser(user);
 			response.sendRedirect("login.jsp");
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

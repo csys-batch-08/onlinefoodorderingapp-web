@@ -14,7 +14,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class UserDaoimpl implements UserDao
 {
-	public void insertUser(User user) throws SQLException, ClassNotFoundException
+	public void insertUser(User user) throws SQLException
 	{
 		String insertQuery = "insert into user_details(user_name, phone_no, address, email_address, password) values(?,?,?,?,?)";
 		Connection con = null;
@@ -42,7 +42,7 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
-	public void userProfileUpdate(User user) throws SQLException, ClassNotFoundException
+	public void userProfileUpdate(User user) throws SQLException
 	{
 		String updateQuery = "update user_details set user_name=?, phone_no=?, address=?, password=?  where email_address=?";
 		
@@ -72,7 +72,7 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
-	public  boolean forgotPassword(String emailid,String password) throws SQLException, ClassNotFoundException
+	public  boolean forgotPassword(String emailid,String password) throws SQLException
 	{
 		String query = "update user_details set password = ? where email_address= ?";
 		Connection con = null;
@@ -100,7 +100,7 @@ public class UserDaoimpl implements UserDao
 		return flag;
 	}
 	
-	public User validateUser(String emailAddress,String password) throws SQLException, ClassNotFoundException
+	public User validateUser(String emailAddress,String password) throws SQLException
 	{
 		String validateQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='user' and email_address='"+emailAddress+"' and password='"+password+"'";
 		Connection con = null;
@@ -128,7 +128,7 @@ public class UserDaoimpl implements UserDao
 		return user;
 	}
 	
-	public List<User> viewSingleUser(String emailid) throws SQLException, ClassNotFoundException
+	public List<User> viewSingleUser(String emailid) throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where email_address= ? ";
@@ -159,7 +159,7 @@ public class UserDaoimpl implements UserDao
 		return userList;
 	}
 	
-	public void userProfileDelete(String inactive) throws SQLException, ClassNotFoundException
+	public void userProfileDelete(String inactive) throws SQLException
 	{
 		String deleteQuery = "update user_details set role='Inactive' where email_address=?";
 		Connection con = null;
@@ -184,7 +184,7 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
-	public void userProfileActive(String active) throws SQLException, ClassNotFoundException
+	public void userProfileActive(String active) throws SQLException
 	{
 		String deleteQuery = "update user_details set role='user' where email_address=?";
 		Connection con = null;
@@ -207,7 +207,7 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
-	public User validateAdmin(String emailAddress,String password) throws SQLException, ClassNotFoundException
+	public User validateAdmin(String emailAddress,String password) throws SQLException
 	{
 		String adminQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= '"+emailAddress+"' and password='"+password+"'";		
 		Connection con =null; 
@@ -234,7 +234,7 @@ public class UserDaoimpl implements UserDao
 		return user;
 	}
 	
-	public List<User> viewUser() throws SQLException, ClassNotFoundException
+	public List<User> viewUser() throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where not role='Admin'";
@@ -263,7 +263,7 @@ public class UserDaoimpl implements UserDao
 		return userList;
 	}
 	
-	public List<User> currentuserprofile(int userid) throws SQLException, ClassNotFoundException
+	public List<User> currentuserprofile(int userid) throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_name, phone_no, address, email_address, password, wallet from user_details where user_id=?";
@@ -294,7 +294,7 @@ public class UserDaoimpl implements UserDao
 		return userList;
 	}
 	
-	public int findUserId(String emailAddress) throws SQLException, ClassNotFoundException
+	public int findUserId(String emailAddress) throws SQLException
 	{
 		String findUser = "select user_id from user_details where email_address = '"+emailAddress+"'";
 		Connection con = null;
@@ -322,7 +322,7 @@ public class UserDaoimpl implements UserDao
 		return userId;
 	}
 	
-	public String findUserName(String emailAddress) throws SQLException, ClassNotFoundException
+	public String findUserName(String emailAddress) throws SQLException
 	{
 		String findUser = "select user_name from user_details where email_address = '"+emailAddress+"'";
 		Connection con = null;
@@ -352,7 +352,7 @@ public class UserDaoimpl implements UserDao
 	
 	
 	
-	public int walletbal(int id) throws SQLException, ClassNotFoundException 
+	public int walletbal(int id) throws SQLException 
 	{
 		Connection con = null;
 		String query = "select wallet from user_details where user_id = ?";
@@ -379,7 +379,7 @@ public class UserDaoimpl implements UserDao
 		return -1;
 	}
 	
-	public boolean updatewallet(User user) throws SQLException, ClassNotFoundException
+	public boolean updatewallet(User user) throws SQLException
 	{
 		Connection con = null;
 		String query = "update user_details set wallet = ? where email_address = ?";

@@ -33,7 +33,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				e.printStackTrace();
 		}catch(ServletException e) {
 				e.printStackTrace();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 				e.printStackTrace();
 		}
 	}

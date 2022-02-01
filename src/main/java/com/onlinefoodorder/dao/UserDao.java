@@ -7,17 +7,17 @@ import com.onlinefoodorder.model.User;
 
 public interface UserDao 
 {
-	public void insertUser(User user) throws SQLException, ClassNotFoundException;
-	public void userProfileUpdate(User user) throws SQLException, ClassNotFoundException;
-	public  boolean forgotPassword(String emailid,String password) throws SQLException, ClassNotFoundException;
-	public User validateUser(String emailAddress,String password) throws SQLException, ClassNotFoundException;
-	public List<User> viewSingleUser(String emailid) throws SQLException, ClassNotFoundException;
-	public void userProfileDelete(String inactive) throws SQLException, ClassNotFoundException;
-	public void userProfileActive(String active) throws SQLException, ClassNotFoundException;
-	public User validateAdmin(String emailAddress,String password) throws SQLException, ClassNotFoundException;
-	public List<User> viewUser() throws SQLException, ClassNotFoundException;
-	public List<User> currentuserprofile(int userid) throws SQLException, ClassNotFoundException;
-	public int findUserId(String emailAddress) throws SQLException, ClassNotFoundException;
-	public int walletbal(int id) throws SQLException, ClassNotFoundException;
-	public boolean updatewallet(User user) throws SQLException, ClassNotFoundException;
+	public void insertUser(User user) throws SQLException;
+	public void userProfileUpdate(User user) throws SQLException;
+	public  boolean forgotPassword(String emailid,String password) throws SQLException;
+	public User validateUser(String emailAddress,String password) throws SQLException;
+	public List<User> viewSingleUser(String emailid) throws SQLException;
+	public void userProfileDelete(String inactive) throws SQLException;
+	public void userProfileActive(String active) throws SQLException;
+	public User validateAdmin(String emailAddress,String password) throws SQLException;
+	public List<User> viewUser() throws SQLException;
+	public List<User> currentuserprofile(int userid) throws SQLException;
+	public int findUserId(String emailAddress) throws SQLException;
+	public int walletbal(int id) throws SQLException;
+	public boolean updatewallet(User user) throws SQLException;
 }

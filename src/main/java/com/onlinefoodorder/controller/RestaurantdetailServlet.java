@@ -33,7 +33,7 @@ public class RestaurantdetailServlet extends HttpServlet
         	RestaurantdetailsDaoimpl restaurantDao = new RestaurantdetailsDaoimpl();
 			restaurantDao.insertRestaurantDetails(restaurant);
 			response.sendRedirect("admin.jsp");
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

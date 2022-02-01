@@ -4,6 +4,7 @@
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglig prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -124,7 +125,8 @@
 <td>${viewOrders.itemId}</td>
 <td>${viewOrders.quantity}</td>
 <td>${viewOrders.totalPrice}</td>
-<td>${viewOrders.orderDate}</td>
+<td><fmt:parseDate value="${viewtask.dateassigned}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
+    <fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
 <td>${viewOrders.orderStatus}</td>
 
 </tr>

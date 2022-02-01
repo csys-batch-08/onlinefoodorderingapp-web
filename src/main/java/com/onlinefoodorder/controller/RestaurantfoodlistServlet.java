@@ -34,7 +34,7 @@ public class RestaurantfoodlistServlet extends HttpServlet {
 			
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("restaurantFoodList.jsp");
 			requestDispatcher.forward(req, resp);
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

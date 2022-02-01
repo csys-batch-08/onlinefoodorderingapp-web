@@ -9,7 +9,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RatingsDaoimpl {
 
-	public int insertRatings(Ratings rating) throws SQLException, ClassNotFoundException
+	public int insertRatings(Ratings rating) throws SQLException
 	{
 		String query = "insert into ratings(user_id, restaurant_id, rating) values(?,?,?)";
 		Connection con = null;
@@ -36,7 +36,7 @@ public class RatingsDaoimpl {
 		}	
 	}
 	
-	public double fetchRating(int restarantid) throws SQLException, ClassNotFoundException
+	public double fetchRating(int restarantid) throws SQLException
 	{
 		Connection con = null;
 		String query = "select floor(avg(rating)) from ratings where restaurant_id = ?";

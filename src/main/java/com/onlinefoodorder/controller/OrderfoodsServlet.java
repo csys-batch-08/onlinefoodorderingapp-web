@@ -31,12 +31,19 @@ public class OrderfoodsServlet extends HttpServlet {
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		int userid = (int)(session.getAttribute("Userid1"));
+		System.out.println("userid" +userid);
 		
 		String emailaddress = (String)session.getAttribute("emailid");
+		System.out.println("emailaddress" +emailaddress);
 	
 		int resid = Integer.parseInt(request.getParameter("number"));
 		
-		String fname=request.getParameter("foodname");
+		String fname = request.getParameter("foodname");
+		
+		System.out.println("fname" +fname);
+		System.out.println("resid" +resid);
+		System.out.println("quantity" +quantity);
+		
 		session.setAttribute("foodname",fname );
 		
 		int itemid = fooditem.finditemid(fname, resid);
@@ -69,7 +76,7 @@ public class OrderfoodsServlet extends HttpServlet {
 		else {
 			response.sendRedirect("walletRecharge.jsp");
 		}
-	} catch (ClassNotFoundException |SQLException e) {
+	} catch (SQLException e) {
 			e.printStackTrace();
 	}
   }

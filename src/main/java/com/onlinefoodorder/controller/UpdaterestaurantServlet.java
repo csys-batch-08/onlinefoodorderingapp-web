@@ -34,7 +34,7 @@ public class UpdaterestaurantServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("updaterestaurant", "Restaurant Details are updated");
 			response.sendRedirect("admin.jsp");
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

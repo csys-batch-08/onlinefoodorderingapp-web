@@ -26,6 +26,8 @@ public class LoginServlet extends HttpServlet
 			try {
 				String email = request.getParameter("email");
 				String password = request.getParameter("password");
+				System.out.println(email);
+				System.out.println(password);
 				UserDaoimpl userdao = new UserDaoimpl();
 				User user;
 				user = userdao.validateUser(email, password);
@@ -46,8 +48,8 @@ public class LoginServlet extends HttpServlet
 					session.setAttribute("Userid1", userid);
 					
 					session.setAttribute("emailid", email);
-					response.sendRedirect("showfoodsservlet");	
 					
+					response.sendRedirect("showfoodsservlet");	
 				}
 				else if(admin!=null)
 				{
@@ -61,7 +63,7 @@ public class LoginServlet extends HttpServlet
 					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 					rd.include(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}					
 	}

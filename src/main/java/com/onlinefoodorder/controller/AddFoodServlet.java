@@ -28,7 +28,7 @@ public class AddFoodServlet extends HttpServlet {
 			session.setAttribute("restaurantid", restaurantid);
 			RequestDispatcher rd = request.getRequestDispatcher("foodItems.jsp");
 			rd.forward(request, response);
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	

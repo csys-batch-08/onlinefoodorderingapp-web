@@ -46,7 +46,7 @@ public class Cancelorderserv extends HttpServlet {
 
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("UserProfileServ");
 			requestdispatcher.forward(request, response);
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

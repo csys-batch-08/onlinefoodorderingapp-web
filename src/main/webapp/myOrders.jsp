@@ -4,6 +4,7 @@
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.daoimpl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang ="en">
 <head>
@@ -58,7 +59,8 @@
 <td>${orderlist.itemId}</td>
 <td>${orderlist.quantity}</td>
 <td>${orderlist.totalPrice}</td>
-<td>${orderlist.orderDate}</td>
+<td><fmt:parseDate value="${orderlist.orderDate}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
+  <fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
 <td>${orderlist.orderStatus}</td>
 
 <td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>

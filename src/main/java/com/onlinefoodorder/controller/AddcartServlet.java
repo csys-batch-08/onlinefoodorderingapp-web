@@ -36,8 +36,8 @@ public class AddcartServlet extends HttpServlet {
 			
 			session.setAttribute("itemidcart", itemid);
 			session.setAttribute("resId", resid);
-			response.sendRedirect("CartSucc.jsp");
-		} catch (ClassNotFoundException |SQLException e) {
+			response.sendRedirect("cartSuc.jsp");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

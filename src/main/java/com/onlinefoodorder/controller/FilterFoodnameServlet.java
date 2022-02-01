@@ -32,7 +32,7 @@ public class FilterFoodnameServlet extends HttpServlet {
 			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterFoodNames.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

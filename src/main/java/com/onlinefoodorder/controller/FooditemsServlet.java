@@ -41,7 +41,7 @@ public class FooditemsServlet extends HttpServlet
 			PrintWriter pw = response.getWriter();
 			pw.write("food items are successfully inserted");
 			response.sendRedirect("admin.jsp");
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

@@ -28,7 +28,7 @@ public class FilterbyCityServlet extends HttpServlet {
 			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (ClassNotFoundException |SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

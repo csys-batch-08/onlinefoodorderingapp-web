@@ -89,8 +89,7 @@ aside{
 			font-size: 15px;
 			color: black;
 		}
-        
-</style>
+</style> 
 </head>
 <body>
 <aside>
