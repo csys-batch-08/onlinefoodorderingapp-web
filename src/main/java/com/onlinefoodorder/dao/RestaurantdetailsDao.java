@@ -14,7 +14,6 @@ public interface RestaurantdetailsDao
 	public int findRestaurantId(String email) throws SQLException;
 	public int findRestaurantId2(String restaurantName) throws SQLException;
 	public String findRestaurantName(int restaurantId) throws SQLException;
-	public int findmaxresid() throws SQLException;	
 	public List<RestaurantDetails> showRestaurant() throws SQLException;
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException;
 }

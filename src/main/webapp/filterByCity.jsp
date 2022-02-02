@@ -1,5 +1,5 @@
 <%@page import="com.onlinefoodorder.model.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="com.onlinefoodorder.dao.impl.*"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -102,7 +102,7 @@ body{
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
                        Address : ${restaurantlist.area} ${restaurantlist.city}<br>  
-                       <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
+                       <jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
                        Ratings :${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
                       </div>
                       </td>

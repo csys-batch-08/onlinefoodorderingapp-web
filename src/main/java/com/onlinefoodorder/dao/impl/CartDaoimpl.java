@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,8 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class CartDaoimpl
 {
+	//Insert Cart
+	
 	public void insertCart(int itemId,int customerid) throws SQLException
 	{	 
 		String insertQuery = "insert into cart(user_id,item_id)values(?,?)";
@@ -36,6 +38,8 @@ public class CartDaoimpl
 			}
 		}
 	}
+	
+	// User add to Cart
 	
 	public List<FoodItems> fetchCart(int userid) throws SQLException 
 	{
@@ -63,6 +67,8 @@ public class CartDaoimpl
 		}
 		return foodItems;
 	}
+	
+	//User Remove foods from cart
 	
 	public int removeCart(int itemId, int userId) throws SQLException 
 	{

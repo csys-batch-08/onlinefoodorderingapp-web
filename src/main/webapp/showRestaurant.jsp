@@ -1,5 +1,5 @@
 <%@page import="com.onlinefoodorder.model.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="com.onlinefoodorder.dao.impl.*"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -27,8 +27,7 @@ body{
         background-color:black;
         position: fixed;
         margin-bottom: 20px;
-        margin: 0;
-        width:pc;
+        margin-top:0;
     }
   li{
       display:inline-block;
@@ -50,7 +49,7 @@ body{
   	color: LightSeaGreen;
   }
   li button{
-      margin-right: 289px;
+      margin-right: 290px;
   }
 	img
 	{
@@ -126,8 +125,8 @@ body{
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
                        Address : ${restaurantlist.area}, ${restaurantlist.city}<br>  
-                       <jsp:useBean id="rating" class="com.onlinefoodorder.daoimpl.RatingsDaoimpl"/>
-                       Ratings  :  ${rating.fetchRating(restaurantlist.restaurantId)} <br>                             
+                       <jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
+                       Ratings  :  ${rating.fetchRating(restaurantlist.restaurantId)}<br>                             
                       </div>
                       </td>
                   </tr>

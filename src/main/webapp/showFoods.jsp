@@ -1,5 +1,5 @@
 <%@page import="com.onlinefoodorder.model.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="com.onlinefoodorder.dao.impl.*"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -10,78 +10,78 @@
 <meta charset="ISO-8859-1">
 <title>User view food items</title>
 <style>
-*style{
-	margin:0;
-	padding:0;
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-image: url("image/showfood33.jpeg");
+	font-size: 13.5px;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow-x: hidden;
 }
-body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/showfood33.jpeg");
-    font-size:13.5px;
-    background-size: cover;
-    background-attachment: fixed;
-   	overflow-x:hidden;
-}
-  ul
-  {
-        list-style: none;
-        background-color:black;
-        position: fixed;
-        margin-bottom: 20px;
-        margin: 0;
-    }
-  li{
-      display:inline-block;
-      padding-top: 13px;
-      padding-bottom: 13px;
-      text-align: center;
-      font-size: 15px;
-  }
-  li a{
-      text-decoration: none;
-      font-weight:bold;
-      display:block;
-      padding-right: 20px;
-      padding-left: 10px;
-      color: white;
-  }
-  li a:hover{
-  	opacity: 0.8;
-  	color: LightSeaGreen;
-  }
-  li button{
-      margin-right: 280px;
-  }
-  img{
-  	
-		height:210px;
-		width:240px;
-		padding-top: 70px;
-		margin: 0;
- 
-  }
-  .names{
-		position : relative;
-		top:175px;
-		right:250px;
-		width:150%;
-		font-weight: bold;
-		font-size: 14px;
-	}
-	.text
-	{
-		padding:5.5px;
-		border-radius: 4px;
-	}
-	form button{
-		background-color: #008b8b;
-		padding: 3px 8px;
-		border-color: transparent;
-		border-radius: 3px;
-		color: white;
-		font-weight: bold;		
-	}
 
+ul {
+	list-style: none;
+	background-color: black;
+	position: fixed;
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+
+li {
+	display: inline-block;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	text-align: center;
+	font-size: 15px;
+}
+
+li a {
+	text-decoration: none;
+	font-weight: bold;
+	display: block;
+	padding-right: 20px;
+	padding-left: 10px;
+	color: white;
+}
+
+li a:hover {
+	opacity: 0.8;
+	color: LightSeaGreen;
+}
+
+li button {
+	margin-right: 290px;
+}
+
+img {
+	height: 210px;
+	width: 240px;
+	padding-top: 70px;
+	margin: 0;
+}
+
+.names {
+	position: relative;
+	top: 175px;
+	right: 250px;
+	width: 150%;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.text {
+	padding: 5.5px;
+	border-radius: 4px;
+}
+
+form button {
+	background-color: #008b8b;
+	padding: 3px 8px;
+	border-color: transparent;
+	border-radius: 3px;
+	color: white;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>

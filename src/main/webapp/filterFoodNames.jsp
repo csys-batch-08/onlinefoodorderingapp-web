@@ -1,6 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.onlinefoodorder.model.FoodItems"%>
-<%@page import="com.onlinefoodorder.daoimpl.FoodItemsDaoimpl"%>
+<%@page import="com.onlinefoodorder.dao.impl.FoodItemsDaoimpl"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>

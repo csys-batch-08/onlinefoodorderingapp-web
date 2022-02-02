@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -14,6 +14,8 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class FoodItemsDaoimpl implements FoodItemsDao
 {
+	//Admin Insert food items
+	
 	public void insertFoodItems(FoodItems fooditem) throws SQLException
 	{
 		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)values(?,?,?,?,?,?)";
@@ -42,6 +44,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		}
 	}
 	
+	//user view foodlist by restaurant   
+	
 	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
@@ -57,7 +61,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			while(rs.next())
 			{
 				String resName = restaurantdao.findRestaurantName(rs.getInt(1));
-				FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7),resName);
+				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"),rs.getInt("item_id"),rs.getString("food_name"), rs.getString("cuisine_name"), rs.getString("description"),rs.getDouble("price"), rs.getString("food_image"),resName);
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
@@ -73,7 +77,9 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		}
 		return foodnamelist;
 	}
-		
+	
+	//User View all food items
+	
 	public List<FoodItems> showFoodItems() throws SQLException
 	{
 		List<FoodItems> foodItemList = new ArrayList<>();
@@ -88,7 +94,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 				while(rs.next())
 				{
 					String resName = restaurantdao.findRestaurantName(rs.getInt(1));
-					FoodItems fooditem = new FoodItems(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7),resName);
+					FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"),rs.getInt("item_id"),rs.getString("food_name"), rs.getString("cuisine_name"), rs.getString("description"),rs.getDouble("price"), rs.getString("food_image"),resName);
 					foodItemList.add(fooditem);
 				}
 		}catch(SQLException e)
@@ -105,6 +111,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodItemList;
 	}
 	
+	//Find food name through RestaurantId
+	
 	public List<FoodItems> findfoodNames(int resid) throws SQLException
 	{
 		List<FoodItems> foodnamelist = new ArrayList<>();
@@ -117,7 +125,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			ResultSet rs = statement.executeQuery(query);
 			while(rs.next())
 			{
-				FoodItems fooditem = new FoodItems(resid, rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7));
+				FoodItems fooditem = new FoodItems(resid, rs.getString("food_name"), rs.getString("cuisine_name"), rs.getString("description"),rs.getDouble("price"), rs.getString("food_image"));
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
@@ -134,6 +142,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodnamelist;	
 	}
 
+	//Find Food Name through FoodId
+	
 	public String findFoodname(int foodid) throws SQLException
 	{
 		String findname = "select food_name from food_items where food_name = '"+foodid+"'";
@@ -162,6 +172,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return itemname;
 	}
 	
+	//Find Food Price
+	
 	public int findFoodPrice(int foodid) throws SQLException
 	{
 		String price ="select price from food_items where item_id= '"+foodid+"'";
@@ -189,6 +201,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return foodprice;			
 	}
 		
+	// Find ItemId 
+	
 	public int finditemid(String foodname, int restaurantid) throws SQLException
 	{
 		String price ="select item_id from food_items where restaurant_id = ? and food_name = ?";
@@ -218,56 +232,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 		return -1;
 	}
 	
-	public void deletefooditem(int itemid) throws SQLException
-	{
-		String deleteQuery = "delete from food_items where itemid=?";
-		Connection con = null;
-		PreparedStatement p1 = null;
-		try {
-			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(deleteQuery);
-			p1.setInt(1, itemid);
-			p1.executeUpdate();
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if(p1!=null) {
-				p1.close();
-			}
-			if(con!=null) {
-				con.close();
-			}
-		}
-	}
-	public List<FoodItems> filterbyPrice(double price) throws SQLException
-	{
-		List<FoodItems> foodnamelist = new ArrayList<>();
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where price<=?";
-		Connection con = null;
-		PreparedStatement p1 = null;
-		try {
-			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(query);
-			p1.setDouble(1, price);
-			ResultSet rs = p1.executeQuery();
-			while(rs.next())
-			{
-				FoodItems fooditem = new FoodItems(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
-				foodnamelist.add(fooditem);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if(p1!=null) {
-				p1.close();
-			}
-			if(con!=null) {
-				con.close();
-			}
-		}
-		return foodnamelist;
-	}
+	// Filter Foods by food name 
 	
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException
 	{
@@ -282,7 +247,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao
 			ResultSet rs = p1.executeQuery();
 			while(rs.next())
 			{
-				FoodItems fooditem = new FoodItems(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
+				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getString("food_name"), rs.getString("cuisine_name"), rs.getString("description"), rs.getDouble("price"), rs.getString("food_image"));
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {

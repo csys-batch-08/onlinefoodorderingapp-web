@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
+import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
 @WebServlet("/restaurantdetail")
 public class RestaurantdetailServlet extends HttpServlet 

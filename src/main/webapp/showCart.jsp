@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.*"%>
 <%@page import="com.onlinefoodorder.model.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="com.onlinefoodorder.dao.impl.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -110,7 +110,7 @@ body{
                         <table id="foodtable">
                             <tbody>
                                 <tr>
-                                    <td><a href = "orderFoods.jsp?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="image/${cartlist.foodImage}" alt="foodimage"></a></td>    
+                                    <td><a href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="image/${cartlist.foodImage}" alt="foodimage"></a></td>    
                                     <td>
                                   	    <div class="names">${cartlist.foodName}</span><br>
                                         Food Price :${cartlist.price}</span>

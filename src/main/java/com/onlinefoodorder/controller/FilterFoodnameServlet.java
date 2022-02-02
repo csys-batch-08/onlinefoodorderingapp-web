@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
+import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
  @WebServlet("/filterfoods")
 public class FilterFoodnameServlet extends HttpServlet {

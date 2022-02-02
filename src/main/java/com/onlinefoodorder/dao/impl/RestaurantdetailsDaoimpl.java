@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
  
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,8 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 {
+	//Insert Restaurant Details
+	
 	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException
 	{
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
@@ -47,6 +49,9 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			}
 		}
 	}
+	
+	//Update Restaurant Details
+	
 	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, password=? where email=?";
@@ -76,6 +81,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		
 	}
 	
+	//Inactive Restaurant
+	
 	public int inactiveRestaurant(String emailid) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'Inactive' where email = ?";
@@ -103,6 +110,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return i;
 	}
 	
+	//Active Restaurant
+	
 	public void activeRestaurant(String emailid) throws SQLException
 	{
 		String updateQuery = "update restaurant_details set restaurant_status = 'active' where email =?";
@@ -127,6 +136,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			}
 		}
 	}
+	
+	//Find Restaurant Id
 	
 	public int findRestaurantId(String email) throws SQLException
 	{
@@ -155,6 +166,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantid;
 	}
 	
+	// Find Restaurant Name
+	
 	public String findRestaurantName(String email) throws SQLException
 	{
 		String findName = "select restaurant_name from restaurant_details where email='"+email+"'";
@@ -181,6 +194,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		}
 		return restaurantName;
 	}
+	
+	//Find Restaurant Id through restaurant name
 	
 	public int findRestaurantId2(String restaurantName) throws SQLException
 	{
@@ -210,6 +225,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantId;
 	}
 	
+	// Find Restaurant Name through RestaurantId
+	
 	public String findRestaurantName(int restaurantId) throws SQLException
 	{
 		String findname = "select restaurant_name from restaurant_details where restaurant_id='"+restaurantId+"'";
@@ -238,32 +255,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantname;
 	}
 	
-	public int findmaxresid() throws SQLException {
-		String findId = "select max(restaurant_id) from restaurant_details";
-		Connection con = null;
-		int restaurantId = -1;
-		Statement statement = null;
-		try {
-			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(findId);
-			if(rs.next())
-			{
-				restaurantId = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if(statement!=null) {
-				statement.close();
-			}
-			if(con!=null) {
-				con.close();
-			}
-		}
-		
-		return restaurantId;
-	}
+	// User view all restaurant
 	
 	public List<RestaurantDetails> showRestaurant() throws SQLException
 	{
@@ -277,7 +269,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			ResultSet rs = statement.executeQuery(query); 
 			while(rs.next())
 			{
-				RestaurantDetails restaurant = new RestaurantDetails(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getLong(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
+				RestaurantDetails restaurant = new RestaurantDetails(rs.getInt("restaurant_id"), rs.getString("restaurant_name"), rs.getString("area"), rs.getString("city"), rs.getInt("pincode"), rs.getLong("restaurant_landline_no"), rs.getString("owner_name"), rs.getString("operational_hours"), rs.getString("email"), rs.getString("password"), rs.getString("restaurant_image"), rs.getString("restaurant_status"));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
@@ -293,6 +285,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 		return restaurantlist;
 	}
 	
+	// Filter Restaurants by cityname
+	
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException
 	{
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
@@ -306,7 +300,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao
 			ResultSet resultSet = p1.executeQuery();
 			while(resultSet.next())
 			{
-				RestaurantDetails restaurant = new RestaurantDetails(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getInt(5), resultSet.getLong(6), resultSet.getString(7), resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), resultSet.getString(11));
+				RestaurantDetails restaurant = new RestaurantDetails(resultSet.getString("restaurant_name"), resultSet.getString("area"), resultSet.getString("city"), resultSet.getInt("pincode"), resultSet.getLong("restaurant_landline_no"), resultSet.getString("owner_name"), resultSet.getString("operational_hours"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("restaurant_image"));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
+import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 
 @WebServlet("/deleterestaurant")
 public class InactiveRestaurantServlet extends HttpServlet {

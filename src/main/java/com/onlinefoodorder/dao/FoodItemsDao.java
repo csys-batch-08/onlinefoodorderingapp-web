@@ -15,7 +15,5 @@ public interface FoodItemsDao
 	public String findFoodname(int foodid) throws SQLException;
 	public int findFoodPrice(int foodid) throws SQLException;
 	public int finditemid(String foodname, int restaurantid) throws SQLException;
-	public void deletefooditem(int itemid) throws SQLException;
-	public List<FoodItems> filterbyPrice(double price) throws SQLException;
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException;
 }

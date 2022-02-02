@@ -3,11 +3,50 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-<style>
-</style>
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
-<link rel="stylesheet" href="admin.css">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-image: url("image/restaurantbackground.jpg");
+	background-size: 1400px 780px;
+	color: white;
+}
+
+ul {
+	background-color: rgba(180, 228, 230, 0.5);
+	font-weight: 700;
+}
+
+li {
+	list-style: none;
+	padding: 25.7px 18px;
+}
+
+li a {
+	text-decoration: none;
+	color: black;
+}
+
+aside {
+	float: left;
+	margin-right: 380px;
+}
+
+h1 {
+	border: 1px solid transparent;
+	padding-top: 220px;
+	padding-bottom: 20px;
+	color: white;
+}
+
+.active:hover {
+	color: Navy;
+}
+</style>
 </head>
 <body>
 <aside>

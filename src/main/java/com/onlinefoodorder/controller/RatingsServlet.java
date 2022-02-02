@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.RatingsDaoimpl;
-import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
+import com.onlinefoodorder.dao.impl.RatingsDaoimpl;
+import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.Ratings;
 
 @WebServlet("/rating")

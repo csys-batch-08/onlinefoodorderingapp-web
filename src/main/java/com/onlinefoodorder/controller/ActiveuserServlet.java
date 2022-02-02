@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.onlinefoodorder.daoimpl.UserDaoimpl;
+import com.onlinefoodorder.dao.impl.UserDaoimpl;
 
 @WebServlet("/activeusers")
 public class ActiveuserServlet extends HttpServlet {

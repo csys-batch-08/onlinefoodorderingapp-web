@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +9,8 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RatingsDaoimpl {
 
+	//Insert Ratings
+	
 	public int insertRatings(Ratings rating) throws SQLException
 	{
 		String query = "insert into ratings(user_id, restaurant_id, rating) values(?,?,?)";
@@ -35,6 +37,8 @@ public class RatingsDaoimpl {
 			}
 		}	
 	}
+	
+	//Add Ratings
 	
 	public double fetchRating(int restarantid) throws SQLException
 	{

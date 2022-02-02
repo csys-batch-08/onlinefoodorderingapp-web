@@ -129,34 +129,11 @@ update user_details set password = 'Meena1013' where email_address='meena@gmail.
 update user_details set password = ? where email_address=
 select * from user_details where not role='Admin';
 
+
 select * from user_details;
 select * from restaurant_details;
 select * from food_items;
 select * from order_foods;
 select * from cart;
 select * from ratings;
-select avg(rating) from ratings where restaurant_id=1717;
-
-select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items;
-select * from restaurant_details where city= 'Madurai';
-select floor(avg(rating)) from ratings where restaurant_id = 1720;
-select * from food_items where restaurant_id = 1716;
-
-select order_id, user_id, item_id, quantity, total_price, order_date from order_foods;
-
-select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id = '1203';
-
-select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where restaurant_id = 1716;
-
-select * from food_items where item_id in (select item_id from cart where user_id = 1203); 
-
-select Item_id, food_name form food_items inner join 
-
-select order_id, user_id, item_id, quantity, total_price, order_date from order_foods;
-
-select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city='Trichy';
-
-select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city='Madurai';
-
-select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id=120 ordr by order_date desc"
 

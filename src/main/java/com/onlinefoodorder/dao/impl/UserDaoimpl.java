@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
 
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,6 +14,9 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class UserDaoimpl implements UserDao
 {
+	
+	//Insert User Details
+	
 	public void insertUser(User user) throws SQLException
 	{
 		String insertQuery = "insert into user_details(user_name, phone_no, address, email_address, password) values(?,?,?,?,?)";
@@ -41,6 +44,8 @@ public class UserDaoimpl implements UserDao
 			}
 		}
 	}
+	
+	//Update User Details
 	
 	public void userProfileUpdate(User user) throws SQLException
 	{
@@ -72,6 +77,8 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
+	//Forgot Password 
+	
 	public  boolean forgotPassword(String emailid,String password) throws SQLException
 	{
 		String query = "update user_details set password = ? where email_address= ?";
@@ -100,6 +107,8 @@ public class UserDaoimpl implements UserDao
 		return flag;
 	}
 	
+	// Validate User 
+	
 	public User validateUser(String emailAddress,String password) throws SQLException
 	{
 		String validateQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='user' and email_address='"+emailAddress+"' and password='"+password+"'";
@@ -112,7 +121,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs=statement.executeQuery(validateQuery);
 			if(rs.next())
 			{
-				user=new User(rs.getString(2), rs.getLong(3), rs.getString(5), emailAddress, password, rs.getInt(8));
+				user=new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"), emailAddress, password, rs.getInt("wallet"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,6 +137,8 @@ public class UserDaoimpl implements UserDao
 		return user;
 	}
 	
+	//Admin Search User
+	
 	public List<User> viewSingleUser(String emailid) throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
@@ -141,7 +152,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs = p1.executeQuery();
 			while(rs.next())
 			{
-				User user = new User(rs.getString(2),rs.getLong(3),rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+				User user = new User(rs.getString("user_name"),rs.getLong("phone_no"),rs.getString("address"), rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
 			}
 		}
@@ -158,6 +169,8 @@ public class UserDaoimpl implements UserDao
 		}
 		return userList;
 	}
+	
+	// Inactive User
 	
 	public void userProfileDelete(String inactive) throws SQLException
 	{
@@ -184,6 +197,8 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
+	//Active User
+	
 	public void userProfileActive(String active) throws SQLException
 	{
 		String deleteQuery = "update user_details set role='user' where email_address=?";
@@ -207,6 +222,7 @@ public class UserDaoimpl implements UserDao
 		}
 	}
 	
+	//Validate Admin
 	public User validateAdmin(String emailAddress,String password) throws SQLException
 	{
 		String adminQuery="select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= '"+emailAddress+"' and password='"+password+"'";		
@@ -219,7 +235,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs=statement.executeQuery(adminQuery);
 			if(rs.next())
 			{
-				user = new User(rs.getString(2),rs.getLong(3),rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+				user = new User(rs.getString("user_name"),rs.getLong("phone_no"),rs.getString("address"), rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -234,6 +250,8 @@ public class UserDaoimpl implements UserDao
 		return user;
 	}
 	
+	//Admin View All User
+	
 	public List<User> viewUser() throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
@@ -246,7 +264,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs = statement.executeQuery(showQuery);
 			while(rs.next())
 			{
-				User user = new User(rs.getString(2),(rs.getLong(3)),rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+				User user = new User(rs.getString("user_name"),rs.getLong("phone_no"),rs.getString("address"), rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
 			}
 		}
@@ -263,6 +281,8 @@ public class UserDaoimpl implements UserDao
 		return userList;
 	}
 	
+	// User Profile
+	
 	public List<User> currentuserprofile(int userid) throws SQLException
 	{
 		List<User> userList = new ArrayList<>();
@@ -276,7 +296,7 @@ public class UserDaoimpl implements UserDao
 			ResultSet rs = p1.executeQuery();
 			while(rs.next())
 			{
-				User user = new User(rs.getString(1),rs.getLong(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				User user = new User(rs.getString("user_name"),rs.getLong("phone_no"),rs.getString("address"), rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
 			}
 		}
@@ -294,6 +314,7 @@ public class UserDaoimpl implements UserDao
 		return userList;
 	}
 	
+	// Find User Id
 	public int findUserId(String emailAddress) throws SQLException
 	{
 		String findUser = "select user_id from user_details where email_address = '"+emailAddress+"'";
@@ -322,6 +343,7 @@ public class UserDaoimpl implements UserDao
 		return userId;
 	}
 	
+	//Find User Name
 	public String findUserName(String emailAddress) throws SQLException
 	{
 		String findUser = "select user_name from user_details where email_address = '"+emailAddress+"'";
@@ -350,17 +372,18 @@ public class UserDaoimpl implements UserDao
 		return userName;
 	}
 	
+	//Wallet Balance
 	
-	
-	public int walletbal(int id) throws SQLException 
+	public int walletbal(int userId) throws SQLException 
 	{
 		Connection con = null;
 		String query = "select wallet from user_details where user_id = ?";
 		PreparedStatement p1 = null;
+		
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
-			p1.setInt(1, id);
+			p1.setInt(1, userId);
 			ResultSet rs = p1.executeQuery();
 			while(rs.next()) {
 					return rs.getInt(1);
@@ -379,6 +402,8 @@ public class UserDaoimpl implements UserDao
 		return -1;
 	}
 	
+	//Update Wallet
+	
 	public boolean updatewallet(User user) throws SQLException
 	{
 		Connection con = null;
@@ -390,7 +415,6 @@ public class UserDaoimpl implements UserDao
 			p1.setInt(1,user.getWallet());
 			p1.setString(2, user.getEmailAddress());
 			p1.executeUpdate();
-			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 		
 			e.printStackTrace();

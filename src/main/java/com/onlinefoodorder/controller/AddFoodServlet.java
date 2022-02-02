@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.RestaurantdetailsDaoimpl;
+import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 @WebServlet("/addfoods")
 public class AddFoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

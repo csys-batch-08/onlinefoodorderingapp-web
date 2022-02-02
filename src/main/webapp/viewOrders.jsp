@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.onlinefoodorder.model.*"%>
 <%@page import="java.util.*"%>
-<%@page import="com.onlinefoodorder.daoimpl.*"%>
+<%@page import="com.onlinefoodorder.dao.impl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglig prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>

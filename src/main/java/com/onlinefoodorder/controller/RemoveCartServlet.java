@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.CartDaoimpl;
+import com.onlinefoodorder.dao.impl.CartDaoimpl;
 
 @WebServlet("/removeCartserv")
 public class RemoveCartServlet extends HttpServlet {

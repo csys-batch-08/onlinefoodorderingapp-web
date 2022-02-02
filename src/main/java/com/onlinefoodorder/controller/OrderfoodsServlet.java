@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
-import com.onlinefoodorder.daoimpl.OrderFoodsDaoimpl;
-import com.onlinefoodorder.daoimpl.UserDaoimpl;
+import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
+import com.onlinefoodorder.dao.impl.OrderFoodsDaoimpl;
+import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.model.User;
 
@@ -29,6 +29,7 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		System.out.println("quantity" +quantity);
 		
 		int userid = (int)(session.getAttribute("Userid1"));
 		System.out.println("userid" +userid);

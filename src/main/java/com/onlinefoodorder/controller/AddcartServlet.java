@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.CartDaoimpl;
-import com.onlinefoodorder.daoimpl.FoodItemsDaoimpl;
+import com.onlinefoodorder.dao.impl.CartDaoimpl;
+import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 @WebServlet("/addcartserv")
 public class AddcartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

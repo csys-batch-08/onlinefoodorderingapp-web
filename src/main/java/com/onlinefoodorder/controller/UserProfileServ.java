@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.UserDaoimpl;
+import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
 
 @WebServlet("/UserProfileServ")

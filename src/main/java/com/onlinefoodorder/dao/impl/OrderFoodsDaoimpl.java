@@ -1,4 +1,4 @@
-package com.onlinefoodorder.daoimpl;
+package com.onlinefoodorder.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao
 {
+	//Insert ordered foods
 	public void insertOrderFoods(Orderfoods order) throws SQLException
 	{
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
@@ -27,7 +28,6 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			p1.setInt(3, order.getQuantity());
 			p1.setDouble(4, order.getTotalPrice());
 			p1.executeUpdate();
-			p1.executeUpdate(insert);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -40,6 +40,9 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		}
 		
 	}
+	
+	// Admin view order details
+	
 	public List<Orderfoods> viewOrderFoods() throws SQLException
 	{
 		List<Orderfoods> orderlist = new ArrayList<>();
@@ -52,7 +55,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			ResultSet rs = statement.executeQuery(showQuery);
 			while(rs.next())
 			{
-				Orderfoods order = new Orderfoods(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getInt(4), rs.getDouble(5), rs.getDate(6).toLocalDate(), rs.getString(7));
+				Orderfoods order = new Orderfoods(rs.getInt("order_id"), rs.getInt("user_id"), rs.getInt("item_id"),rs.getInt("quantity"), rs.getDouble("total_price"), rs.getDate("order_date").toLocalDate(), rs.getString("order_status"));
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
@@ -69,6 +72,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return orderlist;
 	}
 	
+	//User view my orders
+	
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException
 	{
 		List<Orderfoods> orderlist = new ArrayList<>();
@@ -81,7 +86,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			ResultSet rs = statement.executeQuery(showQuery);
 			while(rs.next())
 			{
-				Orderfoods order = new Orderfoods(rs.getInt(1),rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getDouble(5), rs.getDate(6).toLocalDate(),rs.getString(7));
+				Orderfoods order = new Orderfoods(rs.getInt("order_id"),rs.getInt("user_id"),rs.getInt("item_id"), rs.getInt("quantity"), rs.getDouble("total_price"), rs.getDate("order_date").toLocalDate(),rs.getString("order_status"));
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
@@ -98,9 +103,11 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return orderlist;
 	}
 	
+	//User update Order
+	
 	public int updateOrderdetails(int orderId) throws SQLException
 	{
-		String updateQuery="update order_foods set order_status = 'Cancel' where orderId=?";
+		String updateQuery="update order_foods set order_status = 'Cancel' where order_id=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -120,11 +127,13 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 			}
 		}
 		return 0;
-	}	
+	}
+	
+	// Find Order Status
 	
 	public String findOrderstatus(int orderId) throws SQLException
 	{
-		String findQuery="select order_status from order_foods where orderId=?";
+		String findQuery="select order_status from order_foods where order_id=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -146,32 +155,11 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao
 		return null;
 	}
 	
-	public void deleteOrder(int itemId) throws SQLException 
-	{
-		String delete="delete order_foods from where item_id=?";
-		Connection con = null;
-		PreparedStatement p1 = null;
-		try {
-			con = ConnectionUtil.getDbConnection();
-			p1=con.prepareStatement(delete);
-			p1.setInt(1, itemId);
-			p1.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if(p1!=null) {
-				p1.close();
-			}
-			if(con!=null) {
-				con.close();
-			}
-		}
-		
-	}
-
+	//Find Food Price through OrderId
+	
 	public int findfoodPrice(int orderid) throws SQLException
 	{
-		String price ="select price from order_foods where order_id= '"+orderid+"'";
+		String price ="select total_price from order_foods where order_id= '"+orderid+"'";
 		Connection con = null;
 		Statement statement = null;
 		int foodprice = 0;

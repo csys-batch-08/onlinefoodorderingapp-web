@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinefoodorder.daoimpl.OrderFoodsDaoimpl;
-import com.onlinefoodorder.daoimpl.UserDaoimpl;
+import com.onlinefoodorder.dao.impl.OrderFoodsDaoimpl;
+import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
 
 @WebServlet("/Cancelorderserv")
@@ -39,7 +39,8 @@ public class Cancelorderserv extends HttpServlet {
 			int refundprice = currentbalance + foodprice;
 			
 			String emailid = session.getAttribute("emailid").toString();
-			User user = new User(emailid, refundprice, emailid, emailid, emailid);
+			User user = new User(null, 0, null, emailid, null, refundprice);
+			userdao.updatewallet(user);
 			
 			user.setEmailAddress(emailid);
 			user.setWallet(refundprice);
@@ -48,8 +49,6 @@ public class Cancelorderserv extends HttpServlet {
 			requestdispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 }
