@@ -14,7 +14,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao {
 	// Insert ordered foods
-	public void insertOrderFoods(Orderfoods order) throws SQLException {
+	public boolean insertOrderFoods(Orderfoods order) throws SQLException {
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -29,14 +29,9 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
-
+		return true;
 	}
 
 	// Admin view order details
@@ -46,10 +41,11 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods";
 		Connection con = null;
 		Statement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(showQuery);
+			rs = statement.executeQuery(showQuery);
 			while (rs.next()) {
 				Orderfoods order = new Orderfoods(rs.getInt("order_id"), rs.getInt("user_id"), rs.getInt("item_id"),
 						rs.getInt("quantity"), rs.getDouble("total_price"), rs.getDate("order_date").toLocalDate(),
@@ -59,6 +55,9 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(rs != null) {
+				rs.close();
+			}
 			if (statement != null) {
 				statement.close();
 			}
@@ -74,14 +73,14 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException {
 		List<Orderfoods> orderlist = new ArrayList<>();
-		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id='"
-				+ userid + "' order by order_date desc";
+		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id = ? order by order_date desc";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(showQuery);
+			p1 = con.prepareStatement(showQuery);
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				Orderfoods order = new Orderfoods(rs.getInt("order_id"), rs.getInt("user_id"), rs.getInt("item_id"),
 						rs.getInt("quantity"), rs.getDouble("total_price"), rs.getDate("order_date").toLocalDate(),
@@ -91,14 +90,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
-
 		return orderlist;
 	}
 
@@ -117,12 +110,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return 0;
 	}
@@ -138,16 +126,10 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 			p1 = con.prepareStatement(findQuery);
 			p1.setInt(1, orderId);
 			p1.executeUpdate();
-			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return null;
 	}
@@ -158,23 +140,19 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		String price = "select total_price from order_foods where order_id= ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		int foodprice = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(price);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return foodprice;
 	}

@@ -29,12 +29,7 @@ public class RatingsDaoimpl {
 			e.printStackTrace();
 			return -1;
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 	}
 
@@ -44,23 +39,19 @@ public class RatingsDaoimpl {
 		Connection con = null;
 		String query = "select floor(avg(rating)) from ratings where restaurant_id = ?";
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setDouble(1, restarantid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				return rs.getDouble(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return -1;
 	}

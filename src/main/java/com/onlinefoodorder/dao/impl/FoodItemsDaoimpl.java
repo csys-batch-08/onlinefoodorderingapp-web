@@ -33,12 +33,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 	}
 
@@ -50,11 +45,12 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setInt(1, restaurantid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				String resName = restaurantdao.findRestaurantName(rs.getInt(1));
 				FoodItems fooditem = new FoodItems(rs.getInt("Restaurant_id"), rs.getInt("item_id"),rs.getString("Food_name"), rs.getString("Cuisine_name"), rs.getString("Description"),
@@ -62,15 +58,9 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return foodnamelist;
 	}
@@ -83,10 +73,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 		Statement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(showQuery);
+			rs = statement.executeQuery(showQuery);
 			while (rs.next()) {
 				String resName = restaurantdao.findRestaurantName(rs.getInt(1));
 				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getInt("item_id"),rs.getString("Food_Name"), rs.getString("Cuisine_Name"), rs.getString("Description"),
@@ -96,6 +87,9 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(rs != null) {
+				rs.close();
+			}
 			if (statement != null) {
 				statement.close();
 			}
@@ -125,12 +119,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return foodnamelist;
 	}
@@ -142,22 +131,18 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		Connection con = null;
 		String itemname = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findname);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				itemname = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return itemname;
 	}
@@ -168,23 +153,19 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		String price = "select price from food_items where item_id= ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		int foodprice = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(price);
-			ResultSet rs = p1.executeQuery(price);
+			rs = p1.executeQuery(price);
 			if (rs.next()) {
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return foodprice;
 	}
@@ -195,25 +176,21 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		String price = "select item_id from food_items where restaurant_id = ? and food_name = ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(price);
 			p1.setInt(1, restaurantid);
 			p1.setString(2, foodname);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return -1;
 	}
@@ -225,11 +202,12 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setString(1, foodname);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getString("food_name"),rs.getString("cuisine_name"), rs.getString("description"), rs.getDouble("price"),
 						rs.getString("food_image"));
@@ -238,12 +216,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return foodnamelist;
 	}

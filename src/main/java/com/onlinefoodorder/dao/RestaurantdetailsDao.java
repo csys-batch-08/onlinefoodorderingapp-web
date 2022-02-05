@@ -7,10 +7,10 @@ import com.onlinefoodorder.model.RestaurantDetails;
 
 public interface RestaurantdetailsDao 
 {
-	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException;
-	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException;
+	public boolean insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException;
+	public boolean restaurantUpdate(RestaurantDetails restaurant) throws SQLException;
 	public int inactiveRestaurant(String emailid) throws SQLException;
-	public void activeRestaurant(String emailid) throws SQLException;
+	public int activeRestaurant(String emailid) throws SQLException;
 	public int findRestaurantId(String email) throws SQLException;
 	public int findRestaurantId2(String restaurantName) throws SQLException;
 	public String findRestaurantName(int restaurantId) throws SQLException;

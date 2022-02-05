@@ -7,7 +7,7 @@ import com.onlinefoodorder.model.Orderfoods;
 
 public interface OrderFoodsDao 
 {
-	public void insertOrderFoods(Orderfoods order) throws SQLException;
+	public boolean insertOrderFoods(Orderfoods order) throws SQLException;
 	public List<Orderfoods> viewOrderFoods() throws SQLException;
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException;
 	public int updateOrderdetails(int orderId) throws SQLException;

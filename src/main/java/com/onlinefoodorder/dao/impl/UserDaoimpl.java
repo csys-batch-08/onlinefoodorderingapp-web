@@ -15,8 +15,9 @@ import com.onlinefoodorder.util.ConnectionUtil;
 public class UserDaoimpl implements UserDao {
 	// Insert User Details
 
-	public void insertUser(User user) throws SQLException {
+	public boolean insertUser(User user) throws SQLException {
 		String insertQuery = "insert into user_details(user_name, phone_no, address, email_address, password) values(?,?,?,?,?)";
+		boolean flag = false;
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -28,23 +29,20 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(4, user.getEmailAddress());
 			p1.setString(5, user.getPassword());
 			p1.executeUpdate();
-		} catch (SQLException e) {
+			p1.executeUpdate("commit");
+		} catch (SQLException e){
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return flag;
 	}
 
 	// Update User Details
 
-	public void userProfileUpdate(User user) throws SQLException {
+	public boolean userProfileUpdate(User user) throws SQLException {
 		String updateQuery = "update user_details set user_name=?, phone_no=?, address=?, password=?  where email_address=?";
-
+		boolean flag = false;
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -59,13 +57,9 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return flag;
 	}
 
 	// Forgot Password
@@ -83,15 +77,9 @@ public class UserDaoimpl implements UserDao {
 			p1.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return flag;
 	}
@@ -103,26 +91,21 @@ public class UserDaoimpl implements UserDao {
 		Connection con = null;
 		PreparedStatement p1 = null;
 		User user = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(validateQuery);
 			p1.setString(1, emailAddress);
 			p1.setString(2, password);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"),emailAddress, password, rs.getInt("WALLET"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
-
 		return user;
 	}
 
@@ -133,11 +116,12 @@ public class UserDaoimpl implements UserDao {
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where email_address= ? ";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(showQuery);
 			p1.setString(1, emailid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				User user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"), rs.getString("EMAIL_ADDRESS"), rs.getString("PASSWORD"), rs.getInt("WALLET"));
 				userList.add(user);
@@ -145,19 +129,14 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return userList;
 	}
 
 	// Inactive User
 
-	public void userProfileDelete(String inactive) throws SQLException {
+	public int userProfileDelete(String inactive) throws SQLException {
 		String deleteQuery = "update user_details set role='Inactive' where email_address=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -171,18 +150,14 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return -1;
 	}
 
 	// Active User
 
-	public void userProfileActive(String active) throws SQLException {
+	public int userProfileActive(String active) throws SQLException {
 		String deleteQuery = "update user_details set role='user' where email_address=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -194,13 +169,9 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return -1;
 	}
 
 	// Validate Admin
@@ -210,22 +181,18 @@ public class UserDaoimpl implements UserDao {
 		Connection con = null;
 		PreparedStatement p1 = null;
 		User user = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(adminQuery);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getString("User_Name"), rs.getLong("Phone_no"), rs.getString("Address"),rs.getString("Email_address"), rs.getString("Password"), rs.getInt("Wallet"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return user;
 	}
@@ -237,10 +204,11 @@ public class UserDaoimpl implements UserDao {
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where not role='Admin' order by user_id desc fetch first 10 rows only";
 		Connection con = null;
 		Statement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(showQuery);
+			rs = statement.executeQuery(showQuery);
 			while (rs.next()) {
 				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
@@ -248,10 +216,13 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
+			if(rs != null){
+				rs.close();
+			}
+			if(statement != null) {
 				statement.close();
 			}
-			if (con != null) {
+			if(con != null) {
 				con.close();
 			}
 		}
@@ -265,11 +236,12 @@ public class UserDaoimpl implements UserDao {
 		String showQuery = "select user_name, phone_no, address, email_address, password, wallet from user_details where user_id=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(showQuery);
 			p1.setInt(1, userid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
@@ -277,12 +249,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return userList;
 	}
@@ -294,22 +261,18 @@ public class UserDaoimpl implements UserDao {
 		Connection con = null;
 		int userId = 0;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findUser);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return userId;
 	}
@@ -321,22 +284,18 @@ public class UserDaoimpl implements UserDao {
 		Connection con = null;
 		String userName = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findUser);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				userName = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return userName;
 	}
@@ -347,24 +306,19 @@ public class UserDaoimpl implements UserDao {
 		Connection con = null;
 		String query = "select wallet from user_details where user_id = ?";
 		PreparedStatement p1 = null;
-
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setInt(1, userId);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return -1;
 	}
@@ -382,15 +336,9 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(2, user.getEmailAddress());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return true;
 	}

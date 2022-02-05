@@ -22,18 +22,12 @@ public class CartDaoimpl {
 			p1 = con.prepareStatement(insertQuery);
 			p1.setInt(1, customerid);
 			p1.setInt(2, itemId);
-
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 	}
 
@@ -44,11 +38,12 @@ public class CartDaoimpl {
 		String query = "select * from food_items where item_id in (select item_id from cart where user_id = ?)";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setInt(1, userid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				foodItems.add(new FoodItems(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getDouble(6), rs.getString(7)));
@@ -56,12 +51,7 @@ public class CartDaoimpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return foodItems;
 	}
@@ -81,12 +71,7 @@ public class CartDaoimpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
 		return 0;
 	}

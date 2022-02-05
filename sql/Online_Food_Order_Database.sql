@@ -156,3 +156,7 @@ INNER JOIN order_foods on food_items.item_id = order_foods.item_id group by(rest
 select count(item_id), item_id from order_foods group by(item_id);
 
 select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items;
+select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active';
+
+
+select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items;

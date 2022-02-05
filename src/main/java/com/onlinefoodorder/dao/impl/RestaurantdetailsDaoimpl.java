@@ -15,7 +15,7 @@ import com.onlinefoodorder.util.ConnectionUtil;
 public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	// Insert Restaurant Details
 
-	public void insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException {
+	public boolean insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException {
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -37,18 +37,14 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return true;
 	}
 
 	// Update Restaurant Details
 
-	public void restaurantUpdate(RestaurantDetails restaurant) throws SQLException {
+	public boolean restaurantUpdate(RestaurantDetails restaurant) throws SQLException {
 		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, password=? where email=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -62,18 +58,12 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.setString(5, restaurant.getPassword());
 			p1.setString(6, restaurant.getEmail());
 			p1.executeUpdate();
-			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
-
+		return true;
 	}
 
 	// Inactive Restaurant
@@ -82,31 +72,22 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String updateQuery = "update restaurant_details set restaurant_status = 'Inactive' where email = ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
-		int i = -1;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(updateQuery);
 			p1.setString(1, emailid);
-			i = p1.executeUpdate();
-
-			p1.close();
-			con.close();
+			p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
-		return i;
+		return -1;
 	}
 
 	// Active Restaurant
 
-	public void activeRestaurant(String emailid) throws SQLException {
+	public int activeRestaurant(String emailid) throws SQLException {
 		String updateQuery = "update restaurant_details set restaurant_status = 'active' where email =?";
 		Connection con = null;
 		PreparedStatement p1 = null;
@@ -116,18 +97,12 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.setString(1, emailid);
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
-			p1.close();
-			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
+		return -1;
 	}
 
 	// Find Restaurant Id
@@ -136,23 +111,19 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String findid = "select restaurant_id from restaurant_details where email=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		int restaurantid = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantid = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return restaurantid;
 	}
@@ -163,23 +134,19 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String findName = "select restaurant_name from restaurant_details where email=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		String restaurantName = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findName);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantName = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return restaurantName;
 	}
@@ -191,22 +158,18 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		Connection con = null;
 		int restaurantId = 0;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findId);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 
 		return restaurantId;
@@ -218,23 +181,19 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String findname = "select restaurant_name from restaurant_details where restaurant_id = ?";
 		Connection con = null;
 		String restaurantname = null;
+		ResultSet rs = null;
 		PreparedStatement p1 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findname);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantname = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 
 		return restaurantname;
@@ -247,10 +206,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
 		Connection con = null;
 		Statement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(query);
+			rs = statement.executeQuery(query);
 			while (rs.next()) {
 				RestaurantDetails restaurant = new RestaurantDetails(rs.getInt("restaurant_id"),
 						rs.getString("Restaurant_name"), rs.getString("area"), rs.getString("city"),
@@ -262,11 +222,14 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
-				statement.close();
+			if(rs != null) {
+				rs.close();
 			}
 			if (con != null) {
 				con.close();
+			}
+			if (statement != null) {
+				statement.close();
 			}
 		}
 		return restaurantlist;
@@ -279,28 +242,24 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
 			p1.setString(1, city);
-			ResultSet resultSet = p1.executeQuery();
-			while (resultSet.next()) {
-				RestaurantDetails restaurant = new RestaurantDetails(resultSet.getString("restaurant_name"),
-						resultSet.getString("area"), resultSet.getString("city"), resultSet.getInt("pincode"),
-						resultSet.getLong("restaurant_landline_no"), resultSet.getString("owner_name"),
-						resultSet.getString("operational_hours"), resultSet.getString("email"),
-						resultSet.getString("password"), resultSet.getString("restaurant_image"));
+			rs = p1.executeQuery();
+			while (rs.next()) {
+				RestaurantDetails restaurant = new RestaurantDetails(rs.getString("restaurant_name"),
+						rs.getString("area"), rs.getString("city"), rs.getInt("pincode"),
+						rs.getLong("restaurant_landline_no"), rs.getString("owner_name"),
+						rs.getString("operational_hours"), rs.getString("email"),
+						rs.getString("password"), rs.getString("restaurant_image"));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return restaurantlist;
 	}
@@ -309,26 +268,22 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		List<RestaurantDetails> restaurantList = new ArrayList<>();
 		String showQuery = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where email=?";
 		Connection con = null;
+		ResultSet rs = null;
 		PreparedStatement p1 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(showQuery);
 			p1.setString(1, emailid);
-			ResultSet rs = p1.executeQuery();
+			rs = p1.executeQuery();
 			while (rs.next()) {
 				RestaurantDetails restaurant = new RestaurantDetails(rs.getInt("restaurant_id"),rs.getString("restaurant_name"), rs.getString("area"), rs.getString("city"),rs.getInt("pincode"), 
-												rs.getLong("restaurant_landline_no"), rs.getString("owner_name"),	rs.getString("operational_hours"), rs.getString("email"), rs.getString("password"),rs.getString("restaurant_image"), rs.getString("restaurant_status"));
+						rs.getLong("restaurant_landline_no"), rs.getString("owner_name"),	rs.getString("operational_hours"), rs.getString("email"), rs.getString("password"),rs.getString("restaurant_image"), rs.getString("restaurant_status"));
 				restaurantList.add(restaurant);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (p1 != null) {
-				p1.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
 		}
 		return restaurantList;
 	}
