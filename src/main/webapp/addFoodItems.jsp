@@ -112,7 +112,7 @@ button:hover {
 <div class="set1">
 <form action="addfoods" method="post">
 		<label for="email">Enter Restaurant emailid to add food Items</label>
-		<input type="email" name="emailid" class="input"><br><br>
+		<input type="email" name="emailid" id="txt" class="input"><br><br>
 		<button class="button">Go</button>
 </form>
 </div>

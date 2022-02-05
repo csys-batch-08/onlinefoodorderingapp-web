@@ -107,7 +107,7 @@ td, th {
 <div class="set1">
 <form action="searchUser" method="post">
 		<label for="email">User Email address</label>
-		<input type="email" name="email" placeholder="Search User" class="input">
+		<input type="email" name="email" id="txt" placeholder="Search User" class="input">
 		<button class="button">view user</button>
 </form>
 </div>

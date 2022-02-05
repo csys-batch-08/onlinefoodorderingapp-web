@@ -111,7 +111,7 @@ td, th {
 
 <form action="SearchOrderDateServ" method="post">
 		<label for="email">Order Date</label>
-		<input type="date" name="date" class="input">
+		<input type="date" id="txt" name="date" class="input">
 		<button class="button">view order</button>
 </form>
 

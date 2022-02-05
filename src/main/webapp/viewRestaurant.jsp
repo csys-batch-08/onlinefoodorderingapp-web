@@ -111,7 +111,7 @@ td{
 <div class="set1">
 <form action="SearchRestaurantServ" method="post">
 		<label for="email">Restaurant Email address</label>
-		<input type="email" name="email" class="input" placeholder="Search Restaurant">
+		<input type="email" name="email" id="txt" class="input" placeholder="Search Restaurant">
 		<button class="button">View Restaurant</button>
 </form>
 </div>

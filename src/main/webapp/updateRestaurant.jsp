@@ -104,27 +104,27 @@ h3 {
             <h2>Restaurant Details</h2><br>
             <div class="details1">
                 <label for="restaurantname">Restaurant name</label>
-                <input type="text" name="restaurantname" class="input" pattern="[A-Za-z]{5,}" required><br><br>
+                <input type="text" name="restaurantname" id="txt" class="input" pattern="[A-Za-z]{5,}" required><br><br>
                 
                 <label for="landline">Landline Nunber at restaurant</label>
-                <input type="phone" name="landlineno" class="input" pattern="[0][1-5]{3}+[5-9]{6}" required><br><br>
+                <input type="phone" name="landlineno" id="txt" class="input" pattern="[0][1-5]{3}+[5-9]{6}" required><br><br>
                 
                 <label for="name">Owner Name</label>
-                <input type="text" name="ownername" class="input" pattern="[A-Za-z]{3,}" required><br><br>
+                <input type="text" name="ownername" id="txt" class="input" pattern="[A-Za-z]{3,}" required><br><br>
                 
                 <label>Mark open hours</label><br><br>
-                <input type="radio" name="time" value="7am to 10pm" required>
+                <input type="radio" id="txt" name="time" value="7am to 10pm" required>
                 <label for="">7am to 10pm</label>
-                <input type="radio" name="time" Value="8am to 10pm" required>
+                <input type="radio" id="txt" name="time" Value="8am to 10pm" required>
                 <label for="">8am to 10pm</label>
-                <input type="radio" name="time" Value="9am to 10pm" required>
+                <input type="radio" id="txt" name="time" Value="9am to 10pm" required>
                 <label for="">9am to 10pm</label><br><br>
                 
                 <label for="email">Email address</label>
-                <input type="email" name="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+                <input type="email" id="txt" name="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
                 
                 <label for="password">Password</label>
-                <input type="password" name="password" class="input" pattern="[A-Za-z0-9]{8,10}" required><br><br>  
+                <input type="password" id="txt" name="password" class="input" pattern="[A-Za-z0-9]{8,10}" required><br><br>  
             </div>
     <button class="button">Update</button>
     </form>

@@ -81,9 +81,9 @@ button a {
 
 <form action="rating" method="get">
 	<label for="text">Restaurant name</label><br><br>
-	<input type="text" name="restaurantname" class="input" pattern="[A-Za-z]{5,}" required>
+	<input type="text" name="restaurantname" class="input" id="txt" pattern="[A-Za-z]{5,}" required>
 	<label for="rating">Ratings</label><br><br>
-	<input type="text" name="rating" class="input" pattern="[0-5]" required><br><br>
+	<input type="text" name="rating" class="input" id="txt" pattern="[0-5]" required><br><br>
 	<div class="btn"><button class="button" type="submit">Add</button>
 	<button class="button">Back</button></div>
 </form>

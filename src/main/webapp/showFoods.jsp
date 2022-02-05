@@ -108,12 +108,10 @@ form button {
 	<tr>
 	   <c:set var="count" value="1"/>
        <c:forEach items="${fooditemslistobj}" var="foodlist">
-       <td>
-         
+       <td>   
          <table>
-      
          <tbody>
-          <tr>
+         <tr>
              <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>    
              <td>
              <div class="names">${foodlist.foodName}<br>
@@ -121,12 +119,10 @@ form button {
                 ${foodlist.restaurantName}
              </div>
              </td>
-           </tr>
+         </tr>
          </tbody>
          </table>         
-       
        </td>
-     
      <c:choose>
      <c:when test="${count==4}">
      <c:set var="count" value="1"/>

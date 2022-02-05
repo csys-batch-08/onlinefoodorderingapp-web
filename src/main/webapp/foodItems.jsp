@@ -108,32 +108,32 @@ button:hover {
     <form action = "foodorderserv" method = "post"> 
     <h2>Outlet type & Timing</h2><br>  
             <label for ="foodname">Food name</label>
-            <input type="text" class="input" name ="foodname" pattern="[A-Za-z]{4,}" required><br><br>
+            <input type="text" class="input" name ="foodname" id="txt" pattern="[A-Za-z]{4,}" required><br><br>
             <label for="cuisine">Select cuisine types</label><br><br>
-            <input type="radio" class="food" name ="cuisine" value="Indian" required>
+            <input type="radio" class="food" name ="cuisine" id="txt"  value="Indian" required>
             <label for="cuisine">Indian</label>
-            <input type="radio" class="food" name ="cuisine" value="Chinese" required>
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Chinese" required>
             <label for="cuisine">Chinese</label>
-            <input type="radio" class="food" name ="cuisine" value="Italian" >
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Italian" >
             <label for="cuisine">Italian</label><br><br>
-            <input type="radio" class="food"name ="cuisine" value="French">
+            <input type="radio" class="food"name ="cuisine" id="txt" value="French">
             <label for="cuisine">French</label>
-            <input type="radio" class="food" name ="cuisine" value="Spanish">
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Spanish">
             <label for="cuisine">spanish</label>
-            <input type="radio" class="food" name ="cuisine" value="Turkish">
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Turkish">
             <label for="cuisine">Turkish</label><br><br>
-            <input type="radio" class="food" name ="cuisine" value="Thai">
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Thai">
             <label for="cuisine">Thai</label>
-            <input type="radio" class="food" name ="cuisine" value="Moroccan">
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Moroccan">
             <label for="cuisine">Moroccan</label>
-            <input type="radio" class="food" name ="cuisine" value="Turkish">
+            <input type="radio" class="food" name ="cuisine" id="txt" value="Turkish">
             <label for="cuisine">Turkish</label><br><br>
             <label for="description">Description</label>
-            <input type="text" class="input" name="description" pattern="[A-Za-z]{4,}" required><br><br>
+            <input type="text" class="input" name="description" id="txt" pattern="[A-Za-z]{4,}" required><br><br>
             <label for="price">Price</label>
-            <input type="text" class="input" name="price" pattern="[1-9][0-9]+" maxlength="4" required><br><br>
+            <input type="text" class="input" name="price" id="txt" pattern="[1-9][0-9]+" maxlength="4" required><br><br>
             <label for="image">Image</label>
-            <input type="file" name="foodimage" required><br><br>
+            <input type="file" name="foodimage" id="txt" required><br><br>
             <button class="button">Next</button>
     </form>
     </div>

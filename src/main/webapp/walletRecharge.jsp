@@ -118,13 +118,13 @@ button:hover {
          <h2>Recharge Your Wallet..</h2><br>
                  
          <label for="cardnumber">Card Number</label><br>
-         <input type="text" class="input" name="cardnumber" pattern ="[1-9]{16}" required><br><br>
+         <input type="text" class="input" id="txt" name="cardnumber" pattern ="[1-9]{16}" required><br><br>
                  
          <label for="cvv">CVV</label><br>
-         <input type="text" class="input" name="cvv" pattern="[1-9]{3}" required><br><br>
+         <input type="text" class="input" id="txt" name="cvv" pattern="[1-9]{3}" required><br><br>
          
          <label for="Amount">Amount</label><br>
-         <input type="text" class="input" name="amount" pattern="[1-9][0-9]+" maxlength="5" required><br><br>
+         <input type="text" class="input" id="txt" name="amount" pattern="[1-9][0-9]+" maxlength="5" required><br><br>
          <button class="button1"><a href="showfoodsservlet">Back</a></button> 
          <button class="button">Recharge Wallet</a></button>
 </form>
