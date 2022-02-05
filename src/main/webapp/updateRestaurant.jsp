@@ -6,85 +6,95 @@
 <meta charset="ISO-8859-1">
 <title>Update Restaurant details</title>
 <style>
-*{
-	margin:0;
-	padding:0;
+* {
+	margin: 0;
+	padding: 0;
 }
-body{
-      background-image: url("image/restaurantbackground.jpg");
-      background-size: 1400px 780px;
-    }
-    ul{
-        background-color: rgba(180, 228, 230, 0.5);
-        font-weight: 700;
-        }
-.input
-{
-    width: 100%;
-    padding:5px 0;
-    margin:5px 0;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom: 1.5px solid black;
-    outline:none;
-    background: transparent;
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-image: url("assets/image/restaurantbackground.jpg");
+	background-size: 1400px 780px;
+	background-attachment: fixed;
 }
-form{
-    color:black;
-    font-size: 14px;
-    border-radius: 5px;
-    padding: 30px 20px;
-    font-weight:bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(180, 228, 230, 0.5);
-    
-} 
-        
-        li{
-            list-style:none;
- 			padding: 25.7px 18px;
-         }
-        li a{
-            text-decoration: none;
-            color:black;
-        }
-   	 	td, th{
-        	padding: 10px;
-        }
-        aside{
-        	float:left;
-        	margin-right: 70px;
-        }
-        .set1{
-        	height:250px;
-        	width:510px;
-        	margin-left: 400px;
-        	border: 1px solid transparent;
-        	padding-top : 20px;
-        }
-        .button{
-        	padding:8px 213px;
-        	border : 1px solid #2f4f4f;
-        	background-color:#2f4f4f;
-        	border-radius:4px;
-        	color: white;
-        }
-        h3{
-        	color: white;
-        }
+
+ul {
+	background-color: rgba(180, 228, 230, 0.5);
+	font-weight: 700;
+}
+
+li {
+	list-style: none;
+	padding: 24.2px 18px;
+}
+
+.input {
+	width: 100%;
+	padding: 5px 0;
+	margin: 5px 0;
+	border-left: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 1.5px solid black;
+	outline: none;
+	background: transparent;
+}
+
+form {
+	color: black;
+	font-size: 14px;
+	border-radius: 5px;
+	padding: 30px 20px;
+	font-weight: bold;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: rgba(180, 228, 230, 0.5);
+}
+
+li a {
+	text-decoration: none;
+	color: black;
+}
+
+td, th {
+	padding: 10px;
+}
+
+aside {
+	float: left;
+	margin-right: 70px;
+}
+
+.set1 {
+	height: 250px;
+	width: 510px;
+	margin-left: 400px;
+	border: 1px solid transparent;
+	padding-top: 20px;
+}
+
+.button {
+	padding: 8px 213px;
+	border: 1px solid #2f4f4f;
+	background-color: #2f4f4f;
+	border-radius: 4px;
+	color: white;
+}
+
+h3 {
+	color: white;
+}
 </style>
 </head>
 <body>
 <aside>
 <ul>
-       <li><a href="ViewAlluserServ">View users & Search User</a></li>
-       <li><a href="inactiveUser.jsp">Inactive users</a></li>
+       <li><a href="ViewAlluserServ">View & Search User</a></li>
+       <li><a href="inactiveUser.jsp">User Status</a></li>
        <li><a href="restaurantDetails.jsp">Register Restaurant</a></li>
        <li><a href="addFoodItems.jsp">Add Food Items</a></li>
-       <li><a href="ViewrestaurantServ">View all Restaurant details</a></li> 
+       <li><a href="ViewrestaurantServ">View & Search Restaurant</a></li> 
        <li><a href="updateRestaurant.jsp">Edit Restaurant</a></li>
-       <li><a href="deleteRestaurant.jsp">Inactive Restaurant</a></li>
+       <li><a href="deleteRestaurant.jsp">Restaurant Status</a></li>
        <li><a href="ViewFoodsServ">View food details</a></li>
        <li><a href="ViewOrderServ">View Orders</a>
 </ul>

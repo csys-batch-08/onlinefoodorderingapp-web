@@ -2,6 +2,7 @@ package com.onlinefoodorder.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,32 +10,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
-@WebServlet("/activerestaurant")
+import com.onlinefoodorder.model.RestaurantDetails;
 
-public class ActiveRestaurantServlet extends HttpServlet 
-{
+@WebServlet("/SearchRestaurantServ")
+public class SearchRestaurantServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+  
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
-			String email = request.getParameter("email");
+			String emailid = request.getParameter("email");
 			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
-			restaurantdao.activeRestaurant(email);
-			String restaurantName = restaurantdao.findRestaurantName(email);
-			request.setAttribute("restaurantname", restaurantName);
-			HttpSession session = request.getSession();
-			session.setAttribute("Active", "Successfully Active");
-			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
-			requestdispatcher.forward(request, response);
+			List<RestaurantDetails> restaurantList = restaurantdao.searchRestaurant(emailid);
+			
+			request.setAttribute("restaurantList", restaurantList);
+			
+			RequestDispatcher resquestdispatcher = request.getRequestDispatcher("adminSearchRestaurant.jsp");
+			resquestdispatcher.forward(request, response);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 }

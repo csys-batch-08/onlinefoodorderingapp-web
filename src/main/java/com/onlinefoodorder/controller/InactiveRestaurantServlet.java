@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 
@@ -24,7 +25,9 @@ public class InactiveRestaurantServlet extends HttpServlet {
 			restaurantdao.inactiveRestaurant(email);
 			String restaurantName = restaurantdao.findRestaurantName(email);
 			request.setAttribute("restaurantname", restaurantName);
-			RequestDispatcher requestdispatcher = request.getRequestDispatcher("restaurantInactiveMsg.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("Inactive", "Successfully Inactive");
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

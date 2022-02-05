@@ -26,11 +26,9 @@ public class LoginServlet extends HttpServlet
 			try {
 				String email = request.getParameter("email");
 				String password = request.getParameter("password");
-				System.out.println(email);
-				System.out.println(password);
+	
 				UserDaoimpl userdao = new UserDaoimpl();
-				User user;
-				user = userdao.validateUser(email, password);
+				User user = userdao.validateUser(email, password);
 				User admin = userdao.validateAdmin(email, password);
 				
 				PrintWriter pw = response.getWriter();
@@ -53,16 +51,15 @@ public class LoginServlet extends HttpServlet
 				}
 				else if(admin!=null)
 				{
-					pw.write("welcome admin");
-					RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-					rd.forward(request, response);	
+					session.setAttribute("admin", admin);
+					response.sendRedirect("admin.jsp");
 				}
 				else
 				{
-					pw.write("Invalid Login");
-					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-					rd.include(request, response);
+					session.setAttribute("validateUser", "Invalid Email address & Password");
+					response.sendRedirect("index.jsp");
 				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}					

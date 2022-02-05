@@ -11,80 +11,84 @@
 <meta charset="ISO-8859-1">
 <title>Show Cart</title>
 <style>
-*style{
-	margin:0;
-	padding:0;
+*style {
+	margin: 0;
+	padding: 0;
 }
-body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("image/showfood33.jpeg");
-    font-size:13.5px;
-    background-size: cover;
-    background-attachment: fixed;
-   	overflow-x:hidden;
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-image: url("assets/image/showfood33.jpeg");
+	font-size: 13.5px;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow-x: hidden;
 }
-  ul
-  {
-        list-style: none;
-        background-color:black;
-        position: fixed;
-        margin-bottom: 20px;
-        margin: 0;
-        width:pc;
-    }
-  li{
-      display:inline-block;
-      padding-top: 13px;
-      padding-bottom: 13px;
-      text-align: center;
-      font-size: 15px;
-  }
-  li a{
-      text-decoration: none;
-      font-weight:bold;
-      display:block;
-      padding-right: 89px;
-      padding-left: 10px;
-      color: white;
-  }
-  li a:hover{
-  	opacity: 0.8;
-  	color: LightSeaGreen;
-  }
-  li button{
-      margin-right: 280px;
-  }
-  img{
-  	
-		height:210px;
-		width:245px;
-		padding-top: 80px;
-		margin: 0;
- 
-  }
-  .names{
-		position : relative;
-		top:180px;
-		right:250px;
-		width:200%;
-		font-weight: bold;
-		font-size: 14px;
-	}
-	.table{
-		padding-left: 10px;
-	}
-	button{
-		border : 1px solid #bebebe;
-		background-color:#bebebe;
-		padding: 5px 5px;
-		border-radius: 4px;
-	}
-	button a{
-		text-decoration :none;
-		link-style: none;
-		color: black;
-		font-weight:bold; 
-	}
+
+ul {
+	list-style: none;
+	background-color: black;
+	position: fixed;
+	margin-bottom: 20px;
+	margin: 0;
+	width: pc;
+}
+
+li {
+	display: inline-block;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	text-align: center;
+	font-size: 15px;
+}
+
+li a {
+	text-decoration: none;
+	font-weight: bold;
+	display: block;
+	padding-right: 89px;
+	padding-left: 10px;
+	color: white;
+}
+
+li a:hover {
+	opacity: 0.8;
+	color: LightSeaGreen;
+}
+
+img {
+	height: 210px;
+	width: 245px;
+	padding-top: 80px;
+	margin: 0;
+}
+
+.names {
+	position: relative;
+	top: 180px;
+	right: 250px;
+	width: 200%;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.table {
+	padding-left: 10px;
+}
+
+button {
+	border: 1px solid #bebebe;
+	background-color: #bebebe;
+	padding: 5px 5px;
+	border-radius: 4px;
+}
+
+button a {
+	text-decoration: none;
+	link-style: none;
+	color: black;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>

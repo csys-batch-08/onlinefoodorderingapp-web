@@ -41,10 +41,6 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		String fname = request.getParameter("foodname");
 		
-		System.out.println("fname" +fname);
-		System.out.println("resid" +resid);
-		System.out.println("quantity" +quantity);
-		
 		session.setAttribute("foodname",fname );
 		
 		int itemid = fooditem.finditemid(fname, resid);
@@ -61,13 +57,13 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		OrderFoodsDaoimpl orderfood = new OrderFoodsDaoimpl();
 		Orderfoods order = new Orderfoods(userid, itemid, quantity, totalprice);
-		orderfood.insertOrderFoods(order);
 		
 		UserDaoimpl userdao = new UserDaoimpl();
 		int wallet = userdao.walletbal(userid);
 		
 		if(wallet > 0)
 		{
+			orderfood.insertOrderFoods(order);
 			int walletbalance = wallet - totalprice;
 			session.setAttribute("walletbalance", walletbalance);
 			User user = new User(null, 0, null, emailaddress, null, walletbalance);

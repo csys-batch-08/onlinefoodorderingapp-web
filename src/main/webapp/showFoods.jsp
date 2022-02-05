@@ -12,7 +12,7 @@
 <style>
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-image: url("image/showfood33.jpeg");
+	background-image: url("assets/image/showfood33.jpeg");
 	font-size: 13.5px;
 	background-size: cover;
 	background-attachment: fixed;
@@ -97,7 +97,7 @@ form button {
         <li><a href="MyOrdersServ">My Orders</a>
         <li><a href="UserProfileServ">My profile</a></li>
         <li><a href="ratings.jsp">Ratings</a></li>
-        <li><a href="login.jsp">Logout</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
@@ -114,7 +114,7 @@ form button {
       
          <tbody>
           <tr>
-             <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="image/${foodlist.foodImage}" alt="foodimage"></a></td>    
+             <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>    
              <td>
              <div class="names">${foodlist.foodName}<br>
              	Price :${foodlist.price}<br>

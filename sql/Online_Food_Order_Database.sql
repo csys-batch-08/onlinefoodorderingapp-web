@@ -126,7 +126,7 @@ select * from order_foods where order_date like '___01_22%';
 select * from restaurant_details where restaurant_status='active';
 commit;
 update user_details set password = 'Meena1013' where email_address='meena@gmail.com';
-update user_details set password = ? where email_address=
+update user_details set wallet=0 where email_address='abarna@gmail.com';
 select * from user_details where not role='Admin';
 
 
@@ -137,3 +137,22 @@ select * from order_foods;
 select * from cart;
 select * from ratings;
 
+update food_items set food_image='muttonbiriyani.jpg' where item_id=1503;
+
+select Order_Item.Order_Id,ordersdetails.Order_Date, ProductsDetails.Product_Name, customerdetails.customer_name, employees.First_Name as Salesman_Name, employees.phone as Salesman_Number from OrdersDetails 
+INNER JOIN customerdetails ON customerdetails.customer_id = ordersdetails.customer_Id 
+INNER JOIN order_item ON ordersdetails.order_id = order_item.order_id
+INNER JOIN productsdetails ON productsdetails.product_id = order_item.product_id
+INNER JOIN Employees ON employees.employee_id = ordersdetails.salesman_id
+WHERE Order_Date BETWEEN '01-01-2021' AND '30-12-2021' AND status='Cancelled';
+
+select item_id from order_foods where order_date between '01-12-2021' AND '03-02-2022';
+
+select count(food_items.item_id) as ItemId, restaurant_details.restaurant_name from restaurant_details
+INNER JOIN food_items on restaurant_details.restaurant_id = food_items.restaurant_id 
+INNER JOIN order_foods on food_items.item_id = order_foods.item_id group by(restaurant_details.restaurant_name); 
+
+ 
+select count(item_id), item_id from order_foods group by(item_id);
+
+select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items;

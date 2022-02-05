@@ -22,16 +22,16 @@ public class WalletrechargeServlet extends HttpServlet {
 	try{
 			HttpSession session = request.getSession();	
 			Long cardnumber = Long.parseLong(request.getParameter("cardnumber"));
-			String emailid = (String) session.getAttribute("email");
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			int cvv = Integer.parseInt(request.getParameter("cvv"));
 			
 			UserDaoimpl userdao = new UserDaoimpl();
 			int userid = (int)session.getAttribute("Userid1");
-			int balance;
-			balance = userdao.walletbal(userid);
-			int currentbalance = balance+amount;
-		
+			int balance = userdao.walletbal(userid);
+			int currentbalance = balance + amount;
+			
+			String emailid = (String) session.getAttribute("emailid");
+			
 			User user = new User(null, 0, null, emailid, null, currentbalance);
 			boolean wallet = userdao.updatewallet(user);
 		

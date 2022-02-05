@@ -7,7 +7,7 @@
 <title>User Registeration</title>
 <style>
 body{
-    background-image: url("image/indexbackground.jpeg");
+    background-image: url("assets/image/indexbackground.jpeg");
     color: white;
     background-repeat: no-repeat;
     background-size: cover;

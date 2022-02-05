@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 
@@ -25,7 +26,11 @@ public class ActiveuserServlet extends HttpServlet {
 			userdao.userProfileActive(email);
 			String userName = userdao.findUserName(email);
 			request.setAttribute("username", userName);
-			RequestDispatcher requestdispatcher = request.getRequestDispatcher("userActiveMsg.jsp");
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("ActiveUser", "Successfully Active");
+			
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

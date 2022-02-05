@@ -120,7 +120,9 @@ public class FoodItems {
 		}
 		@Override
 		public String toString() {
-			return String.format("%-7s%-10s%-9s%-9s%-9s", restaurantId, foodName, cuisineName, description, price);
+			return "FoodItems [restaurantId=" + restaurantId + ", foodName=" + foodName + ", cuisineName=" + cuisineName
+					+ ", description=" + description + ", price=" + price + ", foodImage=" + foodImage + ", itemId="
+					+ itemId + ", foodStatus=" + foodStatus + ", restaurantName=" + restaurantName + "]";
 		}
 		
 		

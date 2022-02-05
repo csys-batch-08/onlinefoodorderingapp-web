@@ -13,22 +13,23 @@
 <title>My Orders</title>
 </head>
 <style>
-	table{
-		margin-right:400px;
-		width: 30%;
-	}
-	.button1{
-		padding: 3px 20px;
-		border-radius: 4px;
-		background-color: black;
-	}
-	button a{
-		text-decoration: none;
-		link-style: none;
-		color: white;
-		font-weight: bold;	
-	}
-	
+table {
+	margin-right: 400px;
+	width: 30%;
+}
+
+.button1 {
+	padding: 3px 20px;
+	border-radius: 4px;
+	background-color: black;
+}
+
+button a {
+	text-decoration: none;
+	link-style: none;
+	color: white;
+	font-weight: bold;
+}
 </style>
 <body>
 
@@ -48,25 +49,23 @@
 		<th>Cancel order</th>
 	</tr>
 	</thead>
-	<br><br>
-<tbody>
-	<c:set var="i" value="0"/>
-	<c:forEach items="${orderList}" var="orderlist">
-	<c:set var="i" value="${i+1}"/>
-<tr>
+	<tbody>
+		<c:set var="i" value="0"/>
+		<c:forEach items="${orderList}" var="orderlist">
+		<c:set var="i" value="${i+1}"/>
+			<tr>
 
-<td>${i}</td>
-<td>${orderlist.itemId}</td>
-<td>${orderlist.quantity}</td>
-<td>${orderlist.totalPrice}</td>
-<td><fmt:parseDate value="${orderlist.orderDate}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
-  <fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
-<td>${orderlist.orderStatus}</td>
+				<td>${i}</td>
+				<td>${orderlist.itemId}</td>
+				<td>${orderlist.quantity}</td>
+				<td>${orderlist.totalPrice}</td>
+				<td><fmt:parseDate value="${orderlist.orderDate}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
+  				<fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
+				<td>${orderlist.orderStatus}</td>
+				<td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>
+			</tr>
 
-<td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>
-</tr>
-
-</c:forEach>
+		</c:forEach>
 </tbody>
 </table>
 <button class="button1"><a href="showfoodsservlet">Back</a></button>

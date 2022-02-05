@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
 			User user = new User(username, phoneno, address, emailid, password);
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.insertUser(user);
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("index.jsp");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
