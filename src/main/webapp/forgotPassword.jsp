@@ -60,11 +60,11 @@ form button{
 <body>
 
 	<form action ="forgotpassword" id="login" class="userlogin" method="post">
-        <label>Email Address</label>
+        <label for="email">Email Address</label>
         <input type="email" name="email" class="input" id="txt" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
-        <label>Enter the new Password</label>
+        <label for="password">Enter the new Password</label>
         <input type="password" class="input" id="txt" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
-        <button class='submit-btn' type="submit">Next</button><br>
+        <button class='submit-btn'>Next</button><br>
     </form>
     
 </body>

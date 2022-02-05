@@ -92,6 +92,7 @@ button a {
 </style>
 </head>
 <body>
+
 <div class="nav">
     <ul>
         <li><a href="showfoodsservlet">Food Items</a></li>
@@ -107,6 +108,7 @@ button a {
 
 <table>
 <tbody>
+
 	   <tr>
         <c:set var="count" value="1"/>
        	<c:forEach items="${foodlist}" var="cartlist">
@@ -122,25 +124,23 @@ button a {
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
-                            
+                        </table>           
                     </td>
-                       <c:choose>
-    	 <c:when test="${count==4}">
-    	 <c:set var="count" value="1"/>
-       
+            <c:choose>
+    	    <c:when test="${count==4}">
+    	    <c:set var="count" value="1"/>   
    		 </tr>
    		 <tr>
-     
-     	</c:when>
-     	<c:otherwise>
-     		<c:set var="count" value="${count+1}"/>
-     	</c:otherwise>
-     	</c:choose> 
-     	</c:forEach> 
-                       
+     	    </c:when>
+     	    <c:otherwise>
+     	    <c:set var="count" value="${count+1}"/>
+     	 </c:otherwise>
+     	 </c:choose> 
+     	 </c:forEach> 
          </tr>
+         
 </tbody>
 </table>
+
 </body>
 </html>

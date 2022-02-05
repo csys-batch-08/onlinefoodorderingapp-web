@@ -120,7 +120,7 @@ form button {
                 <td><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}"><img src="image/${foodnames.foodImage}" alt="foodimage"></a></td>    
                 <td><div class="names">${foodnames.foodName}<br>
                     Food Price :${foodnames.price}<br>
-                    ${foodnames.restaurantName}<br></td>
+                    ${foodnames.restaurantName}<br></div></td>
             </tr>
             </tbody>
             </table>                 

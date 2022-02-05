@@ -106,7 +106,7 @@ form button {
 <form action="filterbycityserv" method="post">
  <div class="nav">
     <ul>
-        <li><input type="text" name="city" class="text" placeholder="   City name  "></li>
+        <li><input type="text" name="city" id="txt" class="text" placeholder="   City name  "></li>
         <li><button>Search</button></a></li>
         <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="ShowRestaurantServ">Restaurants</a></li>
@@ -118,7 +118,7 @@ form button {
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
-
+</form>
 <div class="table">
 <table>
 <tbody>
@@ -156,6 +156,5 @@ form button {
          </tr>
 </tbody>
 </table>
-</div> 
-</form>              
+</div>               
 </body>

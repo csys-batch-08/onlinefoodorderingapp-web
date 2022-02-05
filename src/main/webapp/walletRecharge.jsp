@@ -126,7 +126,7 @@ button:hover {
          <label for="Amount">Amount</label><br>
          <input type="text" class="input" id="txt" name="amount" pattern="[1-9][0-9]+" maxlength="5" required><br><br>
          <button class="button1"><a href="showfoodsservlet">Back</a></button> 
-         <button class="button">Recharge Wallet</a></button>
+         <button class="button">Recharge Wallet</button>
 </form>
 </body>
 </html>

@@ -93,7 +93,7 @@ form button {
 <div class="nav">
 <form>
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
+        <li><input type="text" name="search" id="txt" class="text" placeholder="   Food name  "></li>
         <li> <button>Search</button></a></li>
         <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="ShowRestaurantServ">Restaurants</a></li>

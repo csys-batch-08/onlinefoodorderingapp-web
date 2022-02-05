@@ -127,7 +127,7 @@ button a {
 <div class="set1">
 <form action="activeusers" method="post">
 	<h3>Active user</h3><br>
-	<label>User Email address </label><br><br>
+	<label for="email">User Email address </label><br><br>
 	<input type="text" class="input" name="email" id="txt" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 	<button class="button">Active</button>
 </form>

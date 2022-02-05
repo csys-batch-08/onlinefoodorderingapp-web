@@ -102,15 +102,15 @@ h2{
 	<h2>User profile update</h2>
 	
 	<form action ="updateuser1" method = "post" id="resgister" class="userRegister">
-        <label>Name</label>
+        <label for="username">Name</label>
         <input type="text" id="username" id="txt" name="username" class="input" pattern="[A-Za-z]{5,}" required><br><br>
-        <label>Phone Number</label>
+        <label for="phoneno">Phone Number</label>
         <input type="phone" name="phonenumber" id="txt" class="input" pattern="[6-9][0-9]{9}" required><br><br>
-        <label>Address</label>
+        <label for="address">Address</label>
         <input type="text" name="address" id="txt" class="input" pattern = "[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>       
-        <label>Password</label>
+        <label for="password">Password</label>
         <input type="password" class="input" id="txt" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
-        <button class="button">Update</a></button>
+        <button class="button">Update</button>
     </form>
     
 </div>

@@ -5,7 +5,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inactive Restaurant</title>
-</head>
 <style>
 * {
 	margin: 0;
@@ -105,7 +104,7 @@ button a {
 	color: black;
 }
 </style>
-
+</head>
 <body>
 <aside>
 <ul>

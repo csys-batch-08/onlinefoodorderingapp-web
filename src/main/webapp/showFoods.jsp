@@ -89,7 +89,7 @@ form button {
 <div class="nav">
     <ul>
         <li><input type="text" name="search" class="text" placeholder="   Food name  "></li>
-        <li> <button>Search</button></a></li>
+        <li><button>Search</button></a></li>
         <li><a href="showfoodsservlet">Food Items</a></li>
         <li><a href="ShowRestaurantServ">Restaurants</a></li>
         <li><a href="ShowCartServ">Cart</a></li>
@@ -100,7 +100,7 @@ form button {
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
-
+</form>
 <div class="table">
 <table>
 
@@ -141,5 +141,4 @@ form button {
 </tbody>
 </table>
 </div>
-</form>
 </body>

@@ -77,7 +77,7 @@ button:hover {
 	<input type="number" name="quantity" class="input" id="txt" pattern="[1-9][0-9]+" maxlength="3" required><br>
 	<input type="hidden" name="number" id="txt" value="<c:out value="${restaurantId}"></c:out>">
 	<input type="hidden" name="foodname" id="txt" value='<c:out value="${foodname}"></c:out>'>
-	<br><button type="submit" class="button">Order</button>
+	<br><button class="button">Order</button>
 	
 </form>
 </div>
