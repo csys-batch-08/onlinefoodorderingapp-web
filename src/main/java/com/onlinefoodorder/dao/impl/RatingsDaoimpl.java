@@ -51,7 +51,7 @@ public class RatingsDaoimpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return -1;
 	}

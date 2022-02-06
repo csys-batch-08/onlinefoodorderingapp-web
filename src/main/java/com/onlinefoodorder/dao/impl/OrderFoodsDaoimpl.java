@@ -55,14 +55,26 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(rs != null) {
-				rs.close();
+			if(rs != null){
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			if (statement != null) {
-				statement.close();
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			if (con != null) {
-				con.close();
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -90,7 +102,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return orderlist;
 	}
@@ -152,7 +164,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return foodprice;
 	}

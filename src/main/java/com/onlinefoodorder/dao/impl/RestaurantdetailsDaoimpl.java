@@ -123,7 +123,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return restaurantid;
 	}
@@ -146,7 +146,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return restaurantName;
 	}
@@ -169,7 +169,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 
 		return restaurantId;
@@ -184,18 +184,19 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		ResultSet rs = null;
 		PreparedStatement p1 = null;
 		try {
+			System.out.println("method");
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findname);
 			rs = p1.executeQuery();
 			if (rs.next()) {
+				System.out.println("food");
 				restaurantname = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
-
 		return restaurantname;
 	}
 
@@ -222,14 +223,26 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(rs != null) {
-				rs.close();
+			if(rs != null){
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			if (con != null) {
-				con.close();
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			if (statement != null) {
-				statement.close();
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return restaurantlist;
@@ -259,7 +272,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return restaurantlist;
 	}
@@ -283,7 +296,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return restaurantList;
 	}

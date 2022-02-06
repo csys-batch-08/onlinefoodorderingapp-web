@@ -23,17 +23,17 @@ public class ConnectionUtil
 			}
 			return con;
 	}
-	public static void closeConnectionStatementResultSet(ResultSet rs, Connection con, PreparedStatement p1)
+	public static void closeConnectionStatementResultSet(ResultSet rs, PreparedStatement p1, Connection con)
 	{
 		try {
 			if(rs != null) {
 				rs.close();
 			} 
-			if(p1 != null) {
-				p1.close();
-			}
 			if(con != null) {
 				con.close();
+			}
+			if(p1 != null) {
+				p1.close();
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

@@ -37,9 +37,9 @@ public class UserDaoimpl implements UserDao {
 		}
 		return flag;
 	}
-
+	
 	// Update User Details
-
+	
 	public boolean userProfileUpdate(User user) throws SQLException {
 		String updateQuery = "update user_details set user_name=?, phone_no=?, address=?, password=?  where email_address=?";
 		boolean flag = false;
@@ -104,7 +104,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return user;
 	}
@@ -129,7 +129,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return userList;
 	}
@@ -192,7 +192,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return user;
 	}
@@ -217,13 +217,25 @@ public class UserDaoimpl implements UserDao {
 			e.printStackTrace();
 		} finally {
 			if(rs != null){
-				rs.close();
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			if(statement != null) {
-				statement.close();
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			if(con != null) {
-				con.close();
+				try {
+					con.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return userList;
@@ -249,7 +261,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return userList;
 	}
@@ -272,7 +284,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return userId;
 	}
@@ -295,7 +307,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return userName;
 	}
@@ -318,7 +330,7 @@ public class UserDaoimpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, con, p1);
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return -1;
 	}

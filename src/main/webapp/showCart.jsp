@@ -116,7 +116,7 @@ button a {
                         <table id="foodtable">
                             <tbody>
                                 <tr>
-                                    <td><a href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="image/${cartlist.foodImage}" alt="foodimage"></a></td>    
+                                    <td><a href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="assets/image/${cartlist.foodImage}" alt="foodimage"></a></td>    
                                     <td>
                                   	    <div class="names">${cartlist.foodName}</span><br>
                                         Food Price :${cartlist.price}</span>

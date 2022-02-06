@@ -152,11 +152,4 @@ select count(food_items.item_id) as ItemId, restaurant_details.restaurant_name f
 INNER JOIN food_items on restaurant_details.restaurant_id = food_items.restaurant_id 
 INNER JOIN order_foods on food_items.item_id = order_foods.item_id group by(restaurant_details.restaurant_name); 
 
- 
-select count(item_id), item_id from order_foods group by(item_id);
-
-select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items;
-select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active';
-
-
 select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items;

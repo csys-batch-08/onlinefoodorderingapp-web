@@ -115,7 +115,7 @@ form button {
            <table>
            <tbody>
               <tr>
-                  <td><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}"><img src="image/${restaurantfoodlist.foodImage}" alt="foodimage"></a></td>    
+                  <td><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}"><img src="assets/image/${restaurantfoodlist.foodImage}" alt="foodimage"></a></td>    
                   <td>
                   <div class="names">${restaurantfoodlist.foodName}<br>
                   Food Price :${restaurantfoodlist.price}<br></div>
