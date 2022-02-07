@@ -75,13 +75,13 @@ aside {
 	padding-top: 20px;
 }
 button{
- 			border: 1px solid transparent;
-        	background-color:rgba(226, 226, 17, 0.685);
-        	border-radius:4px;
-        	display: inline-flex;
-        	cursor: pointer; 
-        	font-weight: bold;
-        	padding: 10px 170px;
+ 		border: 1px solid transparent;
+        background-color:rgba(226, 226, 17, 0.685);
+        border-radius:4px;
+        display: inline-flex;
+        cursor: pointer; 
+        font-weight: bold;
+        padding: 10px 170px;
  }
 button a{
       		text-decoration: none;
@@ -103,13 +103,13 @@ h2{
 	
 	<form action ="updateuser1" method = "post" id="resgister" class="userRegister">
         <label for="username">Name</label>
-        <input type="text" id="username" id="txt" name="username" class="input" pattern="[A-Za-z]{5,}" required><br><br>
+        <input type="text" id="username" id="username" name="username" class="input" pattern="[A-Za-z]{5,}" required><br><br>
         <label for="phoneno">Phone Number</label>
-        <input type="phone" name="phonenumber" id="txt" class="input" pattern="[6-9][0-9]{9}" required><br><br>
+        <input type="phone" name="phonenumber" id="phoneno" class="input" pattern="[6-9][0-9]{9}" required><br><br>
         <label for="address">Address</label>
-        <input type="text" name="address" id="txt" class="input" pattern = "[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>       
+        <input type="text" name="address" id="address" class="input" pattern = "[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>       
         <label for="password">Password</label>
-        <input type="password" class="input" id="txt" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
+        <input type="password" class="input" id="password" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
         <button class="button">Update</button>
     </form>
     

@@ -45,7 +45,7 @@ li a {
 	text-decoration: none;
 	font-weight: bold;
 	display: block;
-	padding-right: 91px;
+	padding-right: 88px;
 	padding-left: 10px;
 	color: white;
 }
@@ -98,20 +98,18 @@ img {
 <caption></caption>
 <tbody>
 	  <tr>
-	  <th id="tableHead"></th>
-		<c:set var="count" value="1" />
+		<c:set var="count" value="1"/>
 		<c:forEach items="${restaurantList}" var="restaurantlist">
 			<td>
 			   <table>
 			   <caption></caption>
 			   <tbody>
 					<tr>
-					<th id="tableHead"></th>
 					<td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img	src="assets/image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>
 					<td><div class="names">${restaurantlist.restaurantName}<br>
 						 				   Address : ${restaurantlist.area} ${restaurantlist.city}<br>
-											<jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
-											Ratings :${rating.fetchRating(restaurantlist.restaurantId)}	<br>
+										   <jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
+										   Ratings :${rating.fetchRating(restaurantlist.restaurantId)}	<br>
 						</div>
 					</td>
 					</tr>

@@ -26,7 +26,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
 				List<FoodItems> foodItemList;
 				foodItemList = fooditemdao.showFoodItems();	
-				System.out.println(foodItemList);
 				req.setAttribute("fooditemslistobj", foodItemList);
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
 				requestDispatcher.forward(req, resp);		

@@ -102,44 +102,38 @@ form button {
 </div>
 </form>
 <div class="table">
-<table>
-<caption></caption>
-<tbody>
-	<tr>
-	   <c:set var="count" value="1"/>
-       <c:forEach items="${fooditemslistobj}" var="foodlist">
-       <td>   
-         <table>
-         <caption></caption>
-         <tbody>
-         <tr>
-             <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>    
-             <td>
-             <div class="names">${foodlist.foodName}<br>
-             	Price :${foodlist.price}<br>
-                ${foodlist.restaurantName}
-             </div>
-             </td>
-         </tr>
-         </tbody>
-         </table>         
-       </td>
-     <c:choose>
-     <c:when test="${count==4}">
-     <c:set var="count" value="1"/>
-       
-    </tr>
-    <tr>
-     
-     </c:when>
-     <c:otherwise>
-     	<c:set var="count" value="${count+1}"/>
-     </c:otherwise>
-     </c:choose> 
-     </c:forEach> 
-    
-    </tr>
-</tbody>
-</table>
-</div>
+		<table>
+			<caption></caption>
+			<tr>
+				<c:set var="count" value="1" />
+				<c:forEach items="${fooditemslistobj}" var="foodlist">
+					<td>
+						<table>
+							<caption></caption>
+							<tr>
+								<td><a
+									href="addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img
+										src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>
+								<td><div class="names">${foodlist.foodName}<br>Price :${foodlist.price}<br> 
+								         ${foodlist.restaurantName}
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<c:choose>
+						<c:when test="${count==4}">
+							<c:set var="count" value="1" />
+			</tr>
+			<tr>
+
+				</c:when>
+				<c:otherwise>
+					<c:set var="count" value="${count+1}" />
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
 </body>

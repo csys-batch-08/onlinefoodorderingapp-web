@@ -20,14 +20,10 @@ public class ShowCartServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 	try {
-
 			HttpSession session = request.getSession();
-			
 			CartDaoimpl cartDaoimpl = new CartDaoimpl();
-			
 			int userid = (int)session.getAttribute("Userid1");
 			List<FoodItems> foodlist = cartDaoimpl.fetchCart(userid);
 			request.setAttribute("foodlist", foodlist);

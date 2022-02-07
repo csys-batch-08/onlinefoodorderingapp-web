@@ -80,10 +80,10 @@ button a {
 <div class="set1">
 
 <form action="rating" method="get">
-	<label for="text">Restaurant name</label><br><br>
-	<input type="text" name="restaurantname" class="input" id="txt" pattern="[A-Za-z]{5,}" required>
+	<label for="restaurantName">Restaurant name</label><br><br>
+	<input type="text" name="restaurantname" class="input" id="restaurantName" pattern="[A-Za-z]{5,}" required>
 	<label for="rating">Ratings</label><br><br>
-	<input type="text" name="rating" class="input" id="txt" pattern="[0-5]" required><br><br>
+	<input type="text" name="rating" class="input" id="rating" pattern="[0-5]" required><br><br>
 	<div class="btn"><button class="button">Add</button>
 	<button class="button">Back</button></div>
 </form>

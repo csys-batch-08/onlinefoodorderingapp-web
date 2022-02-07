@@ -23,9 +23,7 @@ public class FilterbyCityServlet extends HttpServlet {
 			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 			String city = request.getParameter("city");
 			List<RestaurantDetails> restaurantlist = restaurantdao.filterbyCity(city);
-			
 			request.setAttribute("restaurantList", restaurantlist);
-			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");
 			requestdispatcher.forward(request, response);
 		} catch (SQLException e) {

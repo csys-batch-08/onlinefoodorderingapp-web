@@ -106,44 +106,40 @@ button a {
     </ul>
 </div>
 
-<table>
-<caption></caption>
-<tbody>
-
-	   <tr>
-	   <th id="tableHead"></th>
-        <c:set var="count" value="1"/>
-       	<c:forEach items="${foodlist}" var="cartlist">
-                    <td>
-                        <table>
-                        <caption></caption>
-                            <tbody>
-                                <tr>
-                                <th id="tableHead"></th>
-                                    <td><a href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="assets/image/${cartlist.foodImage}" alt="foodimage"></a></td>    
-                                    <td>
-                                  	    <div class="names">${cartlist.foodName}</span><br>
-                                        Food Price :${cartlist.price}</span>
-                                        <button><a href = "removeCartserv?itemId=${cartlist.itemId}">Remove Item</a></button></div>    
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>           
-                    </td>
-            <c:choose>
-    	    <c:when test="${count==4}">
-    	    <c:set var="count" value="1"/>   
-   		 </tr>
-   		 <tr>
-     	    </c:when>
-     	    <c:otherwise>
-     	    <c:set var="count" value="${count+1}"/>
-     	 </c:otherwise>
-     	 </c:choose> 
-     	 </c:forEach> 
-         </tr>
-         
-</tbody>
-</table>
+	<table>
+		<caption></caption>
+		<tr>
+			<th id="tableHead"></th>
+			<c:set var="count" value="1" />
+			<c:forEach items="${foodlist}" var="cartlist">
+				<td>
+					<table>
+						<caption></caption>
+						<tr>
+							<th id="tableHead"></th>
+							<td><a
+								href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img
+									src="assets/image/${cartlist.foodImage}" alt="foodimage"></a></td>
+							<td><div class="names">${cartlist.foodName}</span><br>
+									Food Price :${cartlist.price}</span>
+									<button><a href="removeCartserv?itemId=${cartlist.itemId}">Remove Item</a></button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<c:choose>
+					<c:when test="${count==4}">
+						<c:set var="count" value="1" />
+		</tr>
+		<tr>
+		</c:when>
+		<c:otherwise>
+			<c:set var="count" value="${count+1}" />
+		</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		</tr>
+	</table>
 </body>
 </html>

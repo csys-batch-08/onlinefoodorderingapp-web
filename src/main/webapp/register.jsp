@@ -60,13 +60,13 @@ button:hover{
         <label for="username">Name</label>
         <input type="text" id="username" name="username" class="input" pattern="[A-Za-z]{5,}" required><br><br>
         <label for="phoneno">Phone Number</label>
-        <input type="phone" name="phonenumber" id="txt" class="input" pattern="[6-9][0-9]{9}" required><br><br>
+        <input type="phone" name="phonenumber" id="phoneno" class="input" pattern="[6-9][0-9]{9}" required><br><br>
         <label for="address">Address</label>
-        <input type="text" name="address" id="txt" class="input" pattern = "[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
+        <input type="text" name="address" id="address" class="input" pattern = "[A-Za-z0-9]{4,}+[,][A-Za-z]{4,}+[,][0-9]{6}+{20,}" required><br><br>
         <label for="email">Email Address</label>
-        <input type="email" name="email" id="txt" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
+        <input type="email" name="email" id="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
         <label for="password">Password</label>
-        <input type="password" class="input" id="txt" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
+        <input type="password" class="input" id="password" name="password" pattern="[A-Za-z0-9]{8,10}" required><br><br>
         <button>Register</button>
     </form>
 </body>

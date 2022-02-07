@@ -130,39 +130,39 @@ h1{
             
             <div class="details1">
                 <label class="label1" for="restaurantname">Restaurant name</label>
-                <input type="text" name="restaurantname" id="txt" class="input" pattern="[A-Za-z]{4,}" required><br>
+                <input type="text" name="restaurantname" id="label1" class="input" pattern="[A-Za-z]{4,}" required><br>
 
                 <label class="label3" for="area">Area</label>
-                <input type="text" name="area" id="txt" class="input" pattern="[0-9A-Za-z]{5,}" required><br>
+                <input type="text" name="area" id="label3" class="input" pattern="[0-9A-Za-z]{5,}" required><br>
 
                 <label class="label4" for="city">City</label>
-                <input type="text" name="city" id="txt" class="input" pattern="[A-Za-z]{4,}" required><br>
+                <input type="text" name="city" id="label4" class="input" pattern="[A-Za-z]{4,}" required><br>
 
                 <label class="label5" for="pincode">Pincode</label>
-                <input type="text" name="pincode" id="txt" class="input" pattern="[0-9]{6}" required><br>
+                <input type="text" name="pincode" id="label5" class="input" pattern="[0-9]{6}" required><br>
 
                 <label class="label6" for="landline">Landline Number</label>
-                <input type="phone" name="landlineno" id="txt" class="input" pattern="[1-5]{4}+[5-9]{6}"required><br>
+                <input type="phone" name="landlineno" id="label6" class="input" pattern="[1-5]{4}+[5-9]{6}"required><br>
 
                 <label class="label7" for="name">Owner Name</label>
-                <input type="text" name="ownername" id="txt" class="input" pattern="[A-Za-z]{3,}" required><br>
+                <input type="text" name="ownername" id="label7" class="input" pattern="[A-Za-z]{3,}" required><br>
 
                 <h4 class="label7" >Mark open hours</h4><br>
-                <input type="radio" id="txt" name="time" value="7am to 10pm" required>
+                <input type="radio" id="label7" name="time" value="7am to 10pm" required>
                 <label for="">7am to 10pm</label>
-                <input type="radio" id="txt" name="time" Value="8am to 10pm" required>
+                <input type="radio" id="label7" name="time" Value="8am to 10pm" required>
                 <label for="">10pm to 7am</label>
-                <input type="radio" id="txt" name="time" Value="9am to 10pm" required>
+                <input type="radio" id="label7" name="time" Value="9am to 10pm" required>
                 <label for="">7am to 10pm & 10pm to 7am</label><br>
                 
                 <label class="label7" for="email">Email address</label>
-                <input type="email" id="txt" name="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br>
+                <input type="email" id="label7" name="email" class="input" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br>
                 
                 <label class="label8" for="password">Password</label>
-                <input type="password" id="txt" name="password" class="input" pattern="[A-Za-z0-9]{8,10}" required><br>
+                <input type="password" id="label8" name="password" class="input" pattern="[A-Za-z0-9]{8,10}" required><br>
                 
                 <label class="label9" for="image">Image</label>
-                <input type="file" id="txt"name="image" required><br><br>
+                <input type="file" id="label9" name="image" required><br><br>
             </div>
             <button class="button">Next</button>
     </form>

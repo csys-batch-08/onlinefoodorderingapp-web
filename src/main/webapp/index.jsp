@@ -71,7 +71,7 @@ p a{
 <form action ="userlogin" id="login" class="userlogin" method="post">
     
     <label for="email">Email Address</label>
-    <input type="text" name="email" class="input" id = "email"><br><br>
+    <input type="text" name="email" class="input" id ="email"><br><br>
     <label for="password">Password</label>
     <input type="password" class="input" name="password" id = "password"><br><br>
     <div class="btn"><a href="forgotPassword.jsp">Forgot Password?</a>
