@@ -29,13 +29,10 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		System.out.println("quantity" +quantity);
 		
 		int userid = (int)(session.getAttribute("Userid1"));
-		System.out.println("userid" +userid);
 		
 		String emailaddress = (String)session.getAttribute("emailid");
-		System.out.println("emailaddress" +emailaddress);
 	
 		int resid = Integer.parseInt(request.getParameter("number"));
 		
@@ -43,7 +40,7 @@ public class OrderfoodsServlet extends HttpServlet {
 		
 		session.setAttribute("foodname",fname );
 		
-		int itemid = fooditem.finditemid(fname, resid);
+		int itemid = fooditem.finditemid(resid, fname);
 		
 		FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
 		String foodname1 = fooditemdao.findFoodname(itemid);

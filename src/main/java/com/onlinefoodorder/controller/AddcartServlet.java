@@ -29,10 +29,10 @@ public class AddcartServlet extends HttpServlet {
 			String name= request.getParameter("fname");
 			int resid=Integer.parseInt(request.getParameter("resid"));
 			int itemid;
-			itemid = fooditem.finditemid(name, resid);
+			itemid = fooditem.finditemid(resid, name);
 			int customerid = (int)session.getAttribute("Userid1");
 			
-			cart.insertCart( itemid,customerid);
+			cart.insertCart(customerid, itemid);
 			
 			session.setAttribute("itemidcart", itemid);
 			session.setAttribute("resId", resid);

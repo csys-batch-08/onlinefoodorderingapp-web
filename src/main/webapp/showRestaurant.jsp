@@ -124,7 +124,6 @@ form button {
 <caption></caption>
 <tbody>
 	   <tr>
-	   <th id="tableHead"></th>
 		<c:set var="count" value="1"/>
        	<c:forEach items="${restaurantList}" var="restaurantlist">
              <td>

@@ -106,7 +106,6 @@ form button {
 <caption></caption>
 <tbody>
 	<tr>
-	<th id="tableHead"></th>
 	   <c:set var="count" value="1"/>
        <c:forEach items="${fooditemslistobj}" var="foodlist">
        <td>   
@@ -114,7 +113,6 @@ form button {
          <caption></caption>
          <tbody>
          <tr>
-         <th id="tableHead"></th>
              <td><a href = "addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>    
              <td>
              <div class="names">${foodlist.foodName}<br>

@@ -109,12 +109,6 @@ td, th {
 <div class="set1">
 <h2><strong>View Orders</strong></h2>
 
-<form action="SearchOrderDateServ" method="post">
-		<label for="email">Order Date</label>
-		<input type="date" id="txt" name="date" class="input">
-		<button class="button">view order</button>
-</form>
-
 <table>
 <caption></caption>
 	<thead>
@@ -128,7 +122,6 @@ td, th {
 		<th>Order Status</th>
 	</tr>
 	</thead>
-
 <tbody>
 
 <c:set var="i" value="0"/>

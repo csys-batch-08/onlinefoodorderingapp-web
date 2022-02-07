@@ -166,7 +166,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(price);
 			p1.setInt(1, foodid);
-			rs = p1.executeQuery(price);
+			rs = p1.executeQuery();
 			if (rs.next()) {
 				foodprice = rs.getInt(1);
 			}
@@ -205,7 +205,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// Filter Foods by food name
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name=?";
+		String fname = "%" +foodname+ "%";
+		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name like ";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
@@ -225,10 +226,5 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
 		return foodnamelist;
-	}
-
-	@Override
-	public int finditemid(String foodname, int restaurantid) throws SQLException {
-		return 0;
 	}
 }

@@ -132,7 +132,7 @@ button a {
 		<h2>Inactive Restaurant</h2><br>
 		<label for="email">Enter the email address to change the Restaurant status Active to Inactive</label><br><br>
 		<input type="text" name="email" class="input" id="txt" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
-		<button class="button">Delete</button>
+		<button class="button">Inactive</button>
 	</form>
 	
 </div>

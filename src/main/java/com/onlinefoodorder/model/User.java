@@ -1,8 +1,9 @@
 package com.onlinefoodorder.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User 
+public class User implements Serializable
 {
 	private String userName;
 	private long phoneNo;
@@ -44,13 +45,9 @@ public class User
 	public int getWallet() {
 		return wallet;
 	}
-
-
 	public void setWallet(int wallet) {
 		this.wallet = wallet;
 	}
-
-
 	public User(String userName, long phoneNo, String address, String emailAddress, String password, int wallet) {
 		super();
 		this.userName = userName;
@@ -68,13 +65,10 @@ public class User
 		this.emailAddress = emailAddress;
 		this.password = password;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, emailAddress, password, phoneNo, userName, wallet);
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -90,6 +84,6 @@ public class User
 	}
 	@Override
 	public String toString() {
-		return String.format("\nUser name : " +userName+ "\nPhone Number : " +phoneNo+ "\nAddress : " +address+ "\nEmail Address : " +emailAddress+"\nPassword : " +password+ "\nwallet : ");
+		return String.format("\nUser Name : " +userName+ "\nPhone Number : " +phoneNo+ "\nAddress : " +address+ "\nEmail Address : " +emailAddress+"\nPassword : " +password+ "\nwallet : ");
 	}
 }

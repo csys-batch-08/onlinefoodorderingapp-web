@@ -62,7 +62,14 @@ button a {
 				<td><fmt:parseDate value="${orderlist.orderDate}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
   				<fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
 				<td>${orderlist.orderStatus}</td>
-				<td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>
+				<c:choose>
+					<c:when test="${orderlist.orderStatus.equals('Confirm')}">
+						<td><a href="Cancelorderserv?orderid=${orderlist.orderId}"><button>Cancel</button></a></td>
+					</c:when>
+					<c:otherwise>
+						<td>Cancelled</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 
 		</c:forEach>
