@@ -104,17 +104,21 @@ form button {
         <li><a href="ratings.jsp">Ratings</a></li>
          <li><a href="login.jsp">Logout</a></li>
     </ul>
+</form>
 </div>
-
 <table>
+<caption></caption>
 <tbody>
 	   <tr>
+	   <th id="tableHead"></th>
          <c:set var="count" value="1"/>
        	 <c:forEach items="${foodItemList}" var="restaurantfoodlist">
          <td>
            <table>
+           <caption></caption>
            <tbody>
               <tr>
+              <th id="tableHead"></th>
                   <td><a href = "addcartserv?fname=${restaurantfoodlist.foodName}&resid=${restaurantfoodlist.restaurantId}"><img src="assets/image/${restaurantfoodlist.foodImage}" alt="foodimage"></a></td>    
                   <td>
                   <div class="names">${restaurantfoodlist.foodName}<br>
@@ -140,5 +144,4 @@ form button {
        </tr>
 </tbody>
 </table>
-</form>
 </body>
