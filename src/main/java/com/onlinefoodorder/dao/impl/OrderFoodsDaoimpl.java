@@ -13,7 +13,8 @@ import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.util.ConnectionUtil;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao {
-	// Insert ordered foods
+	
+	//insert ordered food details
 	public boolean insertOrderFoods(Orderfoods order) throws SQLException {
 		String insert = "insert into order_foods(user_id, item_id, quantity, total_price) values(?,?,?,?)";
 		Connection con = null;
@@ -34,8 +35,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		return true;
 	}
 
-	// Admin view order details
-
+	// Admin view all order details
 	public List<Orderfoods> viewOrderFoods() throws SQLException {
 		List<Orderfoods> orderlist = new ArrayList<>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods";
@@ -81,8 +81,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		return orderlist;
 	}
 
-	// User view my orders
-
+	// User view my orders details
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException {
 		List<Orderfoods> orderlist = new ArrayList<>();
 		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods where user_id = ? order by order_date desc";
@@ -92,6 +91,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(showQuery);
+			p1.setInt(1, userid);
 			rs = p1.executeQuery();
 			while (rs.next()) {
 				Orderfoods order = new Orderfoods(rs.getInt("order_id"), rs.getInt("user_id"), rs.getInt("item_id"),
@@ -107,8 +107,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		return orderlist;
 	}
 
-	// User update Order
-
+	//user can cancel the order
 	public int updateOrderdetails(int orderId) throws SQLException {
 		String updateQuery = "update order_foods set order_status = 'Cancel' where order_id=?";
 		Connection con = null;
@@ -127,8 +126,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		return 0;
 	}
 
-	// Find Order Status
-
+	// Find Order Status through orderId
 	public String findOrderstatus(int orderId) throws SQLException {
 		String findQuery = "select order_status from order_foods where order_id=?";
 		Connection con = null;
@@ -147,7 +145,6 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 	}
 
 	// Find Food Price through OrderId
-
 	public int findfoodPrice(int orderid) throws SQLException {
 		String price = "select total_price from order_foods where order_id= ?";
 		Connection con = null;
@@ -157,6 +154,7 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(price);
+			p1.setInt(1, orderid);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				foodprice = rs.getInt(1);

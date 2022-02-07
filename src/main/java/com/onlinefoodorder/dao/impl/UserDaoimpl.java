@@ -13,8 +13,8 @@ import com.onlinefoodorder.model.User;
 import com.onlinefoodorder.util.ConnectionUtil;
 
 public class UserDaoimpl implements UserDao {
-	// Insert User Details
-
+	
+	//User register the details
 	public boolean insertUser(User user) throws SQLException {
 		String insertQuery = "insert into user_details(user_name, phone_no, address, email_address, password) values(?,?,?,?,?)";
 		boolean flag = false;
@@ -38,8 +38,7 @@ public class UserDaoimpl implements UserDao {
 		return flag;
 	}
 	
-	// Update User Details
-	
+	// User update their profile
 	public boolean userProfileUpdate(User user) throws SQLException {
 		String updateQuery = "update user_details set user_name=?, phone_no=?, address=?, password=?  where email_address=?";
 		boolean flag = false;
@@ -62,8 +61,8 @@ public class UserDaoimpl implements UserDao {
 		return flag;
 	}
 
+	
 	// Forgot Password
-
 	public boolean forgotPassword(String emailid, String password) throws SQLException {
 		String query = "update user_details set password = ? where email_address= ?";
 		Connection con = null;
@@ -83,9 +82,32 @@ public class UserDaoimpl implements UserDao {
 		}
 		return flag;
 	}
-
-	// Validate User
-
+	
+	// Validate admin login
+	public User validateAdmin(String emailAddress, String password) throws SQLException {
+		String adminQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= ? and password=?";
+		Connection con = null;
+		PreparedStatement p1 = null;
+		User user = null;
+		ResultSet rs = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			p1 = con.prepareStatement(adminQuery);
+			p1.setString(1, emailAddress);
+			p1.setString(2, password);
+			rs = p1.executeQuery();
+			if (rs.next()) {
+				user = new User(rs.getString("User_Name"), rs.getLong("Phone_no"), rs.getString("Address"),rs.getString("Email_address"), rs.getString("Password"), rs.getInt("Wallet"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
+		}
+		return user;
+	}
+	
+	// Validate User login
 	public User validateUser(String emailAddress, String password) throws SQLException {
 		String validateQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='user' and email_address= ? and password= ?";
 		Connection con = null;
@@ -109,8 +131,7 @@ public class UserDaoimpl implements UserDao {
 		return user;
 	}
 
-	// Admin Search User
-
+	// Admin search the particular user details
 	public List<User> viewSingleUser(String emailid) throws SQLException {
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where email_address= ? ";
@@ -134,16 +155,15 @@ public class UserDaoimpl implements UserDao {
 		return userList;
 	}
 
-	// Inactive User
-
-	public int userProfileDelete(String inactive) throws SQLException {
+	// Admin inactive the user details
+	public int userProfileDelete(String emailAddress) throws SQLException {
 		String deleteQuery = "update user_details set role='Inactive' where email_address=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
-			p1.setString(1, inactive);
+			p1.setString(1, emailAddress);
 			p1.executeUpdate();
 			p1.close();
 			con.close();
@@ -155,16 +175,15 @@ public class UserDaoimpl implements UserDao {
 		return -1;
 	}
 
-	// Active User
-
-	public int userProfileActive(String active) throws SQLException {
+	// Admin active the user details
+	public int userProfileActive(String emailAddress) throws SQLException {
 		String deleteQuery = "update user_details set role='user' where email_address=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(deleteQuery);
-			p1.setString(1, active);
+			p1.setString(1, emailAddress);
 			p1.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -174,31 +193,7 @@ public class UserDaoimpl implements UserDao {
 		return -1;
 	}
 
-	// Validate Admin
-
-	public User validateAdmin(String emailAddress, String password) throws SQLException {
-		String adminQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= ? and password=?";
-		Connection con = null;
-		PreparedStatement p1 = null;
-		User user = null;
-		ResultSet rs = null;
-		try {
-			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(adminQuery);
-			rs = p1.executeQuery();
-			if (rs.next()) {
-				user = new User(rs.getString("User_Name"), rs.getLong("Phone_no"), rs.getString("Address"),rs.getString("Email_address"), rs.getString("Password"), rs.getInt("Wallet"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
-		}
-		return user;
-	}
-
-	// Admin View All User
-
+	// Admin view all user details
 	public List<User> viewUser() throws SQLException {
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where not role='Admin' order by user_id desc fetch first 10 rows only";
@@ -241,8 +236,7 @@ public class UserDaoimpl implements UserDao {
 		return userList;
 	}
 
-	// User Profile
-
+	// User view their profile details
 	public List<User> currentuserprofile(int userid) throws SQLException {
 		List<User> userList = new ArrayList<>();
 		String showQuery = "select user_name, phone_no, address, email_address, password, wallet from user_details where user_id=?";
@@ -266,8 +260,7 @@ public class UserDaoimpl implements UserDao {
 		return userList;
 	}
 
-	// Find User Id
-
+	//Find User Id through emailaddress
 	public int findUserId(String emailAddress) throws SQLException {
 		String findUser = "select user_id from user_details where email_address = ?";
 		Connection con = null;
@@ -277,6 +270,7 @@ public class UserDaoimpl implements UserDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findUser);
+			p1.setString(1, emailAddress);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
@@ -289,8 +283,7 @@ public class UserDaoimpl implements UserDao {
 		return userId;
 	}
 
-	// Find User Name
-
+	// Find username through emailaddress
 	public String findUserName(String email) throws SQLException {
 		String findUser = "select user_name from user_details where email_address = ?";
 		Connection con = null;
@@ -300,6 +293,7 @@ public class UserDaoimpl implements UserDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findUser);
+			p1.setString(1, email);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				userName = rs.getString(1);
@@ -312,8 +306,7 @@ public class UserDaoimpl implements UserDao {
 		return userName;
 	}
 
-	// Wallet Balance
-
+	// user to check the wallet balance
 	public int walletbal(int userId) throws SQLException {
 		Connection con = null;
 		String query = "select wallet from user_details where user_id = ?";
@@ -335,8 +328,7 @@ public class UserDaoimpl implements UserDao {
 		return -1;
 	}
 
-	// Update Wallet
-
+	//User to  update wallet balancce
 	public boolean updatewallet(User user) throws SQLException {
 		Connection con = null;
 		String query = "update user_details set wallet = ? where email_address = ?";

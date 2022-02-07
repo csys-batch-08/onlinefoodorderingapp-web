@@ -13,8 +13,8 @@ import com.onlinefoodorder.model.RestaurantDetails;
 import com.onlinefoodorder.util.ConnectionUtil;
 
 public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
-	// Insert Restaurant Details
-
+	
+	//Admin register the restaurant details
 	public boolean insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException {
 		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
@@ -42,8 +42,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return true;
 	}
 
-	// Update Restaurant Details
-
+	//Admin update the restaurant Details
 	public boolean restaurantUpdate(RestaurantDetails restaurant) throws SQLException {
 		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, password=? where email=?";
 		Connection con = null;
@@ -66,8 +65,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return true;
 	}
 
-	// Inactive Restaurant
-
+	// Admin Inactive the particular restaurant
 	public int inactiveRestaurant(String emailid) throws SQLException {
 		String updateQuery = "update restaurant_details set restaurant_status = 'Inactive' where email = ?";
 		Connection con = null;
@@ -85,8 +83,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return -1;
 	}
 
-	// Active Restaurant
-
+	//Admin Active the particular restaurant
 	public int activeRestaurant(String emailid) throws SQLException {
 		String updateQuery = "update restaurant_details set restaurant_status = 'active' where email =?";
 		Connection con = null;
@@ -105,8 +102,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return -1;
 	}
 
-	// Find Restaurant Id
-
+	// Find Restaurant Id through restaurant emailaddress
 	public int findRestaurantId(String email) throws SQLException {
 		String findid = "select restaurant_id from restaurant_details where email=?";
 		Connection con = null;
@@ -116,6 +112,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findid);
+			p1.setString(1, email);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantid = rs.getInt(1);
@@ -128,8 +125,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return restaurantid;
 	}
 
-	// Find Restaurant Name
-
+	// Find Restaurant Name through restaurnat emailaddress 
 	public String findRestaurantName(String emailId) throws SQLException {
 		String findName = "select restaurant_name from restaurant_details where email=?";
 		Connection con = null;
@@ -139,6 +135,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findName);
+			p1.setString(1, emailId);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantName = rs.getString(1);
@@ -152,7 +149,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	}
 
 	// Find Restaurant Id through restaurant name
-
 	public int findRestaurantId2(String restaurantName) throws SQLException {
 		String findId = "select restaurant_id from restaurant_details where restaurant_name=?";
 		Connection con = null;
@@ -162,6 +158,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findId);
+			p1.setString(1, restaurantName);
 			rs = p1.executeQuery();
 			if (rs.next()) {
 				restaurantId = rs.getInt(1);
@@ -176,7 +173,6 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	}
 
 	// Find Restaurant Name through RestaurantId
-
 	public String findRestaurantName(int restaurantId) throws SQLException {
 		String findname = "select restaurant_name from restaurant_details where restaurant_id = ?";
 		Connection con = null;
@@ -184,12 +180,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		ResultSet rs = null;
 		PreparedStatement p1 = null;
 		try {
-			System.out.println("method");
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(findname);
+			p1.setInt(1, restaurantId);
 			rs = p1.executeQuery();
 			if (rs.next()) {
-				System.out.println("food");
 				restaurantname = rs.getString(1);
 			}
 		} catch (SQLException e) {
@@ -200,8 +195,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return restaurantname;
 	}
 
-	// User view all restaurant
-
+	// User view all restaurants
 	public List<RestaurantDetails> showRestaurant() throws SQLException {
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
@@ -248,8 +242,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return restaurantlist;
 	}
 
-	// Filter Restaurants by City name
-
+	//To search the restaurant by city name
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException {
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
@@ -277,6 +270,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 		return restaurantlist;
 	}
 
+	
 	public List<RestaurantDetails> searchRestaurant(String emailid) throws SQLException {
 		List<RestaurantDetails> restaurantList = new ArrayList<>();
 		String showQuery = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where email=?";
