@@ -245,14 +245,17 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	//To search the restaurant by city name
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException {
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
-		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where city= ?";
+		String cityname = "%" +city+ "%";
+		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where upper(city) like ? or lower(city) like ? or initcap(city) like ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
-			p1.setString(1, city);
+			p1.setString(1, cityname);
+			p1.setString(2, cityname);
+			p1.setString(3, cityname);
 			rs = p1.executeQuery();
 			while (rs.next()) {
 				RestaurantDetails restaurant = new RestaurantDetails(rs.getString("restaurant_name"),

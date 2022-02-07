@@ -70,7 +70,7 @@ img {
 	position: relative;
 	top: 175px;
 	right: 250px;
-	width: 150%;
+	width: 180%;
 	font-weight: bold;
 	font-size: 14px;
 }
@@ -112,7 +112,6 @@ form button {
 <caption>></caption>
 <tbody>
 	  <tr>
-	  <th id="tableHead"></th>
         <c:set var="count" value="1"/>
         <c:forEach items="${filterfoods}" var="foodnames">
         <td>
@@ -121,7 +120,7 @@ form button {
             <tbody>
             <tr>
             <th id="tableHead"></th>
-                <td><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}"><img src="image/${foodnames.foodImage}" alt="foodimage"></a></td>    
+                <td><a href = "addcartserv?fname=${foodnames.foodName}&resid=${foodnames.restaurantId}"><img src="assets/image/${foodnames.foodImage}" alt="foodimage"></a></td>    
                 <td><div class="names">${foodnames.foodName}<br>
                     Food Price :${foodnames.price}<br>
                     ${foodnames.restaurantName}<br></div></td>

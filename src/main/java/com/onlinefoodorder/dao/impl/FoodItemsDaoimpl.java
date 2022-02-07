@@ -205,15 +205,17 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// Filter Foods by food name
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
-		String fname = "%" +foodname+ "%";
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where food_name like ";
+		String fname = "%" +foodname+"%";
+		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where upper(food_name) like ? or lower(food_name) like ? or initcap(food_name) like ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			p1 = con.prepareStatement(query);
-			p1.setString(1, foodname);
+			p1.setString(1, fname);
+			p1.setString(2, fname);
+			p1.setString(3, fname);
 			rs = p1.executeQuery();
 			while (rs.next()) {
 				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getString("food_name"),rs.getString("cuisine_name"), rs.getString("description"), rs.getDouble("price"),

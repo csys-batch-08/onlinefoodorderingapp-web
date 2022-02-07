@@ -107,10 +107,10 @@ img {
 			   <tbody>
 					<tr>
 					<th id="tableHead"></th>
-					<td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img	src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>
+					<td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img	src="assets/image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>
 					<td><div class="names">${restaurantlist.restaurantName}<br>
 						 				   Address : ${restaurantlist.area} ${restaurantlist.city}<br>
-											<jsp:useBean id="rating"class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
+											<jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
 											Ratings :${rating.fetchRating(restaurantlist.restaurantId)}	<br>
 						</div>
 					</td>
