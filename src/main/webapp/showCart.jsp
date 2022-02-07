@@ -107,15 +107,19 @@ button a {
 </div>
 
 <table>
+<caption></caption>
 <tbody>
 
 	   <tr>
+	   <th id="tableHead"></th>
         <c:set var="count" value="1"/>
        	<c:forEach items="${foodlist}" var="cartlist">
                     <td>
-                        <table id="foodtable">
+                        <table>
+                        <caption></caption>
                             <tbody>
                                 <tr>
+                                <th id="tableHead"></th>
                                     <td><a href="OrderFoodsServ?fname=${cartlist.foodName}&resid=${cartlist.restaurantId}"><img src="assets/image/${cartlist.foodImage}" alt="foodimage"></a></td>    
                                     <td>
                                   	    <div class="names">${cartlist.foodName}</span><br>

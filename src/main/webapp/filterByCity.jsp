@@ -95,14 +95,18 @@ img {
 
 <div class="table">
 <table>
+<caption></caption>
 <tbody>
 	  <tr>
+	  <th id="tableHead"></th>
 		<c:set var="count" value="1" />
 		<c:forEach items="${restaurantList}" var="restaurantlist">
 			<td>
 			   <table>
+			   <caption></caption>
 			   <tbody>
 					<tr>
+					<th id="tableHead"></th>
 					<td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img	src="image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>
 					<td><div class="names">${restaurantlist.restaurantName}<br>
 						 				   Address : ${restaurantlist.area} ${restaurantlist.city}<br>

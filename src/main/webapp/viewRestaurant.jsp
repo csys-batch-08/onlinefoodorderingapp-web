@@ -121,6 +121,7 @@ td{
 <div class="t3">
 <div class="t2">
 	<table>
+	<caption></caption>
 		<h2>View Restaurant details</h2>
 	<thead>
 		<tr>

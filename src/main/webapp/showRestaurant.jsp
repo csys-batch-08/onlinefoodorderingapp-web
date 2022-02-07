@@ -121,14 +121,18 @@ form button {
 </form>
 <div class="table">
 <table>
+<caption></caption>
 <tbody>
 	   <tr>
+	   <th id="tableHead"></th>
 		<c:set var="count" value="1"/>
        	<c:forEach items="${restaurantList}" var="restaurantlist">
              <td>
-                <table id="foodtable">
+                <table>
+                <caption></caption>
                 <tbody>
                   <tr>
+                  <th id="tableHead"></th>
                       <td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img src="assets/image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>    
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>

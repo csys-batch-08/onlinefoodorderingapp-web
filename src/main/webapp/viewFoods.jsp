@@ -91,7 +91,6 @@ td, th {
 		<th>Price</th>
 	</tr>
 	</thead>
-	<br><br>
 <tbody>
 
 <c:set var="i" value="0"/>

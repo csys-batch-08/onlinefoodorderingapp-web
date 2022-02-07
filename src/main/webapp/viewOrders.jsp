@@ -128,7 +128,7 @@ td, th {
 		<th>Order Status</th>
 	</tr>
 	</thead>
-	<br><br>
+
 <tbody>
 
 <c:set var="i" value="0"/>
