@@ -85,7 +85,8 @@ public class UserDaoimpl implements UserDao {
 	
 	// Validate admin login
 	public User validateAdmin(String emailAddress, String password) throws SQLException {
-		String adminQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='Admin' and email_address= ? and password=?";
+		String adminQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details "
+				+ "where role='Admin' and email_address= ? and password=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		User user = null;
@@ -97,7 +98,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(2, password);
 			rs = p1.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getString("User_Name"), rs.getLong("Phone_no"), rs.getString("Address"),rs.getString("Email_address"), rs.getString("Password"), rs.getInt("Wallet"));
+				user = new User(rs.getString("User_Name"), rs.getLong("Phone_no"), rs.getString("Address"),rs.getString("Email_address"),
+						rs.getString("Password"), rs.getInt("Wallet"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,7 +111,8 @@ public class UserDaoimpl implements UserDao {
 	
 	// Validate User login
 	public User validateUser(String emailAddress, String password) throws SQLException {
-		String validateQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where role='user' and email_address= ? and password= ?";
+		String validateQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details "
+				+ "where role='user' and email_address= ? and password= ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		User user = null;
@@ -121,7 +124,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(2, password);
 			rs = p1.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"),emailAddress, password, rs.getInt("WALLET"));
+				user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"),emailAddress, password,
+						rs.getInt("WALLET"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,7 +138,8 @@ public class UserDaoimpl implements UserDao {
 	// Admin search the particular user details
 	public List<User> viewSingleUser(String emailid) throws SQLException {
 		List<User> userList = new ArrayList<>();
-		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where email_address= ? ";
+		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details "
+				+ "where email_address= ? ";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
@@ -144,7 +149,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(1, emailid);
 			rs = p1.executeQuery();
 			while (rs.next()) {
-				User user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"), rs.getString("EMAIL_ADDRESS"), rs.getString("PASSWORD"), rs.getInt("WALLET"));
+				User user = new User(rs.getString("USER_NAME"), rs.getLong("PHONE_NO"), rs.getString("ADDRESS"), 
+						rs.getString("EMAIL_ADDRESS"), rs.getString("PASSWORD"), rs.getInt("WALLET"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -196,7 +202,8 @@ public class UserDaoimpl implements UserDao {
 	// Admin view all user details
 	public List<User> viewUser() throws SQLException {
 		List<User> userList = new ArrayList<>();
-		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details where not role='Admin' order by user_id desc fetch first 10 rows only";
+		String showQuery = "select user_id, user_name, phone_no, role, address, email_address, password, wallet from user_details "
+				+ "where not role='Admin' order by user_id desc fetch first 10 rows only";
 		Connection con = null;
 		Statement statement = null;
 		ResultSet rs = null;
@@ -205,7 +212,8 @@ public class UserDaoimpl implements UserDao {
 			statement = con.createStatement();
 			rs = statement.executeQuery(showQuery);
 			while (rs.next()) {
-				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
+				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),
+						rs.getString("email_address"),rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -249,7 +257,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setInt(1, userid);
 			rs = p1.executeQuery();
 			while (rs.next()) {
-				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
+				User user = new User(rs.getString("user_name"), rs.getLong("phone_no"), rs.getString("address"),
+						rs.getString("email_address"), rs.getString("password"), rs.getInt("wallet"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {

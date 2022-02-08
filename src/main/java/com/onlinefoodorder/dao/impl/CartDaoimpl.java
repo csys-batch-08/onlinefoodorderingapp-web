@@ -43,7 +43,8 @@ public class CartDaoimpl {
 			p1.setInt(1, userid);
 			rs = p1.executeQuery();
 			while (rs.next()) {
-				foodItems.add(new FoodItems(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getDouble(6), rs.getString(7)));
+				foodItems.add(new FoodItems(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),rs.getString(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

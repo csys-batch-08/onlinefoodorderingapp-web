@@ -13,10 +13,11 @@ import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorder.util.ConnectionUtil;
 
 public class FoodItemsDaoimpl implements FoodItemsDao {
-	
+
 	// Admin register the food items
 	public void insertFoodItems(FoodItems fooditem) throws SQLException {
-		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)values(?,?,?,?,?,?)";
+		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)"
+				+ "values(?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -40,7 +41,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// user view the food items by restaurant
 	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items where restaurant_id = ?";
+		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items "
+				+ "where restaurant_id = ?";
 		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 		PreparedStatement p1 = null;
@@ -52,7 +54,9 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			rs = p1.executeQuery();
 			while (rs.next()) {
 				String resName = restaurantdao.findRestaurantName(rs.getInt(1));
-				FoodItems fooditem = new FoodItems(rs.getInt("Restaurant_id"), rs.getInt("item_id"),rs.getString("Food_name"), rs.getString("Cuisine_name"), rs.getString("Description"),rs.getDouble("Price"), rs.getString("Food_image"), resName);
+				FoodItems fooditem = new FoodItems(rs.getInt("Restaurant_id"), rs.getInt("item_id"),
+						rs.getString("Food_name"), rs.getString("Cuisine_name"), rs.getString("Description"),
+						rs.getDouble("Price"), rs.getString("Food_image"), resName);
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
@@ -77,30 +81,31 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			rs = statement.executeQuery(showQuery);
 			while (rs.next()) {
 				String resName = restaurantdao.findRestaurantName(rs.getInt("Restaurant_id"));
-				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getInt("item_id"),rs.getString("Food_Name"), rs.getString("Cuisine_Name"), rs.getString("Description"),rs.getDouble("Price"), rs.getString("Food_Image"), resName);
+				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getInt("item_id"),rs.getString("Food_Name"), 
+						rs.getString("Cuisine_Name"), rs.getString("Description"),rs.getDouble("Price"), rs.getString("Food_Image"), resName);
 				foodItemList.add(fooditem);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(rs != null){
+			if (rs != null) {
 				try {
 					rs.close();
-				}catch(SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			if(statement != null) {
+			if (statement != null) {
 				try {
 					statement.close();
-				}catch(SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.close();
-				}catch(SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -120,7 +125,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			p1.setInt(1, resid);
 			ResultSet rs = p1.executeQuery();
 			while (rs.next()) {
-				FoodItems fooditem = new FoodItems(resid, rs.getString("food_name"), rs.getString("cuisine_name"),rs.getString("description"), rs.getDouble("price"), rs.getString("food_image"));
+				FoodItems fooditem = new FoodItems(resid, rs.getString("food_name"), rs.getString("cuisine_name"),
+						rs.getString("description"), rs.getDouble("price"), rs.getString("food_image"));
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
@@ -178,7 +184,7 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 		return foodprice;
 	}
 
-	// Find ItemId 
+	// Find ItemId
 	public int finditemid(int restaurantid, String foodname) throws SQLException {
 		String price = "select item_id from food_items where restaurant_id = ? and food_name = ?";
 		Connection con = null;
@@ -205,8 +211,9 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// Filter Foods by food name
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
-		String fname = "%" +foodname+"%";
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from food_items where upper(food_name) like ? or lower(food_name) like ? or initcap(food_name) like ?";
+		String fname = "%" + foodname + "%";
+		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from "
+				+ "food_items where upper(food_name) like ? or lower(food_name) like ? or initcap(food_name) like ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
@@ -218,7 +225,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			p1.setString(3, fname);
 			rs = p1.executeQuery();
 			while (rs.next()) {
-				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getString("food_name"),rs.getString("cuisine_name"), rs.getString("description"), rs.getDouble("price"),
+				FoodItems fooditem = new FoodItems(rs.getInt("restaurant_id"), rs.getString("food_name"),
+						rs.getString("cuisine_name"), rs.getString("description"), rs.getDouble("price"),
 						rs.getString("food_image"));
 				foodnamelist.add(fooditem);
 			}
