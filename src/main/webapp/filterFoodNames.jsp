@@ -110,6 +110,7 @@ form button {
 <div class="table">
 <table>
 <caption>></caption>
+<th></th>
 <tbody>
 	  <tr>
         <c:set var="count" value="1"/>
@@ -117,6 +118,7 @@ form button {
         <td>
             <table>
             <caption></caption>
+            <th></th>
             <tbody>
             <tr>
             <th id="tableHead"></th>

@@ -95,14 +95,14 @@ img {
 
 <div class="table">
 <table>
-<caption></caption>
+<caption></caption><th></th>
 <tbody>
 	  <tr>
 		<c:set var="count" value="1"/>
 		<c:forEach items="${restaurantList}" var="restaurantlist">
 			<td>
 			   <table>
-			   <caption></caption>
+			   <caption></caption><th></th>
 			   <tbody>
 					<tr>
 					<td><a href="restaurantfoodlistSer?rid=${restaurantlist.restaurantId}"><img	src="assets/image/${restaurantlist.restaurantImages}" alt="restaurantimage"></a></td>
