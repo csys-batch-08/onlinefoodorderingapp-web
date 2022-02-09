@@ -22,7 +22,7 @@ public class ConnectionUtil
 				String password = decryptpassword.decrypt();
 				con = DriverManager.getConnection(url, username, password);
 			} catch (ClassNotFoundException | SQLException e) {
-				e.getMessage();
+				e.printStackTrace();
 			}
 			return con;
 	}
