@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		
 		try {
 			String username = request.getParameter("username");
@@ -29,10 +30,12 @@ public class RegisterServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.insertUser(user);
 			response.sendRedirect("index.jsp");
+		} catch (IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}	
 	}
-
 }

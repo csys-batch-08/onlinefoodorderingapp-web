@@ -142,4 +142,15 @@ button a {
 		</tr>
 	</table>
 </body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+if(localStorage.getItem("sweetalert") != null){
+	Swal.fire(
+			  'Item Added Successfully!',
+			  '',
+			  'success'
+			)
+	localStorage.removeItem("sweetalert");
+}
+</script>
 </html>

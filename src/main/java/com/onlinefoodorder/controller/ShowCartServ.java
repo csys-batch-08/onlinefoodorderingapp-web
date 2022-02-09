@@ -14,13 +14,14 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.CartDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/ShowCartServ")
 public class ShowCartServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response){	
 	try {
 			HttpSession session = request.getSession();
 			CartDaoimpl cartDaoimpl = new CartDaoimpl();
@@ -29,8 +30,12 @@ public class ShowCartServ extends HttpServlet {
 			request.setAttribute("foodlist", foodlist);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCart.jsp");
 			requestDispatcher.forward(request, response);
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}	
 	}
 }

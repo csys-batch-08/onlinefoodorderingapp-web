@@ -15,13 +15,14 @@ import com.onlinefoodorder.dao.impl.OrderFoodsDaoimpl;
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.model.User;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/orderfood")
 public class OrderfoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		
 	try {
 		HttpSession session = request.getSession();
@@ -72,6 +73,9 @@ public class OrderfoodsServlet extends HttpServlet {
 		}
 	} catch (SQLException e) {
 			e.printStackTrace();
+	} catch (IOException e) {
+		Logger.printStackTrace(e);
+		Logger.runTimeException(e.getMessage());
 	}
   }
 }

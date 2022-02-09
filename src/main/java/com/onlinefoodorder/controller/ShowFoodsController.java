@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/showfoodsservlet")
 public class ShowFoodsController extends HttpServlet{
@@ -20,21 +21,21 @@ public class ShowFoodsController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 @Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException 
+protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 {
-		try {
-				FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
-				List<FoodItems> foodItemList;
-				foodItemList = fooditemdao.showFoodItems();	
-				req.setAttribute("fooditemslistobj", foodItemList);
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
-				requestDispatcher.forward(req, resp);		
-		} catch (IOException e) {
-				e.printStackTrace();
-		}catch(ServletException e) {
-				e.printStackTrace();
+	try {
+			FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
+			List<FoodItems> foodItemList;
+			foodItemList = fooditemdao.showFoodItems();	
+			req.setAttribute("fooditemslistobj", foodItemList);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
+			requestDispatcher.forward(req, resp);	
+		} catch(ServletException | IOException  e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {
-				e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 }

@@ -13,13 +13,14 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorderingapp.logger.Logger;
 @WebServlet("/foodorderserv")
 public class FooditemsServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	{
 		
 		try {
@@ -38,13 +39,14 @@ public class FooditemsServlet extends HttpServlet
 			FoodItems food = new FoodItems(resid, foodname, cuisinename, description, price, foodimages);
 			FoodItemsDaoimpl foodItemsDaoimpl = new FoodItemsDaoimpl();
 			foodItemsDaoimpl.insertFoodItems(food);
-			PrintWriter pw = response.getWriter();
-			pw.write("food items are successfully inserted");
 			response.sendRedirect("admin.jsp");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+			} catch (IOException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			}catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			}
 	}
 }
 

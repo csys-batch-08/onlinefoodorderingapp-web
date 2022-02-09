@@ -135,8 +135,8 @@ form button {
                       <td>
                       <div class="names">${restaurantlist.restaurantName}<br>
                        Address : ${restaurantlist.area}, ${restaurantlist.city}<br>  
-                       <jsp:useBean id="rating" class="com.onlinefoodorder.dao.impl.RatingsDaoimpl"/>
-                       Ratings  :  ${rating.fetchRating(restaurantlist.restaurantId)}<br>                             
+                       
+                       Ratings  :  ${restaurantlist.ratings}<br>                             
                       </div>
                       </td>
                   </tr>

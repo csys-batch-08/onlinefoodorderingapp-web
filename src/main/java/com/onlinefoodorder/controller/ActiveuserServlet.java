@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/activeusers")
 public class ActiveuserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	{
 		try {
 			String email = request.getParameter("email");
@@ -29,11 +30,14 @@ public class ActiveuserServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("ActiveUser", "Successfully Active");
-			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		 } catch (SQLException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		 }catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 }

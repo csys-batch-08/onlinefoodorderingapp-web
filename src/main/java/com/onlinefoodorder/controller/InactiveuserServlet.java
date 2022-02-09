@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/inactiveusers")
 public class InactiveuserServlet extends HttpServlet 
@@ -18,8 +19,7 @@ public class InactiveuserServlet extends HttpServlet
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
 			String email = request.getParameter("email");
 			UserDaoimpl userdao = new UserDaoimpl();
@@ -32,8 +32,12 @@ public class InactiveuserServlet extends HttpServlet
 			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}catch (SQLException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}	
 	}
 }

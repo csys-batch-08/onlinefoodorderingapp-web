@@ -11,6 +11,7 @@ import java.util.List;
 import com.onlinefoodorder.dao.FoodItemsDao;
 import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
 
 public class FoodItemsDaoimpl implements FoodItemsDao {
 
@@ -32,7 +33,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -60,7 +62,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -86,7 +89,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodItemList.add(fooditem);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (rs != null) {
 				try {
@@ -130,8 +134,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -154,7 +158,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				itemname = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -177,7 +182,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -201,7 +207,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -231,7 +238,8 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 				foodnamelist.add(fooditem);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}

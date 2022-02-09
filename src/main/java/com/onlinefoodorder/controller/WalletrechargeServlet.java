@@ -12,13 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/rechargewallet")
 public class WalletrechargeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){	
 	try{
 			HttpSession session = request.getSession();	
 			Long cardnumber = Long.parseLong(request.getParameter("cardnumber"));
@@ -44,7 +45,11 @@ public class WalletrechargeServlet extends HttpServlet {
 				response.getWriter().print("Wallet not recharged");
 			}		
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} catch (IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}
 	}
 }

@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
+import com.onlinefoodorderingapp.logger.Logger;
 @WebServlet("/restaurantdetail")
 public class RestaurantdetailServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		
     	try {
     		String restaurantname = request.getParameter("restaurantname");
@@ -33,10 +35,12 @@ public class RestaurantdetailServlet extends HttpServlet
         	RestaurantdetailsDaoimpl restaurantDao = new RestaurantdetailsDaoimpl();
 			restaurantDao.insertRestaurantDetails(restaurant);
 			response.sendRedirect("admin.jsp");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}catch (SQLException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
-		
     }
-
 }

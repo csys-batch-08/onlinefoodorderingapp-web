@@ -12,14 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.CartDaoimpl;
 import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
+import com.onlinefoodorderingapp.logger.Logger;
 @WebServlet("/addcartserv")
 public class AddcartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		try {
 			HttpSession session = request.getSession();
 			
@@ -36,9 +35,14 @@ public class AddcartServlet extends HttpServlet {
 			
 			session.setAttribute("itemidcart", itemid);
 			session.setAttribute("resId", resid);
-			response.sendRedirect("cartSuc.jsp");
+			response.sendRedirect("ShowCartServ");
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} catch (IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 		
 	}

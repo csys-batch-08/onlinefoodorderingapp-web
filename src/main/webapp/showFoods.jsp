@@ -114,7 +114,7 @@ form button {
 							<tr>
 								<td><a
 									href="addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img
-										src="assets/image/${foodlist.foodImage}" alt="foodimage"></a></td>
+										src="assets/image/${foodlist.foodImage}" alt="foodimage" onclick="sweetAlert()"></a></td>
 								<td><div class="names">${foodlist.foodName}<br>Price :${foodlist.price}<br> 
 								         ${foodlist.restaurantName}
 									</div>
@@ -138,3 +138,9 @@ form button {
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+function sweetAlert(){
+	localStorage.setItem("sweetalert", true);
+}
+</script>
+</html>

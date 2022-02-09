@@ -11,6 +11,7 @@ import java.util.List;
 import com.onlinefoodorder.dao.OrderFoodsDao;
 import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
 
 public class OrderFoodsDaoimpl implements OrderFoodsDao {
 	
@@ -28,7 +29,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 			p1.setDouble(4, order.getTotalPrice());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -53,7 +55,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if(rs != null){
 				try {
@@ -101,7 +104,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 				orderlist.add(order);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -120,7 +124,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -138,7 +143,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 			p1.setInt(1, orderId);
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -161,7 +167,8 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 				foodprice = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}

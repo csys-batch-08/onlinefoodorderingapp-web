@@ -13,15 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/restaurantfoodlistSer")
 public class RestaurantfoodlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-	{
-		
+	protected void service(HttpServletRequest req, HttpServletResponse resp){
 		try {
 			FoodItemsDaoimpl fooditemdao = new FoodItemsDaoimpl();
 			
@@ -34,8 +33,12 @@ public class RestaurantfoodlistServlet extends HttpServlet {
 			
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("restaurantFoodList.jsp");
 			requestDispatcher.forward(req, resp);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}catch (SQLException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}		
 	}
 }

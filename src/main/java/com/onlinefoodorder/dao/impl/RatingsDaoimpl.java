@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.onlinefoodorder.model.Ratings;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
 
 public class RatingsDaoimpl {
 
@@ -26,7 +27,8 @@ public class RatingsDaoimpl {
 			p1.executeUpdate("commit");
 			return resid;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 			return -1;
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
@@ -49,7 +51,8 @@ public class RatingsDaoimpl {
 				return rs.getDouble(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}

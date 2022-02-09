@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.onlinefoodorder.dao.impl.RatingsDaoimpl;
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.Ratings;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/rating")
 public class RatingsServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class RatingsServlet extends HttpServlet {
        
  
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		
 		
 		try {
@@ -41,10 +42,11 @@ public class RatingsServlet extends HttpServlet {
 			ratingdao.insertRatings(rating);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowRestaurantServ");
 			requestDispatcher.forward(request, response);
+		} catch (ServletException | IOException e){
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-				
-		
+		}	
 	}
 }

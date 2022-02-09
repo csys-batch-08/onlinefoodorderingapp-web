@@ -16,6 +16,7 @@ public class RestaurantDetails
 	private String password;
 	private String restaurantImages;
 	private String restaurantStatus;
+	private double ratings;
 	
 	public int getRestaurantId() {
 		return restaurantId;
@@ -34,6 +35,24 @@ public class RestaurantDetails
 	}
 	public void setRestaurantName(String restaurantName) {
 		this.restaurantName = restaurantName;
+	}
+	public RestaurantDetails(int restaurantId, String restaurantName, String area, String city, int pincode,
+			long restaurantLandlineNo, String ownerName, String operationalHours, String email, String password,
+			String restaurantImages, String restaurantStatus, double ratings) {
+		super();
+		this.restaurantId = restaurantId;
+		this.restaurantName = restaurantName;
+		this.area = area;
+		this.city = city;
+		this.pincode = pincode;
+		this.restaurantLandlineNo = restaurantLandlineNo;
+		this.ownerName = ownerName;
+		this.operationalHours = operationalHours;
+		this.email = email;
+		this.password = password;
+		this.restaurantImages = restaurantImages;
+		this.restaurantStatus = restaurantStatus;
+		this.ratings = ratings;
 	}
 	public String getArea() {
 		return area;
@@ -102,6 +121,12 @@ public class RestaurantDetails
 		this.email = email;
 		this.password = password;
 		this.restaurantImages = restaurantImages;
+	}
+	public double getRatings() {
+		return ratings;
+	}
+	public void setRatings(double ratings) {
+		this.ratings = ratings;
 	}
 	public RestaurantDetails(int restaurantId, String restaurantName, String area, String city, int pincode, long restaurantLandlineNo,
 			String ownerName, String operationalHours, String email, String password, String restaurantImages,

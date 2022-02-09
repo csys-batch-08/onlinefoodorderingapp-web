@@ -11,6 +11,7 @@ import java.util.List;
 import com.onlinefoodorder.dao.RestaurantdetailsDao;
 import com.onlinefoodorder.model.RestaurantDetails;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
 
 public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	
@@ -36,7 +37,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.setString(10, restaurant.getRestaurantImages());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -60,7 +62,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.setString(6, restaurant.getEmail());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -78,7 +81,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.setString(1, emailid);
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -97,7 +101,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -120,7 +125,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantid = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -143,7 +149,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantName = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -166,7 +173,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -190,7 +198,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantname = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -199,6 +208,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 
 	// User view all restaurants
 	public List<RestaurantDetails> showRestaurant() throws SQLException {
+		RatingsDaoimpl rating = new RatingsDaoimpl();
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, "
 				+ "email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
@@ -214,11 +224,12 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 						rs.getString("Restaurant_name"), rs.getString("area"), rs.getString("city"),
 						rs.getInt("Pincode"), rs.getLong("Restaurant_landline_no"), rs.getString("Owner_name"),
 						rs.getString("Operational_hours"), rs.getString("Email"), rs.getString("Password"),
-						rs.getString("Restaurant_image"), rs.getString("restaurant_status"));
+						rs.getString("Restaurant_image"), rs.getString("restaurant_status"),rating.fetchRating(rs.getInt("restaurant_id")));
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if(rs != null){
 				try {
@@ -271,7 +282,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantlist.add(restaurant);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -299,7 +311,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 				restaurantList.add(restaurant);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}

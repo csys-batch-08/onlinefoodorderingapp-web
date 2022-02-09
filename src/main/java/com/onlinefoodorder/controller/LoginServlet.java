@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.User;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/userlogin")
 public class LoginServlet extends HttpServlet 
@@ -21,7 +22,7 @@ public class LoginServlet extends HttpServlet
 	private static final long serialVersionUID = 1L;
        
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	{
 			try {
 				String email = request.getParameter("email");
@@ -46,8 +47,7 @@ public class LoginServlet extends HttpServlet
 					session.setAttribute("Userid1", userid);
 					
 					session.setAttribute("emailid", email);
-					
-					response.sendRedirect("showfoodsservlet");	
+					response.sendRedirect("showfoodsservlet");
 				}
 				else if(admin!=null)
 				{
@@ -60,7 +60,11 @@ public class LoginServlet extends HttpServlet
 					response.sendRedirect("index.jsp");
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
-			}					
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			} catch (IOException e)	{
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			}
 	}
 }

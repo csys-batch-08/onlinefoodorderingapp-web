@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
+
 public class CartDaoimpl {
 
 	// Insert Cart
@@ -24,7 +26,8 @@ public class CartDaoimpl {
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -43,11 +46,12 @@ public class CartDaoimpl {
 			p1.setInt(1, userid);
 			rs = p1.executeQuery();
 			while (rs.next()) {
-				foodItems.add(new FoodItems(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),rs.getString(5),
-						rs.getDouble(6), rs.getString(7)));
+				foodItems.add(new FoodItems(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -66,7 +70,8 @@ public class CartDaoimpl {
 			p1.setInt(2, userId);
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}

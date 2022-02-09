@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
+import com.onlinefoodorderingapp.logger.Logger;
 
 
 @WebServlet("/updaterestaurantdetail")
@@ -19,7 +20,7 @@ public class UpdaterestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;  
     
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		
 		try {
 			String restaurantname = request.getParameter("restaurantname");
@@ -34,9 +35,12 @@ public class UpdaterestaurantServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("updaterestaurant", "Restaurant Details are updated");
 			response.sendRedirect("admin.jsp");
+		} catch (IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}	
 	}
 }

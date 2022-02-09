@@ -9,20 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.onlinefoodorderingapp.logger.Logger;
+
 @WebServlet("/OrderFoodsServ")
 public class OrderFoodsServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response){
+		try {	
+			int rid = Integer.parseInt(request.getParameter("resid"));
+			String foodname = request.getParameter("fname");
 		
-		int rid = Integer.parseInt(request.getParameter("resid"));
-		String foodname = request.getParameter("fname");
+			request.setAttribute("restaurantId", rid);
+			request.setAttribute("foodname", foodname);
 		
-		request.setAttribute("restaurantId", rid);
-		request.setAttribute("foodname", foodname);
-		
-		RequestDispatcher requestdispatcher = request.getRequestDispatcher("orderFoods.jsp");
-		requestdispatcher.forward(request, response);
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("orderFoods.jsp");
+			requestdispatcher.forward(request, response);
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}
 	}
 }

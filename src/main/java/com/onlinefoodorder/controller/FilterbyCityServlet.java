@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
 import com.onlinefoodorder.model.RestaurantDetails;
+import com.onlinefoodorderingapp.logger.Logger;
 @WebServlet("/filterbycityserv")
 public class FilterbyCityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
 			RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 			String city = request.getParameter("city");
@@ -26,10 +27,12 @@ public class FilterbyCityServlet extends HttpServlet {
 			request.setAttribute("restaurantList", restaurantlist);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}catch (SQLException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		}	
 	}
 }

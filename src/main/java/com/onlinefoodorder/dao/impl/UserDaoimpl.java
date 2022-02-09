@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import com.onlinefoodorder.dao.UserDao;
 import com.onlinefoodorder.model.User;
 import com.onlinefoodorder.util.ConnectionUtil;
+import com.onlinefoodorderingapp.logger.Logger;
 
 public class UserDaoimpl implements UserDao {
 	
@@ -31,7 +32,8 @@ public class UserDaoimpl implements UserDao {
 			p1.executeUpdate();
 			p1.executeUpdate("commit");
 		} catch (SQLException e){
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -54,7 +56,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(5, user.getEmailAddress());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -76,7 +79,8 @@ public class UserDaoimpl implements UserDao {
 			p1.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -102,7 +106,8 @@ public class UserDaoimpl implements UserDao {
 						rs.getString("Password"), rs.getInt("Wallet"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -128,7 +133,8 @@ public class UserDaoimpl implements UserDao {
 						rs.getInt("WALLET"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -154,7 +160,8 @@ public class UserDaoimpl implements UserDao {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -174,7 +181,8 @@ public class UserDaoimpl implements UserDao {
 			p1.close();
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -192,7 +200,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(1, emailAddress);
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}
@@ -217,7 +226,8 @@ public class UserDaoimpl implements UserDao {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if(rs != null){
 				try {
@@ -262,7 +272,8 @@ public class UserDaoimpl implements UserDao {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -285,7 +296,8 @@ public class UserDaoimpl implements UserDao {
 				userId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -308,7 +320,8 @@ public class UserDaoimpl implements UserDao {
 				userName = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -330,7 +343,8 @@ public class UserDaoimpl implements UserDao {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatementResultSet(rs, p1, con);
 		}
@@ -349,7 +363,8 @@ public class UserDaoimpl implements UserDao {
 			p1.setString(2, user.getEmailAddress());
 			p1.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnectionStatement(p1, con);
 		}

@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlinefoodorder.dao.impl.RestaurantdetailsDaoimpl;
+import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/activerestaurant")
 public class ActiveRestaurantServlet extends HttpServlet {
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
 			String email = request.getParameter("email");
@@ -29,7 +30,11 @@ public class ActiveRestaurantServlet extends HttpServlet {
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+		} catch (ServletException | IOException e) {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 		
 	}
