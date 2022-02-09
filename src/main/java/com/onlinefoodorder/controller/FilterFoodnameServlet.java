@@ -34,14 +34,9 @@ public class FilterFoodnameServlet extends HttpServlet {
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterFoodNames.jsp");
 			
 			requestdispatcher.forward(request, response);
-		}catch (ServletException | IOException e) {
+		}catch (ServletException | IOException| SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}
-		
-		
+		} 
 	}
 }

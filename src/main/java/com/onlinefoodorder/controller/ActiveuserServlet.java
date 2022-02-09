@@ -32,10 +32,7 @@ public class ActiveuserServlet extends HttpServlet {
 			session.setAttribute("ActiveUser", "Successfully Active");
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
-		 } catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		 }catch (ServletException | IOException e) {
+		 }catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

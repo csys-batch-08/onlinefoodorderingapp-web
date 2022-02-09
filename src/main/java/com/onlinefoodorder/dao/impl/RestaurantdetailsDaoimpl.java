@@ -47,8 +47,8 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 
 	//Admin update the restaurant Details
 	public boolean restaurantUpdate(RestaurantDetails restaurant) throws SQLException {
-		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, operational_hours=?, "
-				+ "password=? where email=?";
+		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, "
+				+ "operational_hours=? password=? where email=?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -210,7 +210,7 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	public List<RestaurantDetails> showRestaurant() throws SQLException {
 		RatingsDaoimpl rating = new RatingsDaoimpl();
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
-		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, "
+		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,operational_hours,"
 				+ "email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
 		Connection con = null;
 		Statement statement = null;
@@ -260,9 +260,9 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException {
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
 		String cityname = "%" +city+ "%";
-		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, operational_hours, "
-				+ "email, password, restaurant_image, restaurant_status from restaurant_details where upper(city) like ? or lower(city) "
-				+ "like ? or initcap(city) like ?";
+		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,"
+				+ " operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where upper(city) "
+				+ "like ? or lower(city) like ? or initcap(city) like ?";
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
