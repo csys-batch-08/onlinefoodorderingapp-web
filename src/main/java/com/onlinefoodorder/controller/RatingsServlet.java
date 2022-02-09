@@ -42,11 +42,9 @@ public class RatingsServlet extends HttpServlet {
 			ratingdao.insertRatings(rating);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ShowRestaurantServ");
 			requestDispatcher.forward(request, response);
-		} catch (ServletException | IOException e){
+		} catch (ServletException | IOException | SQLException e){
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}	
 	}
 }

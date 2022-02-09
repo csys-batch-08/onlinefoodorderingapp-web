@@ -29,10 +29,7 @@ public class ViewrestaurantServ extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("viewRestaurant.jsp");
 			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

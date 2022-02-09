@@ -3,7 +3,6 @@ package com.onlinefoodorder.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +43,7 @@ public class WalletrechargeServlet extends HttpServlet {
 			{
 				response.getWriter().print("Wallet not recharged");
 			}		
-		} catch (NumberFormatException | SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (IOException e) {
+		} catch (NumberFormatException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

@@ -30,10 +30,7 @@ public class SearchRestaurantServ extends HttpServlet {
 			
 			RequestDispatcher resquestdispatcher = request.getRequestDispatcher("adminSearchRestaurant.jsp");
 			resquestdispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

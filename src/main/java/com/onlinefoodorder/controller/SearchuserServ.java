@@ -30,10 +30,7 @@ public class SearchuserServ extends HttpServlet {
 			request.setAttribute("userlist", userList);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("adminSearchUser.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

@@ -30,12 +30,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			req.setAttribute("fooditemslistobj", foodItemList);
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("showFoods.jsp");
 			requestDispatcher.forward(req, resp);	
-		} catch(ServletException | IOException  e) {
+		} catch(ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}
+		} 
 	}
 }

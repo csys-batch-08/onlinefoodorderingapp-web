@@ -25,13 +25,9 @@ public class ForgotPasswordServlet extends HttpServlet {
 			if(flag) {
 				response.sendRedirect("index.jsp");
 			}
-		}catch (IOException e) {
+		}catch (IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}
-		
+		} 
 	}
 }

@@ -36,13 +36,9 @@ public class AddcartServlet extends HttpServlet {
 			session.setAttribute("resId", resid);
 			response.sendRedirect("ShowCartServ");
 			
-		} catch (NumberFormatException | SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (IOException e) {
+		} catch (NumberFormatException | SQLException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}
-		
 	}
 }

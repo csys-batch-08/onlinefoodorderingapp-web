@@ -29,14 +29,10 @@ public class ActiveRestaurantServlet extends HttpServlet {
 			session.setAttribute("Active", "Successfully Active");
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("admin.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (NumberFormatException | SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (ServletException | IOException e) {
+		} catch (NumberFormatException | SQLException | ServletException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}
-		
 	}
 
 }

@@ -33,12 +33,9 @@ public class RestaurantfoodlistServlet extends HttpServlet {
 			
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("restaurantFoodList.jsp");
 			requestDispatcher.forward(req, resp);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-		}catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}		
+		}	
 	}
 }

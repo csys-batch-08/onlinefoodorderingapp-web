@@ -30,12 +30,9 @@ public class ViewOrderServ extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("viewOrders.jsp");
 			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}	
+		} 
 	}
 }

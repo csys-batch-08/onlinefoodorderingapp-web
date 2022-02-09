@@ -28,10 +28,7 @@ public class ViewFoodsServ extends HttpServlet {
 			request.setAttribute("foodItemlist", foodItemList);
 			RequestDispatcher rd = request.getRequestDispatcher("viewFoods.jsp");
 			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

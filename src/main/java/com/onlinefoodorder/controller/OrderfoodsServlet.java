@@ -3,7 +3,6 @@ package com.onlinefoodorder.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import com.onlinefoodorder.dao.impl.OrderFoodsDaoimpl;
 import com.onlinefoodorder.dao.impl.UserDaoimpl;
 import com.onlinefoodorder.model.Orderfoods;
 import com.onlinefoodorder.model.User;
-import com.onlinefoodorderingapp.logger.Logger;
 
 @WebServlet("/orderfood")
 public class OrderfoodsServlet extends HttpServlet {
@@ -71,11 +69,8 @@ public class OrderfoodsServlet extends HttpServlet {
 		else {
 			response.sendRedirect("walletRecharge.jsp");
 		}
-	} catch (SQLException e) {
+	} catch (NumberFormatException | SQLException |IOException e) {
 			e.printStackTrace();
-	} catch (IOException e) {
-		Logger.printStackTrace(e);
-		Logger.runTimeException(e.getMessage());
 	}
   }
 }

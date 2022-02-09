@@ -26,10 +26,7 @@ public class OrderFoodsServ extends HttpServlet {
 		
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("orderFoods.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}catch (NumberFormatException e){
+		} catch (ServletException | IOException | NumberFormatException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

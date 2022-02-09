@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,12 +57,9 @@ public class LoginServlet extends HttpServlet
 					session.setAttribute("validateUser", "Invalid Email address & Password");
 					response.sendRedirect("index.jsp");
 				}
-			} catch (SQLException e) {
+			} catch (SQLException | IOException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
-			} catch (IOException e)	{
-				Logger.printStackTrace(e);
-				Logger.runTimeException(e.getMessage());
-			}
+			} 
 	}
 }

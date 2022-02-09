@@ -30,10 +30,7 @@ public class ShowCartServ extends HttpServlet {
 			request.setAttribute("foodlist", foodlist);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("showCart.jsp");
 			requestDispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}	

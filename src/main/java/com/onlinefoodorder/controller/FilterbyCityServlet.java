@@ -27,10 +27,7 @@ public class FilterbyCityServlet extends HttpServlet {
 			request.setAttribute("restaurantList", restaurantlist);
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("filterByCity.jsp");
 			requestdispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}	

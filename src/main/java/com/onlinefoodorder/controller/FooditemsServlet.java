@@ -35,10 +35,7 @@ public class FooditemsServlet extends HttpServlet
 			FoodItemsDaoimpl foodItemsDaoimpl = new FoodItemsDaoimpl();
 			foodItemsDaoimpl.insertFoodItems(food);
 			response.sendRedirect("admin.jsp");
-			} catch (NumberFormatException | IOException e) {
-				Logger.printStackTrace(e);
-				Logger.runTimeException(e.getMessage());
-			}catch (SQLException e) {
+			} catch (NumberFormatException | IOException | SQLException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
 			}

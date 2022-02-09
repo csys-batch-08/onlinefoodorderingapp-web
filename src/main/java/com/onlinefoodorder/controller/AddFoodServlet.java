@@ -30,10 +30,7 @@ public class AddFoodServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("foodItems.jsp");
 			rd.forward(request, response);
 		}
-		catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

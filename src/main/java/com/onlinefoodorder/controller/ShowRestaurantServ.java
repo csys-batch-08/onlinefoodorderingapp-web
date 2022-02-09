@@ -30,10 +30,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("showRestaurant.jsp");
 			requestDispatcher.forward(req, resp);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		}catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}

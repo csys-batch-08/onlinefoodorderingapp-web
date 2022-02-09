@@ -2,7 +2,6 @@ package com.onlinefoodorder.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,10 +29,7 @@ public class RegisterServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.insertUser(user);
 			response.sendRedirect("index.jsp");
-		} catch (NumberFormatException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (NumberFormatException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}	

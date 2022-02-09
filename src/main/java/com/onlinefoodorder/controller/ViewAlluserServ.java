@@ -28,10 +28,7 @@ public class ViewAlluserServ extends HttpServlet {
 			request.setAttribute("userlist", userList);
 			RequestDispatcher rd = request.getRequestDispatcher("viewAllUser.jsp");
 			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}	

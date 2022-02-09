@@ -34,19 +34,11 @@ public class MyOrdersServ extends HttpServlet {
 			orderlist = orderfood.userViewOrder(uid);
 			request.setAttribute("orderList", orderlist);
 			
-			String username = (String)session.getAttribute("username");
-			String fname = (String)session.getAttribute("foodname1");
-			
 			RequestDispatcher requestdispatcher = request.getRequestDispatcher("myOrders.jsp");
 			requestdispatcher.forward(request, response);
-		}catch (ServletException | IOException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} catch (SQLException e) {
+		}catch (ServletException | IOException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		}
-				 
-		
 	}
 }
