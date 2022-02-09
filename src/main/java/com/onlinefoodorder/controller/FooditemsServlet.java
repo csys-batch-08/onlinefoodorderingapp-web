@@ -1,16 +1,12 @@
 package com.onlinefoodorder.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.onlinefoodorder.dao.impl.FoodItemsDaoimpl;
 import com.onlinefoodorder.model.FoodItems;
 import com.onlinefoodorderingapp.logger.Logger;
@@ -21,8 +17,7 @@ public class FooditemsServlet extends HttpServlet
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	{
-		
+	{		
 		try {
 			HttpSession session = request.getSession();
 			
@@ -40,7 +35,7 @@ public class FooditemsServlet extends HttpServlet
 			FoodItemsDaoimpl foodItemsDaoimpl = new FoodItemsDaoimpl();
 			foodItemsDaoimpl.insertFoodItems(food);
 			response.sendRedirect("admin.jsp");
-			} catch (IOException e) {
+			} catch (NumberFormatException | IOException e) {
 				Logger.printStackTrace(e);
 				Logger.runTimeException(e.getMessage());
 			}catch (SQLException e) {

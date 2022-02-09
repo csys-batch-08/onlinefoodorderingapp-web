@@ -29,6 +29,9 @@ public class OrderFoodsServ extends HttpServlet {
 		} catch (ServletException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
+		}catch (NumberFormatException e){
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 }

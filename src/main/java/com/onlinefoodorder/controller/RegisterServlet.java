@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.insertUser(user);
 			response.sendRedirect("index.jsp");
-		} catch (IOException e) {
+		} catch (NumberFormatException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {

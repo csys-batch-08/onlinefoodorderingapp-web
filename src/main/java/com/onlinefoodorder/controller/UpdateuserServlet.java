@@ -35,7 +35,7 @@ public class UpdateuserServlet extends HttpServlet {
 			UserDaoimpl userdao = new UserDaoimpl();
 			userdao.userProfileUpdate(user);
 			response.sendRedirect("UserProfileServ");
-		} catch (IOException e) {
+		} catch (NumberFormatException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {

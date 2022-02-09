@@ -35,7 +35,7 @@ public class UpdaterestaurantServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("updaterestaurant", "Restaurant Details are updated");
 			response.sendRedirect("admin.jsp");
-		} catch (IOException e) {
+		} catch (NumberFormatException | IOException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		} catch (SQLException e) {

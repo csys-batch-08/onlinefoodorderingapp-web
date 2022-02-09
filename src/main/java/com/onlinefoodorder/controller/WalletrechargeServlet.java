@@ -44,7 +44,7 @@ public class WalletrechargeServlet extends HttpServlet {
 			{
 				response.getWriter().print("Wallet not recharged");
 			}		
-		} catch (SQLException e) {
+		} catch (NumberFormatException | SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		} catch (IOException e) {
