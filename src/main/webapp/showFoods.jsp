@@ -104,12 +104,13 @@ form button {
 <div class="table">
 		<table>
 			<caption></caption>
+			<th></th>
 			<tr>
 				<c:set var="count" value="1" />
 				<c:forEach items="${fooditemslistobj}" var="foodlist">
 					<td>
 						<table>
-							<caption></caption>
+							<caption></caption><th></th>
 							<tr>
 								<td><a
 									href="addcartserv?fname=${foodlist.foodName}&resid=${foodlist.restaurantId}"><img

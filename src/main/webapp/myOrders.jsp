@@ -33,9 +33,7 @@ button a {
 </style>
 <body>
 
-<div class ="t1">
 <h3><strong>My Orders</strong></h3>
-<div class="t2">
 <div class="container mt-1">
 <table class="table table-striped table-dark">
 	<thead>
@@ -76,8 +74,6 @@ button a {
 </tbody>
 </table>
 <button class="button1"><a href="showfoodsservlet">Back</a></button>
-</div>
-</div>
 </div>
 </body>
 </html>
