@@ -17,8 +17,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 
 	// Admin register the food items
 	public void insertFoodItems(FoodItems fooditem) throws SQLException {
-		String insertQuery = "insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)"
-				+ "values(?,?,?,?,?,?)";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("insert into food_items(restaurant_id, food_name, cuisine_name, description, price, food_image)");
+		sqlQuery.append("values(?,?,?,?,?,?)");
+		String insertQuery = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -43,8 +45,10 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// user view the food items by restaurant
 	public List<FoodItems> showFoodsbyRestaurant(int restaurantid) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items "
-				+ "where restaurant_id = ?";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image from food_items ");
+		sqlQuery.append("where restaurant_id = ?");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		RestaurantdetailsDaoimpl restaurantdao = new RestaurantdetailsDaoimpl();
 		PreparedStatement p1 = null;
@@ -218,9 +222,11 @@ public class FoodItemsDaoimpl implements FoodItemsDao {
 	// Filter Foods by food name
 	public List<FoodItems> filterbyfoodname(String foodname) throws SQLException {
 		List<FoodItems> foodnamelist = new ArrayList<>();
+		StringBuilder sqlQuery = new StringBuilder();
 		String fname = "%" + foodname + "%";
-		String query = "select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from "
-				+ "food_items where upper(food_name) like ? or lower(food_name) like ? or initcap(food_name) like ?";
+		sqlQuery.append("select restaurant_id, item_id, food_name, cuisine_name, description, price, food_image, food_status from ");
+		sqlQuery.append("food_items where upper(food_name) like ? or lower(food_name) like ? or initcap(food_name) like ?");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;

@@ -8,23 +8,20 @@ import java.sql.SQLException;
 
 public class ConnectionUtil
 {
-	private ConnectionUtil()
-	{
-		super();
-	}
-	public static Connection getDbConnection(){
-			Connection con=null;
-			try {
-				EncryptDecrypt decryptpassword = new EncryptDecrypt();
-				Class.forName("oracle.jdbc.OracleDriver");
-				String url = "jdbc:oracle:thin:@localhost:1521:xe";
-				String username = "system";
-				String password = decryptpassword.decrypt();
-				con = DriverManager.getConnection(url, username, password);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-			return con;
+	public static Connection getDbConnection() {
+		Connection con = null;
+
+		try {
+			EncryptDecrypt decryptpassword = new EncryptDecrypt();
+			Class.forName("oracle.jdbc.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String username = "system";
+			String password = decryptpassword.decrypt();
+			con = DriverManager.getConnection(url, username, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.getMessage();
+		}
+		return con;
 	}
 	
 	public static void closeConnectionStatementResultSet(ResultSet rs, PreparedStatement p1, Connection con)

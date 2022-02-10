@@ -87,14 +87,16 @@ public class OrderFoodsDaoimpl implements OrderFoodsDao {
 	// User view my orders details
 	public List<Orderfoods> userViewOrder(int userid) throws SQLException {
 		List<Orderfoods> orderlist = new ArrayList<>();
-		String showQuery = "select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods "
-				+ "where user_id = ? order by order_date desc";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("select order_id, user_id, item_id, quantity, total_price, order_date, order_status from order_foods ");
+		sqlQuery.append("where user_id = ? order by order_date desc");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(showQuery);
+			p1 = con.prepareStatement(query);
 			p1.setInt(1, userid);
 			rs = p1.executeQuery();
 			while (rs.next()) {

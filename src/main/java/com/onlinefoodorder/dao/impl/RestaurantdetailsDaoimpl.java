@@ -17,14 +17,16 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	
 	//Admin register the restaurant details
 	public boolean insertRestaurantDetails(RestaurantDetails restaurant) throws SQLException {
-		String insertQuery = "insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, "
-				+ "operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("insert into restaurant_details(restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, ");
+		sqlQuery.append("operational_hours, email, password, restaurant_image) values(?,?,?,?,?,?,?,?,?,?)");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 
 		try {
 			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(insertQuery);
+			p1 = con.prepareStatement(query);
 			p1.setString(1, restaurant.getRestaurantName());
 			p1.setString(2, restaurant.getArea());
 			p1.setString(3, restaurant.getCity());
@@ -47,8 +49,10 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 
 	//Admin update the restaurant Details
 	public boolean restaurantUpdate(RestaurantDetails restaurant) throws SQLException {
-		String updateQuery = "update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?, "
-				+ "operational_hours=? password=? where email=?";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("update restaurant_details set restaurant_name=?, restaurant_landline_no=?, owner_name=?,");
+		sqlQuery.append("operational_hours=? password=? where email=?");
+		String updateQuery = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 		try {
@@ -210,8 +214,11 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	public List<RestaurantDetails> showRestaurant() throws SQLException {
 		RatingsDaoimpl rating = new RatingsDaoimpl();
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
-		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,operational_hours,"
-				+ "email, password, restaurant_image, restaurant_status from restaurant_details where restaurant_status='active'";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,");
+		sqlQuery.append("operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details");
+		sqlQuery.append(" where restaurant_status='active'");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		Statement statement = null;
 		ResultSet rs = null;
@@ -259,10 +266,12 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	//To search the restaurant by city name
 	public List<RestaurantDetails> filterbyCity(String city) throws SQLException {
 		List<RestaurantDetails> restaurantlist = new ArrayList<>();
+		StringBuilder sqlQuery = new StringBuilder();
 		String cityname = "%" +city+ "%";
-		String query = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,"
-				+ " operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where upper(city) "
-				+ "like ? or lower(city) like ? or initcap(city) like ?";
+		sqlQuery.append("select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name,");
+		sqlQuery.append(" operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where upper(city)");
+		sqlQuery.append("like ? or lower(city) like ? or initcap(city) like ?");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		PreparedStatement p1 = null;
 		ResultSet rs = null;
@@ -293,14 +302,16 @@ public class RestaurantdetailsDaoimpl implements RestaurantdetailsDao {
 	
 	public List<RestaurantDetails> searchRestaurant(String emailid) throws SQLException {
 		List<RestaurantDetails> restaurantList = new ArrayList<>();
-		String showQuery = "select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, "
-				+ "operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where email=?";
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("select restaurant_id, restaurant_name, area, city, pincode, restaurant_landline_no, owner_name, ");
+		sqlQuery.append("operational_hours, email, password, restaurant_image, restaurant_status from restaurant_details where email=?");
+		String query = sqlQuery.toString();
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement p1 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			p1 = con.prepareStatement(showQuery);
+			p1 = con.prepareStatement(query);
 			p1.setString(1, emailid);
 			rs = p1.executeQuery();
 			while (rs.next()) {

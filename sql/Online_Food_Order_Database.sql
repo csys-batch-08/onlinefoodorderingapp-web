@@ -132,7 +132,7 @@ select * from user_details where not role='Admin';
 
 select * from user_details;
 select * from restaurant_details;
-select * from food_items;
+select * from foo_items;
 select * from order_foods;
 select * from cart;
 select * from ratings;
